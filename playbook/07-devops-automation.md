@@ -6,15 +6,15 @@ AI-DLC's Bolt cadence (multiple production deploys per pod per day) is only surv
 
 ```mermaid
 flowchart LR
-    A[PR opened] --> B[Static: lint, typecheck,\narch tests, SAST, SCA, secrets, IaC scan]
+    A[PR opened] --> B[Static: lint, typecheck,<br/>arch tests, SAST, SCA, secrets, IaC scan]
     B --> C[Tests: unit + contract]
-    C --> D[Ephemeral env:\nintegration + smoke + DAST baseline]
+    C --> D[Ephemeral env:<br/>integration + smoke + DAST baseline]
     D --> E{Risk classifier}
-    E -- routine --> F[Auto-merge queue on green\n+ human code review]
+    E -- routine --> F[Auto-merge queue on green<br/>+ human code review]
     E -- material --> G[Named-approver gate]
     F --> H[Deploy: canary → progressive]
     G --> H
-    H --> I[Post-deploy verification\nauto-rollback on SLO breach]
+    H --> I[Post-deploy verification<br/>auto-rollback on SLO breach]
 ```
 
 Stage notes:
