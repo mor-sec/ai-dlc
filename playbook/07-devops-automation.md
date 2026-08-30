@@ -54,7 +54,7 @@ Classification is automated (path-based rules + labels the agent applies and a h
 - **First-line incident investigation:** on alert, an agent correlates logs, traces, recent deploys, and open changes into a hypothesis + evidence bundle before the human even joins. Human confirms and acts; agent drafts the timeline for the post-mortem.
 - **Auto-remediation only for pre-approved runbooks** (restart, scale, rollback last deploy) — the runbook is code-reviewed like everything else; anything novel goes through a human.
 - **Post-mortems feed steering:** every incident ends with the [Chapter 06](06-security-shift-left.md) question generalized — what steering line, test template, alert, or module change makes this class of incident impossible?
-- **Cost is an operational signal:** agents watch for cost anomalies (a favorite failure mode of generated IaC is an oversized default); budgets are alerts, not spreadsheets.
+- **Cost is an operational signal:** agents watch for cost anomalies (a favorite failure mode of generated IaC is an oversized default); budgets are alerts, not spreadsheets. Token spend per pod is baselined and alerted the same way — a spend spike usually means an agent looping or a Unit of Work sliced too large, both worth catching same-day ([Chapter 03](03-tooling-strategy.md#unit-economics-cost-per-validated-unit-of-work)).
 
 ## Observability requirements
 

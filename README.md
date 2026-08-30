@@ -39,6 +39,7 @@ Ready-to-use artifacts in [`standards/`](standards/):
 - [ADR Template](standards/adr-template.md) — architecture decision records
 - [Unit of Work Template](standards/unit-of-work-template.md) — AI-DLC's replacement for epics
 - [CLAUDE.md Template](standards/claude-md-template.md) — starter steering file for new repos
+- [Model Selection Reference](standards/model-selection.md) — current model-tier assignments and cost accounting (reviewed quarterly)
 
 ## How to use this playbook
 

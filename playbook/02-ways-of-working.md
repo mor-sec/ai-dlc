@@ -57,7 +57,7 @@ When agents write most code, **review becomes the primary engineering act**. Cal
 
 ## Metrics that matter (and ones that don't)
 
-**Track:** Units of Work completed per week; lead time from intent to production; defects escaping to production; review depth (substantive findings per review); change failure rate and MTTR; steering-file update frequency (a proxy for organizational learning).
+**Track:** Units of Work completed per week; lead time from intent to production; defects escaping to production; review depth (substantive findings per review); change failure rate and MTTR; steering-file update frequency (a proxy for organizational learning); cost per validated Unit of Work — tokens + warehouse credits + CI minutes ([Chapter 03](03-tooling-strategy.md#unit-economics-cost-per-validated-unit-of-work)).
 
 **Don't track:** lines of code, number of prompts, "AI usage %", story points. All are either meaningless or actively corrupting under AI-DLC.
 

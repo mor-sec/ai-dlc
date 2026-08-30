@@ -6,7 +6,7 @@ Tool licenses without enablement produce autocomplete users and disappointing me
 
 Mirrors AWS's recommended AI-DLC adoption path:
 
-1. **Executive alignment (2–4 weeks).** Leadership internalizes what actually changes: team shapes (AI Pods), metrics (Units of Work and lead time, not story points or LOC), budget shape (tokens and enablement, fewer seats), and the review-capacity bottleneck. Output: a signed-off pilot charter naming pods, scope, and success criteria. Skipping this wave is how pilots succeed and programs still die.
+1. **Executive alignment (2–4 weeks).** Leadership internalizes what actually changes: team shapes (AI Pods), metrics (Units of Work and lead time, not story points or LOC), budget shape (tokens and enablement, fewer seats — budgeted like cloud spend, with showback per pod at cost per validated Unit of Work, [Chapter 03](03-tooling-strategy.md#unit-economics-cost-per-validated-unit-of-work)), and the review-capacity bottleneck. Output: a signed-off pilot charter naming pods, scope, and success criteria. Skipping this wave is how pilots succeed and programs still die.
 2. **Technical enablement (4–6 weeks, overlapping).** Architects and senior engineers build the shared foundations the pods will stand on: steering-file baseline, skill library seeds, [reference pipeline](07-devops-automation.md), [Jira integration](08-github-jira.md), agent permissions and [security guardrails](06-security-shift-left.md). Output: a "paved road" a pilot pod can walk on day one.
 3. **Pilot pods (one quarter).** 1–2 pods on real, low-blast-radius work — [legacy Java upgrades](10-legacy-modernization.md) and [prototypes](05-rapid-prototyping.md) are ideal first Bolts (low ambiguity, high verifiability). Pods keep journals ([Chapter 02](02-ways-of-working.md)); Friday lessons flow into the shared steering repo. Output: measured before/after, refined playbook, and — most importantly — the first cohort of practitioners who train the next.
 
@@ -40,7 +40,7 @@ Ch. [06](06-security-shift-left.md) as owner, not reader; steering-as-control au
 
 ### Engineering leader
 
-Wave-1 content plus: reading the new metrics ([ch. 02](02-ways-of-working.md), [08](08-github-jira.md)), budgeting tokens vs. seats, and the discipline of *not* reintroducing Scrum ceremonies when a quarter gets bumpy. **Practicum:** run a quarter's pilot review against the charter's success criteria, in writing.
+Wave-1 content plus: reading the new metrics ([ch. 02](02-ways-of-working.md), [08](08-github-jira.md)), budgeting tokens vs. seats against the [model selection reference](../standards/model-selection.md), and the discipline of *not* reintroducing Scrum ceremonies when a quarter gets bumpy. **Practicum:** run a quarter's pilot review against the charter's success criteria, in writing.
 
 ## The knowledge system (how learning compounds)
 

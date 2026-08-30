@@ -61,6 +61,30 @@ When agent output disappoints, fix context in this order — cheapest first:
 4. **Domain docs** — does `docs/domain/` actually describe the bounded context? ([Chapter 04](04-architecture.md))
 5. **The codebase itself** — inconsistent code teaches the agent inconsistency. Refactoring for clarity is now also agent-performance work.
 
+## Model selection and token economics
+
+Model choice is a per-task engineering decision, like picking an instance type — and the leverage-to-cost ratio differs sharply by AI-DLC phase. The principles below are stable; the current model names and prices live in the [model selection reference](../standards/model-selection.md), which is dated and reviewed quarterly because pricing goes stale in months while this logic doesn't.
+
+### Match the tier to the task
+
+| Task type | Tier | Why |
+|---|---|---|
+| Mob Elaboration, Bolt planning, architecture proposals | **Frontier** — the strongest model you can buy | A wrong plan wastes a pod-day; this is the worst place to economize. Plan quality compounds through everything downstream. |
+| Code/adversarial review, threat-model drafts, incident investigation | **Frontier** | Validation quality is the throughput limit ([Chapter 02](02-ways-of-working.md)); never downgrade the reviewer below the generator. |
+| Routine construction inside an approved plan | **Mid-tier** | The plan carries the intelligence; execution against it is well-bounded work. Escalate to frontier when the task fights back. |
+| Bulk mechanical work: characterization-test generation ([Chapter 10](10-legacy-modernization.md)), scanner-finding triage, CI chores, doc sweeps, changelog drafts | **Small/fast** | High volume, low ambiguity, verified mechanically afterward. Volume pricing dominates here. |
+
+Two standing rules:
+
+1. **The review side never runs on a cheaper model than the generation side.** An expensive generator checked by a cheap reviewer inverts the whole validation economics of AI-DLC.
+2. **Escalation beats pre-optimization.** Start routine work on the default mid-tier; escalate the session to frontier the moment output needs repeated correction. Two rounds of fixing cheap output costs more — in tokens *and* pod attention — than starting expensive.
+
+### Unit economics: cost per validated Unit of Work
+
+The metric that makes model spend governable is **cost per validated Unit of Work** — tokens + warehouse credits + CI minutes, rolled up per Unit via the [Jira traceability chain](08-github-jira.md). Not cost per seat, not cost per token: those numbers make the *expensive plan that prevented a wrong build* look wasteful and the *cheap agent that generated three days of rework* look efficient, which is exactly backwards.
+
+This is the bridge to FinOps: pods see their own unit economics (showback per pod, per month), leadership budgets tokens the way it budgets cloud spend ([Chapter 11](11-learning-paths.md), Wave 1), and token-spend anomalies are an operational signal like any other cost anomaly ([Chapter 07](07-devops-automation.md)). Classic FinOps practices don't yet cover agent tokens — the playbook's position is: treat them as a first-class cloud cost with the Unit of Work as the allocation unit, rather than inventing a parallel process.
+
 ## Evaluating alternatives
 
 Tool-agnostic criteria — score 1–5, review annually or when a pod escalates:
@@ -89,7 +113,7 @@ Current field notes: **Amazon Q Developer** — strongest for AWS-native shops a
 - **Version steering artifacts like code**: PRs, reviews, CHANGELOG. A steering regression is a production regression waiting to happen.
 - **Give the agent the *why*.** Steering lines with rationale ("use X because Y") generalize; bare rules get misapplied at the edges.
 - **Headless agent in CI** for mechanical chores (changelog drafts, doc-link checks, first-pass PR review comments) — but CI agents comment, humans merge.
-- **Watch your token economics** per Unit of Work, not per seat — an expensive plan that prevents a wrong build is the cheapest thing you bought all week.
+- **Watch your token economics** per Unit of Work, not per seat — an expensive plan that prevents a wrong build is the cheapest thing you bought all week. Details and the current tier table: [model selection reference](../standards/model-selection.md).
 
 ## References
 
