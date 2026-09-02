@@ -61,6 +61,16 @@ flowchart LR
 
 On AWS, the default toolkit is EventBridge (routing), SNS/SQS (fan-out and queues), and Kinesis or MSK where ordering/replay matters; Snowflake-side prototypes use Streams and Tasks as the analogous construct ([Chapter 05](05-rapid-prototyping.md)).
 
+## Frontend and UX under AI-DLC
+
+Everything above is service-side. Agents build user interfaces too, and three things differ. The paved road is a component library, not a module library; the steering rules are about consistency, not invariants; and verification is visual, because nobody can review 400 lines of generated markup for whether it looks right.
+
+- **The design system is the paved road.** A component library with design tokens (colour, spacing, type scale) is to UI work what golden-path IaC modules are to infrastructure: the boundary where consistency and accessibility live. Agents compose components; they do not write ad-hoc styles. Steering line: "Use components from `@org/ui`; no inline styles, no new colour values, no new spacing values. If a component is missing, that is a Unit of Work for the platform pod, not a local workaround."
+- **Accessibility is an acceptance criterion, not a review comment.** Every story with a UI surface carries ACs for keyboard navigation, focus order, contrast, and screen-reader labels, in Given/When/Then form like any other AC, so the agent implements and tests them ([Chapter 02](02-ways-of-working.md#testing-under-ai-dlc)). Automated checks (axe in the browser tests) run in CI; they catch the mechanical third and the ACs cover the rest.
+- **Verification is visual and behavioural.** The Navigator does not review JSX for whether it is right; they review the screen. The ephemeral environment ([Chapter 07](07-devops-automation.md#the-reference-pipeline-github-actions)) shows the built UI on every PR; browser tests (Playwright) drive the ACs; screenshot diffs against the previous build flag unintended visual change. The agent can take its own screenshots during construction and compare against the design reference before the human looks, which is the fresh-eyes review of UI work.
+- **UI state is still domain state.** A screen reads and writes through the bounded context's commands and events, never through a direct database call or a bespoke endpoint that bypasses the domain. Backend-for-frontend layers are thin and stateless. Agents will build a shortcut if the steering does not forbid it.
+- **Prototype surfaces are not product surfaces.** Streamlit ([Chapter 05](05-rapid-prototyping.md)) answers questions; a customer-facing product gets the component library, the accessibility ACs, and the visual review. Promotion of a UI prototype is a rebuild, exactly as for any other prototype.
+
 ## Architecture decisions: ADRs
 
 Every significant decision gets an [ADR](../standards/adr-template.md) in `docs/adr/`. Under AI-DLC, ADRs do double duty: they inform humans *and* they are steering context — agents read the ADR log before proposing designs, which stops them from relitigating settled decisions or violating them silently. The agent drafts the ADR during the Bolt; humans edit and approve; nothing is "decided" until the ADR is merged.
@@ -79,6 +89,7 @@ Every significant decision gets an [ADR](../standards/adr-template.md) in `docs/
 - **Entity-service architecture** (`UserService`, `OrderService` as CRUD wrappers) instead of behavior-oriented contexts. If your events are all `XUpdated`, you've built CRUD with extra steps.
 - **Anemic domain docs.** A `docs/domain/` full of stale diagrams steers agents into walls. Treat doc updates as part of every merge, and let the Friday retro audit one context's docs weekly.
 - **Speculative generality.** CQRS, event sourcing, and a rules engine for a form app. Cheap generation makes over-engineering frictionless; the plan gate is where the pod says no.
+- **Bespoke UI.** Every screen its own styles and its own fetch calls, because the agent was asked for a screen and nothing constrained it. Symptom: three date pickers. Fix: the component library as steering, and a platform-pod Unit for each missing component.
 - **Two vocabularies.** Code says `Client`, product says `Customer`, Jira says `Account`. Pick one in `language.md` and rename ruthlessly — agents amplify whichever inconsistency they see most.
 
 ## Tips & tricks
