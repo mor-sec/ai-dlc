@@ -23,7 +23,7 @@ Tooling strategy for AI-DLC has one goal: **maximize the quality of context flow
 
 ## Why a primary agent (instead of letting everyone pick)
 
-Standardizing on one primary agent is not about the tool being best at everything; it's that **steering artifacts, skills, and pod practices compound only when shared**. A CLAUDE.md tuned over six months is an organizational asset. Ten developers on ten tools produce zero shared assets. Choose one primary, allow personal secondaries, and review the choice annually against the evaluation criteria below.
+Standardizing on one primary agent is not about the tool being best at everything; it's that **steering artifacts, skills, and pod practices compound only when shared**. A CLAUDE.md tuned over six months is an organizational asset. Ten developers on ten tools produce zero shared assets. Choose one primary, allow personal secondaries, and review the choice annually against the evaluation criteria below. The decision of record is [ADR 0002](../docs/adr/0002-claude-code-as-primary-agent.md).
 
 ## Claude Code: the operating pattern
 

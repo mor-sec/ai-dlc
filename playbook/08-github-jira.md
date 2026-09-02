@@ -18,7 +18,7 @@ Keep native issue types; change their semantics. Renaming (Epic→Unit of Work) 
 | Business intent / initiative | Initiative (or Epic at portfolio level) | Owned by product; links to the intent doc |
 | **Unit of Work** | Epic | Body follows the [Unit of Work template](../standards/unit-of-work-template.md); carries intent, acceptance criteria, threat-model summary, domain-context links |
 | Story / slice | Story under the Epic | Generated during Mob Elaboration; acceptance criteria testable as written |
-| **Bolt** | Fixed-length *iteration* is gone — represent Bolts as a `bolt-id` label or field on the stories executed together | Don't force Bolts into Jira Sprints; a two-week container around a two-day cycle is pure friction. If your reporting insists on Sprints, use one-week sprints as a *reporting shell* only. |
+| **Bolt** | Fixed-length *iteration* is gone — represent Bolts as a `bolt-id` label or field on the stories executed together | Don't force Bolts into Jira Sprints; a two-week container around a two-day cycle is pure friction ([ADR 0004](../docs/adr/0004-bolts-as-labels-not-sprints.md)). If your reporting insists on Sprints, use one-week sprints as a *reporting shell* only. |
 | Ops / incident follow-ups | Bug/Task linked to the incident ticket | Feed the next Mob Elaboration |
 
 **Workflow states — few and honest:** `Elaboration → Ready → In Bolt → In Review → Done`. Transitions are automated by the integration wherever possible (below); a state a human must remember to update will be wrong by Thursday.

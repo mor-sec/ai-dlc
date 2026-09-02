@@ -7,7 +7,7 @@ review-cadence: quarterly
 
 # 04 — Architecture: DDD + Event-Driven
 
-Domain-Driven Design and event-driven architecture aren't just good enterprise practice here — they are **what makes AI agents effective at scale**. Agents thrive on explicit boundaries, named concepts, and contracts they can read. This chapter defines the architectural backbone and how it feeds the agent workflow.
+Domain-Driven Design and event-driven architecture aren't just good enterprise practice here — they are **what makes AI agents effective at scale**. Agents thrive on explicit boundaries, named concepts, and contracts they can read. This chapter defines the architectural backbone and how it feeds the agent workflow. The decision to mandate it, and the options rejected, are in [ADR 0005](../docs/adr/0005-ddd-and-event-driven-architecture.md).
 
 ## Why this architecture, specifically, for AI-DLC
 

@@ -7,7 +7,7 @@ review-cadence: quarterly
 
 # 05 — Rapid Prototyping
 
-Prototyping under AI-DLC has a distinct purpose: **answer a business or technical question with a working artifact in days, cheaply enough to throw away**. Snowflake is our primary platform because our data already lives there; this chapter gives the Snowflake-first path, the alternatives, and — critically — the discipline for promoting (or killing) prototypes.
+Prototyping under AI-DLC has a distinct purpose: **answer a business or technical question with a working artifact in days, cheaply enough to throw away**. Snowflake is our primary platform because our data already lives there ([ADR 0003](../docs/adr/0003-snowflake-first-prototyping.md)); this chapter gives the Snowflake-first path, the alternatives, and — critically — the discipline for promoting (or killing) prototypes.
 
 ## Prototyping principles
 
