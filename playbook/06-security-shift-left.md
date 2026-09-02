@@ -1,3 +1,10 @@
+---
+owner: security-engineering
+audience: security engineers, developers
+reviewed: 2026-09-02
+review-cadence: quarterly
+---
+
 # 06 — Shift-Left Security
 
 Shift-left under AI-DLC means security enters at **Mob Elaboration** — before a line is generated — and is enforced continuously by automation thereafter. AI changes the security equation in both directions: agents apply security standards with perfect consistency *when steered*, and generate vulnerabilities at machine speed when not. This chapter makes the steering and the automation concrete.

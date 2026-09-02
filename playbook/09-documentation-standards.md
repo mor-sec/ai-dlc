@@ -1,3 +1,10 @@
+---
+owner: platform-enablement
+audience: developers, architects, product owners, engineering leaders
+reviewed: 2026-09-02
+review-cadence: quarterly
+---
+
 # 09 — Documentation Standards
 
 Under AI-DLC, documentation is not a record-keeping chore — it is **agent context**. Every doc is read by two audiences now: humans and the agents that build the system. That single fact drives the whole standard: markdown, in git, next to the code, updated in the same PR as the change it describes.

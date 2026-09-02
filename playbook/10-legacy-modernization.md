@@ -1,3 +1,10 @@
+---
+owner: platform-enablement
+audience: architects, engineering leaders
+reviewed: 2026-09-02
+review-cadence: quarterly
+---
+
 # 10 — Legacy Modernization: COBOL & Java
 
 Legacy modernization is where AI-DLC pays for itself fastest — because the historically expensive steps (reading a million lines of COBOL, documenting what it actually does, upgrading a decade of Java) are precisely what agents are good at. This chapter gives the operating model: **comprehend → carve → transform → strangle**, run as ordinary Units of Work.

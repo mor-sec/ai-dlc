@@ -48,4 +48,4 @@ Ready-to-use artifacts in [`standards/`](standards/):
 3. **Starting a build?** Chapters 04–07 are the engineering core.
 4. **Sitting on legacy?** Chapter 10, after 04.
 
-This repo dogfoods its own standards: everything is markdown, diagrams are Mermaid, changes go through PRs, decisions get ADRs.
+This repo dogfoods its own standards: everything is markdown, diagrams are Mermaid, changes go through PRs ([template](.github/pull_request_template.md)), decisions get [ADRs](docs/adr/), every file carries a `reviewed:` date, and [CI](.github/workflows/docs.yml) runs the markdownlint, link, and Mermaid checks that [Chapter 09](playbook/09-documentation-standards.md#enforced-in-ci) prescribes. The repo's own steering file is [CLAUDE.md](CLAUDE.md).

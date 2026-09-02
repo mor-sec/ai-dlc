@@ -1,0 +1,10 @@
+# markdownlint configuration for the AI-DLC Playbook.
+# Rationale: standards/markdown-style-guide.md. Disabled rules are deliberate, not accidental.
+config:
+  default: true
+  MD013: false   # line length — prose is wrapped by the editor, not by hand
+  MD060: false   # table column style — compact |---| separators are the house style
+  MD033: false   # inline HTML — Mermaid node labels need <br/>
+ignores:
+  - node_modules
+  - .github/pull_request_template.md   # PR templates have no H1 by convention (MD041)

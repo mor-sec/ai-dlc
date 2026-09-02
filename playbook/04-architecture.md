@@ -1,3 +1,10 @@
+---
+owner: platform-enablement
+audience: architects, developers
+reviewed: 2026-09-02
+review-cadence: quarterly
+---
+
 # 04 — Architecture: DDD + Event-Driven
 
 Domain-Driven Design and event-driven architecture aren't just good enterprise practice here — they are **what makes AI agents effective at scale**. Agents thrive on explicit boundaries, named concepts, and contracts they can read. This chapter defines the architectural backbone and how it feeds the agent workflow.
@@ -19,7 +26,7 @@ An agent's competence is bounded by its context. Architecture determines how muc
 2. **Draw the context map.** Name each bounded context, its relationships (customer/supplier, conformist, anti-corruption layer), and its team ownership. One pod can own several contexts; a context never has two owning pods.
 3. **Write it down as markdown** in `docs/domain/` — this is the agent's primary domain context:
 
-```
+```text
 docs/domain/
 ├── context-map.md          # Contexts, relationships, owners (Mermaid diagram + table)
 └── <context-name>/

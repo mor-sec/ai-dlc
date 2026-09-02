@@ -1,3 +1,10 @@
+---
+owner: platform-enablement
+audience: developers
+reviewed: 2026-09-02
+review-cadence: quarterly
+---
+
 # CLAUDE.md Template
 
 Starter steering file for new repos. Copy the block below to the repo root as `CLAUDE.md`, replace the angle-bracket placeholders, delete what doesn't apply. Keep it **under ~150 lines, constraints over descriptions, link out for depth** — rationale in [Chapter 03](../playbook/03-tooling-strategy.md#steering-files-claudemd).
@@ -62,7 +69,7 @@ before changing domain logic. Glossary: docs/domain/<context>/language.md.
 
 ---
 
-**Writing good steering lines**
+## Writing good steering lines
 
 | Weak | Strong |
 |---|---|

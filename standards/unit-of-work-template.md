@@ -1,3 +1,10 @@
+---
+owner: platform-enablement
+audience: product owners, developers
+reviewed: 2026-09-02
+review-cadence: quarterly
+---
+
 # Unit of Work Template
 
 The AI-DLC replacement for the epic: a business intent plus everything an agent and a pod need to execute it. Drafted by the AI during [Mob Elaboration](../playbook/01-ai-dlc-methodology.md#phase-1-inception), edited and approved by humans in the session, stored as the Jira Epic description ([Chapter 08](../playbook/08-github-jira.md)).

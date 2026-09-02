@@ -1,3 +1,10 @@
+---
+owner: platform-enablement
+audience: everyone who writes docs, including agents
+reviewed: 2026-09-02
+review-cadence: quarterly
+---
+
 # Markdown Style Guide
 
 The writing standard for all documentation. Audience: everyone who writes docs — humans and agents (this file is loaded as steering context for documentation work). Rationale for markdown-as-standard: [Chapter 09](../playbook/09-documentation-standards.md).

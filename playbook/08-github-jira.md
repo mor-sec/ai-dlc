@@ -1,3 +1,10 @@
+---
+owner: platform-enablement
+audience: engineering leaders, product owners, developers
+reviewed: 2026-09-02
+review-cadence: quarterly
+---
+
 # 08 — GitHub + Jira Integration
 
 Jira holds **intent** (Units of Work, Bolts, business traceability); GitHub holds **execution** (code, review, CI, deploys). The integration's job is to make the thread from business intent to production deploy unbroken and machine-readable — for managers, auditors, and agents alike.
@@ -44,7 +51,7 @@ Via the Jira MCP server ([Chapter 03](03-tooling-strategy.md)):
 
 With the conventions above, every production change answers, mechanically:
 
-```
+```text
 Why?  Jira Initiative → Unit of Work (intent, approver)
 What? → Stories → acceptance criteria → threat model
 How?  → Branch → agent plan (in PR description) → commits → human review

@@ -1,3 +1,10 @@
+---
+owner: platform-enablement
+audience: engineering leaders, developers
+reviewed: 2026-09-02
+review-cadence: quarterly
+---
+
 # 11 — Learning Paths & Enablement
 
 Tool licenses without enablement produce autocomplete users and disappointing metrics. This chapter defines the org rollout program and role-based learning paths — what each role must know, in what order, and how skill is verified (by doing, not by certificates of attendance).

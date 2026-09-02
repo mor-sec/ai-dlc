@@ -1,3 +1,10 @@
+---
+owner: platform-enablement
+audience: developers, product owners
+reviewed: 2026-09-02
+review-cadence: quarterly
+---
+
 # 02 — Ways of Working
 
 This chapter turns the [methodology](01-ai-dlc-methodology.md) into a daily operating rhythm: who is in a pod, what a day looks like, what "done" means, and how review culture changes when an agent writes most of the code.

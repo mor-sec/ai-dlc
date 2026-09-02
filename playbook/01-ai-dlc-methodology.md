@@ -1,3 +1,10 @@
+---
+owner: platform-enablement
+audience: developers, architects, product owners, engineering leaders
+reviewed: 2026-09-02
+review-cadence: quarterly
+---
+
 # 01 — The AI-DLC Methodology
 
 AI-DLC (AI-Driven Development Lifecycle) is AWS's methodology for building software with AI as the primary executor and humans as validators and decision-makers. It was introduced by AWS in 2025 as a deliberate replacement for retrofitting AI tools onto Scrum. This chapter defines the method and the vocabulary used throughout this playbook.

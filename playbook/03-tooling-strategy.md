@@ -1,3 +1,10 @@
+---
+owner: platform-enablement
+audience: developers, architects
+reviewed: 2026-09-02
+review-cadence: quarterly
+---
+
 # 03 — Tooling Strategy
 
 Tooling strategy for AI-DLC has one goal: **maximize the quality of context flowing to agents and the quality of validation flowing back**. This chapter sets Claude Code as the primary development agent, defines the context-engineering artifacts every repo must carry, and gives criteria for evaluating alternatives so the strategy outlives any single tool.

@@ -1,0 +1,26 @@
+name: docs
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  checks:
+    name: markdownlint, links, mermaid
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: markdownlint
+        run: npx -y markdownlint-cli2 "**/*.md"
+
+      - name: Relative links and anchors
+        run: python3 scripts/check-links.py
+
+      - name: Mermaid diagrams
+        run: scripts/check-mermaid.sh

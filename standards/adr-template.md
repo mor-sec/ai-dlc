@@ -1,3 +1,10 @@
+---
+owner: platform-enablement
+audience: developers, architects
+reviewed: 2026-09-02
+review-cadence: quarterly
+---
+
 # ADR Template
 
 Copy into `docs/adr/NNNN-short-title.md` (sequential number). One decision per ADR. The agent drafts during the Bolt; a human approves; the decision exists when the ADR merges. Context: [Chapter 04](../playbook/04-architecture.md#architecture-decisions-adrs).

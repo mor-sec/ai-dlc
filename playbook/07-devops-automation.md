@@ -1,3 +1,10 @@
+---
+owner: platform-enablement
+audience: architects, developers
+reviewed: 2026-09-02
+review-cadence: quarterly
+---
+
 # 07 — DevOps Automation
 
 AI-DLC's Bolt cadence (multiple production deploys per pod per day) is only survivable if the path to production is automated end-to-end, with **risk-based gates** deciding where humans appear. The principle: **automate everything routine; reserve human attention for material changes.**
