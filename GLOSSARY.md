@@ -113,6 +113,10 @@ The validation gate between Bolt planning and generation: no significant generat
 
 A working artifact built to answer a written question in at most three Bolts, cheaply enough to throw away. Ends with a decision: kill, keep-as-tool, or promote. Promotion is a rebuild against production standards, not a rename. [Chapter 05](playbook/05-rapid-prototyping.md)
 
+## QA
+
+The part-time pod accountability, usually shared across two or three pods, that verifies *intent* rather than behaviour: acceptance criteria are testable as written, every AC has a test, generated tests are read adversarially at the merge gate, and agent-built behaviour is explored by hand in the ephemeral environment. Not a manual regression tester. [Chapter 02](playbook/02-ways-of-working.md#the-ai-pod)
+
 ## Risk-based gating
 
 Classifying every change as routine, material, or critical, by path-based rules and labels, and letting the class decide where humans appear in the pipeline. Uniform caution is risk-increasing because it spends review capacity on the wrong changes. [Chapter 07](playbook/07-devops-automation.md#risk-based-gating)

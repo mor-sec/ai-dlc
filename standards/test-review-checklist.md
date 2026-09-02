@@ -7,7 +7,7 @@ review-cadence: quarterly
 
 # Test Review Checklist
 
-The Navigator's per-slice checklist for tests an agent generated, plus the two mechanical checks that back it. Audience: pod members reviewing during Mob Construction, and agents, since this file is loaded as steering for test-writing tasks. Rationale: [Chapter 02, Testing under AI-DLC](../playbook/02-ways-of-working.md#testing-under-ai-dlc).
+The Navigator's per-slice checklist for tests an agent generated, plus the two mechanical checks that back it. Audience: the Navigator reviewing during Mob Construction, QA reading the same tests cold at the merge gate ([Chapter 02](../playbook/02-ways-of-working.md#the-ai-pod)), and agents, since this file is loaded as steering for test-writing tasks. Rationale: [Chapter 02, Testing under AI-DLC](../playbook/02-ways-of-working.md#testing-under-ai-dlc).
 
 The problem this solves: the agent that wrote the code wrote the tests, in the same session, with the same misunderstanding. A test suite that passes proves the code agrees with itself. These checks establish that it agrees with the *intent*.
 

@@ -41,6 +41,10 @@ Playbook ch. [04](04-architecture.md), [07](07-devops-automation.md), [10](10-le
 
 Ch. [01](01-ai-dlc-methodology.md), [02](02-ways-of-working.md), [08](08-github-jira.md); writing unambiguous intent; acceptance criteria as testable statements; working *in* Mob Elaboration (deciding live, not queueing tickets). **Practicum:** bring two Units of Work through elaboration to production; rework rate on their Units becomes their feedback metric.
 
+### QA engineer
+
+Ch. [01](01-ai-dlc-methodology.md), [02](02-ways-of-working.md) (the QA accountability and the testing section), [07](07-devops-automation.md) (ephemeral environments and gates); writing acceptance criteria that are testable as written; the [test review checklist](../standards/test-review-checklist.md) as an adversarial reader; exploratory testing of agent-built behaviour in ephemeral environments; owning the AC-mapping check and the mutation thresholds for their pods. The shift to internalise: QA under AI-DLC verifies *intent*, not *behaviour*. Behaviour is verified by generated tests; whether the tests verify the right thing is the QA question. **Practicum:** find, in generated tests across two Units, three tests that pass with the bug present and get them rewritten; run the exploratory pass on one material change and log the findings in the PR.
+
 ### Security engineer
 
 Ch. [06](06-security-shift-left.md) as owner, not reader; steering-as-control authorship; Semgrep rule writing; agent/MCP permission review; threat-modeling-in-elaboration facilitation. **Practicum:** eliminate one vulnerability class via steering + rule + test template, demonstrated across pods.

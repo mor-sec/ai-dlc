@@ -18,8 +18,9 @@ An AI Pod is 2–3 developers plus their agents, with named accountabilities rat
 | **Driver** | Steers the agent: writes prompts and plans, approves generation steps | Rotates daily — prompt/steering skill must not concentrate in one person |
 | **Navigator** | Reviews output as it lands: correctness, architecture fit, security | The continuous-review half of Mob Construction |
 | **Domain anchor** | Owns the Unit of Work's intent; liaison to product | Often the most senior; also maintains the domain model docs |
+| **QA** (part-time, shared across 2–3 pods) | Owns *verification of intent*: acceptance criteria are testable as written; the AC-mapping check has no gaps; exploratory testing in the ephemeral environment; adversarial review of generated tests | Present at every Mob Elaboration and at the merge gate; not a manual regression tester, that work is generated and automated |
 
-A pod is complemented by part-time members who join Mob Elaboration: the product owner (always), QA (always), a security engineer (for Units touching auth, money, or PII — see [Chapter 06](06-security-shift-left.md)).
+A pod is complemented by part-time members who join Mob Elaboration: the product owner (always), QA (always, with the accountabilities above), a security engineer (for Units touching auth, money, or PII — see [Chapter 06](06-security-shift-left.md)).
 
 **Why not one developer + agent?** Solo operators rubber-stamp their own agent's output. The pod exists to keep validation honest and to spread the new skills. Pairs are the floor; three is the sweet spot; four is a crowd.
 
@@ -73,7 +74,7 @@ Test discipline appears throughout the playbook: tests generated with the code (
 1. **Mutation testing on changed files** at the PR gate. Small faults are injected into new code and the suite must catch them; a generated suite that kills fewer than 70% of mutants on routine changes fails the gate, 85% for material and critical. This is the only check that scales with generation volume, because it does not depend on a human reading every assertion.
 2. **Acceptance-criteria mapping.** Every test names the AC it serves; CI lists any AC with zero tests and fails on it. The Unit of Work becomes the test plan, mechanically.
 
-**The human part** is the Navigator's per-slice review, which asks one question of every test: *what production failure would make this red?* The full checklist is the [test review checklist](../standards/test-review-checklist.md), and it is loaded as steering for agents so the tests arrive already answering the question; the [`tests-from-acs` skill](../standards/skills/tests-from-acs/SKILL.md) packages the whole procedure, mutation run included.
+**The human part** is the Navigator's per-slice review, which asks one question of every test: *what production failure would make this red?* QA reads the same checklist at the merge gate, with a different bias: the Navigator has watched the code being built and QA has not, which is the point. The full checklist is the [test review checklist](../standards/test-review-checklist.md), and it is loaded as steering for agents so the tests arrive already answering the question; the [`tests-from-acs` skill](../standards/skills/tests-from-acs/SKILL.md) packages the whole procedure, mutation run included.
 
 ## Sustainable pace
 
