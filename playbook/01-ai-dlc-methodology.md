@@ -115,4 +115,4 @@ The gates are the methodology. Remove them and you have autopilot, not AI-DLC.
 
 - [AWS: AI-Driven Development Lifecycle for Financial Services](https://aws.amazon.com/blogs/industries/ai-driven-development-lifecycle-for-financial-services/)
 - [IBM Think: AI-DLC explained](https://www.ibm.com/think/topics/ai-dlc)
-- Next: [Chapter 02 — Ways of Working](02-ways-of-working.md)
+- Next: [Chapter 02 — Ways of Working](02-ways-of-working.md) · To see the whole loop with every artifact filled in: [Appendix A — Worked Example](appendix-a-worked-example.md)

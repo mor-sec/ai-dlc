@@ -30,6 +30,7 @@ AI-DLC replaces the traditional SDLC's human-does-everything model with a loop w
 | 09 | [Documentation Standards](playbook/09-documentation-standards.md) | Markdown as the standard; ADRs; diagrams-as-code; the DocLang exploration |
 | 10 | [Legacy Modernization](playbook/10-legacy-modernization.md) | AI-assisted COBOL and Java modernization: comprehend, extract, transform |
 | 11 | [Learning Paths](playbook/11-learning-paths.md) | Role-based courses and knowledge; the org enablement program |
+| A | [Worked Example](playbook/appendix-a-worked-example.md) | One Unit of Work end to end: elaboration, threat model, Bolt plan, construction, PR, deploy, steering update |
 
 ## Standards & templates
 
@@ -44,7 +45,7 @@ Ready-to-use artifacts in [`standards/`](standards/):
 
 ## How to use this playbook
 
-1. **New to AI-DLC?** Read chapters 01–02 in order; they define every term the rest uses.
+1. **New to AI-DLC?** Read chapters 01–02 in order; they define every term the rest uses. Then [Appendix A](playbook/appendix-a-worked-example.md), which follows one Unit of Work from Monday's intent to Friday's steering update with every artifact filled in.
 2. **Setting up a team?** Chapters 03, 08, and 11, then the templates.
 3. **Starting a build?** Chapters 04–07 are the engineering core.
 4. **Sitting on legacy?** Chapter 10, after 04.
