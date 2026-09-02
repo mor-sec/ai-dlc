@@ -32,6 +32,10 @@ AI-DLC replaces the traditional SDLC's human-does-everything model with a loop w
 | 11 | [Learning Paths](playbook/11-learning-paths.md) | Role-based courses and knowledge; the org enablement program |
 | A | [Worked Example](playbook/appendix-a-worked-example.md) | One Unit of Work end to end: elaboration, threat model, Bolt plan, construction, PR, deploy, steering update |
 
+## Glossary
+
+Every term with a specific meaning, one retrievable entry each, in [GLOSSARY.md](GLOSSARY.md).
+
 ## Standards & templates
 
 Ready-to-use artifacts in [`standards/`](standards/):

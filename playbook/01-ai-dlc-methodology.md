@@ -32,6 +32,8 @@ Two things must both be true for this to work:
 | Backlog grooming | **Mob Elaboration** | A synchronous session where the pod, product, and QA translate business intent into Units of Work — with AI generating drafts and clarifying questions in real time. |
 | Sprint execution | **Mob Construction** | The pod works together while agents generate code, tests, and IaC; humans review continuously rather than at the end. |
 
+These five are the core; every other term the playbook uses with a specific meaning is in the [glossary](../GLOSSARY.md), one entry per term, each linking back to its defining chapter.
+
 ## The three phases
 
 ```mermaid
