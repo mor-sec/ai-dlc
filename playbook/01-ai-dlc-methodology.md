@@ -70,7 +70,7 @@ Work happens in **Bolts**. A Bolt begins with the agent proposing an implementat
 
 Key disciplines:
 
-- **Plan approval gate:** no significant generation without an approved plan.
+- **Plan approval gate:** no significant generation without an approved plan. The plan follows the [Bolt plan template](../standards/bolt-plan-template.md), whose stop conditions tell the agent when to halt and re-plan.
 - **Tests are generated with the code, not after.** The agent validates its own work against them; humans validate the tests themselves (a test that asserts the bug is worse than no test).
 - **Documentation updates ride along** with each change — the agent updates the relevant markdown as part of the diff ([Chapter 09](09-documentation-standards.md)).
 - **Small, reviewable increments.** If a diff is too large to review, the Unit of Work slice was too large. Split the Bolt.
@@ -90,7 +90,7 @@ The gates are the methodology. Remove them and you have autopilot, not AI-DLC.
 | Gate | Who validates | What they're checking |
 |---|---|---|
 | Unit of Work approval | Product + pod | Is this the right thing to build? Is the intent unambiguous? |
-| Bolt plan approval | Pod | Is this the right way to build it? Right files, right approach, right scope? |
+| Bolt plan approval | Pod | Is this the right way to build it? Right files, right approach, right scope? ([Bolt plan template](../standards/bolt-plan-template.md)) |
 | Continuous code review | Pod (during Mob Construction) | Correctness, security, fit with architecture and conventions |
 | Merge gate | Human reviewer + CI | Tests, scans, standards — evidence, not assertion |
 | Deploy gate (material changes) | Pod lead / on-call | Blast radius, rollback plan |

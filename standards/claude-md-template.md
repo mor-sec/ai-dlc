@@ -43,6 +43,8 @@ before changing domain logic. Glossary: docs/domain/<context>/language.md.
 ## Working agreements
 
 - Plan mode for any Unit of Work; direct edits only for trivial bounded fixes.
+  Plans follow the Bolt plan template and are committed at docs/bolts/<bolt-id>.md;
+  honour the plan's stop conditions — halt and ask, never drift.
 - Small slices: keep diffs reviewable; if a change grows past ~500 lines,
   stop and split.
 - Tests are generated with the code and must map to the Unit of Work's

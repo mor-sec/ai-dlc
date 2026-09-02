@@ -39,7 +39,7 @@ Rules of thumb:
 
 ### Plan mode = the Bolt plan gate
 
-Claude Code's plan mode maps 1:1 onto AI-DLC's plan-approval gate: the agent explores and proposes a plan while blocked from making changes; the pod approves before generation starts. **Make plan mode the default for any Unit of Work.** Direct execution is for trivial, bounded fixes.
+Claude Code's plan mode maps 1:1 onto AI-DLC's plan-approval gate: the agent explores and proposes a plan while blocked from making changes; the pod approves before generation starts. **Make plan mode the default for any Unit of Work.** Direct execution is for trivial, bounded fixes. The plan the agent produces is captured in the [Bolt plan template](../standards/bolt-plan-template.md) and committed at `docs/bolts/<bolt-id>.md`, so the approved plan and the resulting diff are reviewable side by side.
 
 ### Skills
 

@@ -35,7 +35,7 @@ This is a template, not a law. The invariants: elaboration is batched and synchr
 
 ## A day inside a Bolt
 
-1. **Plan (30–60 min).** Driver gives the agent the Unit of Work and asks for an implementation plan. Pod reviews the plan — files touched, approach, test strategy, risks. Iterate until it's right. *This is the highest-leverage hour of the day.*
+1. **Plan (30–60 min).** Driver gives the agent the Unit of Work and asks for an implementation plan. Pod reviews the plan — files touched, approach, test strategy, risks. Iterate until it's right. *This is the highest-leverage hour of the day.* The plan is written to the [Bolt plan template](../standards/bolt-plan-template.md) and committed with the PR; its stop conditions are what keep step 2 honest.
 2. **Generate & review loop (core hours).** Agent implements in slices; Navigator reviews each slice as it lands. Driver keeps the agent on-plan; deviations trigger a plan update, not silent drift.
 3. **Verify (before merge).** Full test run, security scans, a human read of the complete diff. The agent drafts the PR description with a traceability line back to the Jira issue.
 4. **Close (15 min).** Merge, watch the deploy, update the Unit of Work status, capture one lesson for the steering file.

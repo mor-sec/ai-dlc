@@ -38,6 +38,7 @@ Ready-to-use artifacts in [`standards/`](standards/):
 - [Markdown Style Guide](standards/markdown-style-guide.md) — the writing standard
 - [ADR Template](standards/adr-template.md) — architecture decision records
 - [Unit of Work Template](standards/unit-of-work-template.md) — AI-DLC's replacement for epics
+- [Bolt Plan Template](standards/bolt-plan-template.md) — what the agent proposes at the plan gate, with stop conditions
 - [CLAUDE.md Template](standards/claude-md-template.md) — starter steering file for new repos
 - [Model Selection Reference](standards/model-selection.md) — current model-tier assignments and cost accounting (reviewed quarterly)
 
