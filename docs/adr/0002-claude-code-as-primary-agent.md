@@ -46,7 +46,7 @@ Every repo carries a `CLAUDE.md`; skills live in a shared library; plan mode is 
 
 - Positive: one steering baseline, one skill library, one set of practices to teach; enablement content is reusable across pods.
 - Negative: vendor concentration. Mitigated by the annual re-scoring, the tool-agnostic criteria, and the vendor governance section of Chapter 03.
-- Follow-ups: steering regression suite (`standards/steering-evals.md`) so that steering survives model and tool changes; annual review recorded as a new ADR or an amendment here.
+- Follow-ups: steering regression suite ([standards/steering-evals.md](../../standards/steering-evals.md)) so that steering survives model and tool changes; annual review recorded as a new ADR or an amendment here.
 
 ## Revisit when
 

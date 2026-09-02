@@ -66,7 +66,7 @@ description: <One or two sentences the agent matches against the task. Say WHAT 
 - **Description is the trigger.** The agent chooses skills by matching the description against the task. Write it the way a task would be phrased, name the artifact it acts on, and say when *not* to use it if there is a close sibling.
 - **Under ~100 lines.** Longer skills mean the procedure has two skills in it, or the steps are describing rather than instructing. Move reference material into a supporting file the steps point at.
 - **Steps read files before they write them.** The most common cold-start failure is an agent inventing what it could have looked up. Make the lookup an explicit step.
-- **Version and change-log it.** A skill regression is a process regression across every pod that uses it. Skills go through PRs, with a reviewer who runs it cold.
+- **Version and change-log it.** A skill regression is a process regression across every pod that uses it. Skills go through PRs, with a reviewer who runs it cold, and with a golden task in the [steering evals](steering-evals.md) suite that guards its most important rule.
 
 ## Skills the playbook expects
 

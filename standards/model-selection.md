@@ -17,6 +17,8 @@ The current mapping of model tiers to actual models and indicative costs. **This
 | Mid-tier (default) | Claude Sonnet 5 | Routine construction inside an approved plan; prototype builds | The workhorse — most tokens land here |
 | Small/fast | Claude Haiku 4.5 | Bulk mechanical work: test-mass generation, triage, CI chores, doc sweeps | Volume pricing; always paired with mechanical verification |
 
+Any change to this table is a steering event: run the [steering evals](steering-evals.md) against the new model before merging, and record how many steering fixes it needed in the change log below.
+
 Check current pricing at the provider's page rather than recording numbers here — recorded prices are the part that rots fastest. What belongs in this file is the *assignment*: which model currently occupies which tier.
 
 ## Standing rules (from Chapter 03 — repeated because they get violated)

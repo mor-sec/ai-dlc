@@ -36,6 +36,7 @@ Rules of thumb:
 - **Short and dense beats long and complete.** Aim under ~150 lines; link out to deeper docs rather than inlining them.
 - **It's a living artifact.** Every Friday consolidation ([Chapter 02](02-ways-of-working.md)), fold the week's lessons in. If the agent made the same mistake twice, that's a missing steering line.
 - **Constraints over descriptions.** "Never write directly to the ledger table; go through `LedgerService`" beats three paragraphs describing the ledger.
+- **Test it like code.** A steering line is known to work only when a cold session follows it. Each repo keeps a small suite of golden tasks, run on every steering PR and every model change: [steering evals](../standards/steering-evals.md).
 
 ### Plan mode = the Bolt plan gate
 
