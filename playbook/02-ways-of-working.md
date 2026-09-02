@@ -75,6 +75,20 @@ Test discipline appears throughout the playbook: tests generated with the code (
 
 **The human part** is the Navigator's per-slice review, which asks one question of every test: *what production failure would make this red?* The full checklist is the [test review checklist](../standards/test-review-checklist.md), and it is loaded as steering for agents so the tests arrive already answering the question.
 
+## Sustainable pace
+
+Bolts are described as intense, and review is the bottleneck. Put together, that makes the reviewer the person most likely to burn out, and a tired reviewer is the one failure mode the whole method cannot absorb: every gate in [Chapter 01](01-ai-dlc-methodology.md#the-validation-gates) is a person reading carefully. Generation does not get tired at 4pm. People do.
+
+Review fatigue has a signature. Approval times collapse late in the day; comments shift from findings to nits; the "explain it back" ritual gets skipped "just this once". By the time a pod notices, a week of rubber-stamped diffs is in production. So pace is enforced by rule, not by feel:
+
+- **Review budget is a daily cap, not a target.** The 500 to 1,000 lines per person-day above is the ceiling. When the Navigator hits it, generation stops for the day, or the Navigator rotates. A Bolt that needs more review than the pod has left is a Bolt that runs into tomorrow.
+- **Rotate the Navigator mid-Bolt.** Two hours of continuous adversarial reading is the useful limit. Swap Driver and Navigator at the half-day; the Driver's job is lighter on attention.
+- **Three Bolt days, then a consolidation day.** The Friday consolidation is not optional overhead to be skipped in a busy week; it is the recovery that makes Monday's elaboration honest. A pod that has run five Bolt days straight has reviewed nothing properly since Wednesday.
+- **No Bolt starts after lunch.** A Bolt wants sustained attention; a half-Bolt ends with an unreviewed diff waiting overnight, and the temptation to approve it first thing.
+- **Watch the fatigue metrics, not the output metrics.** Time-to-approve by hour of day and review depth by day of week ([metrics reference](../standards/metrics-reference.md)) show fatigue a week before defects do. A pod whose Thursday-afternoon approvals take two minutes is not fast; it is tired.
+
+The pod, not the individual, owns pace. Rotation and caps are pod rules so that no one has to be the person who says they cannot read any more today.
+
 ## Metrics that matter (and ones that don't)
 
 **Track:** Units of Work completed per week; lead time from intent to production; defects escaping to production; review depth (substantive findings per review); change failure rate and MTTR; steering-file update frequency (a proxy for organizational learning); cost per validated Unit of Work — tokens + warehouse credits + CI minutes ([Chapter 03](03-tooling-strategy.md#unit-economics-cost-per-validated-unit-of-work)).
@@ -90,6 +104,7 @@ Definitions, source systems, and cadences for every metric above are in the [met
 - **Prompt hero.** One person becomes the only effective driver. Rotate daily and pair on steering.
 - **Elaboration skipping under deadline pressure.** The moment you most need clear intent is exactly when you're tempted to skip it.
 - **Friday deploys of material changes.** Risk-gates still apply to humans ([Chapter 07](07-devops-automation.md)).
+- **The heroic Bolt.** Twelve hours, one Navigator, a 2,000-line diff approved at 21:40 because "we were so close". The method's gates were all present and none of them was working. Cap the day, split the Bolt, and finish tomorrow.
 
 ## Tips & tricks
 
