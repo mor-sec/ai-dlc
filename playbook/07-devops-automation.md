@@ -28,6 +28,7 @@ Stage notes:
 
 - **Static & tests (minutes):** everything from [Chapter 06](06-security-shift-left.md)'s table plus lint/typecheck/architecture tests. Fast and blocking; agents pre-run these locally via hooks so CI failures are rare.
 - **Ephemeral environments:** every PR gets a short-lived, production-shaped environment (IaC-provisioned namespace/stack with masked or synthetic data) for integration tests, DAST baseline, and human poking. Destroyed on merge/close. This is the single automation investment with the highest payoff under AI-DLC — it lets reviewers *see* agent-built behavior instead of imagining it.
+- **Mutation testing on the diff:** after unit tests, mutate the changed files and require the suite to catch the faults (thresholds and tooling in the [test review checklist](../standards/test-review-checklist.md)). Whole-codebase mutation runs are too slow; diff-scoped runs take minutes and are the one check that measures whether generated tests detect anything.
 - **Contract tests over end-to-end tests:** with the event-driven architecture of [Chapter 04](04-architecture.md), producer/consumer contract tests against schema-registry versions replace most cross-service E2E suites. Keep one thin smoke-path E2E; delete the rest as they flake.
 - **Post-deploy verification:** synthetic checks + SLO burn-rate watch for N minutes; breach = automatic rollback, no meeting required.
 

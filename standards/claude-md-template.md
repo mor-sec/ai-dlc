@@ -49,7 +49,7 @@ before changing domain logic. Glossary: docs/domain/<context>/language.md.
   stop and split.
 - Tests are generated with the code and must map to the Unit of Work's
   acceptance criteria. A test that merely asserts current behavior is not
-  done — state what failure it catches.
+  done — state what failure it catches. Checklist: standards/test-review-checklist.md.
 - Update docs in the same PR as the change (docs/, ADRs, event catalog).
 - PR title and branch start with the Jira key (PROJ-###).
 

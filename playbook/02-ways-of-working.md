@@ -62,6 +62,19 @@ When agents write most code, **review becomes the primary engineering act**. Cal
 - **Distrust plausible names.** Agent code fails in a characteristic way: it looks idiomatic and confident while misusing an API or inventing one. Check the calls that matter against the docs.
 - **Budget review capacity.** A pod can properly review roughly 500–1,000 changed lines per person-day. Generation capacity is effectively infinite; review capacity is your real throughput limit. Plan Bolts around it.
 
+## Testing under AI-DLC
+
+Test discipline appears throughout the playbook: tests generated with the code ([Chapter 01](01-ai-dlc-methodology.md)), contract tests over end-to-end suites ([Chapter 07](07-devops-automation.md)), characterization tests as the oracle for legacy ([Chapter 10](10-legacy-modernization.md)). This section is the strategy those pieces belong to, and it answers the question review culture raises: the agent wrote the tests, so what checks the tests?
+
+**The pyramid tilts toward contracts.** Schema-driven contract tests first, because events are the seams between bounded contexts and the schema is machine-readable intent. Unit tests second, aimed at domain invariants in `docs/domain/<context>/model.md` rather than at coverage. One thin smoke-path end-to-end test. Nothing else, and delete what flakes.
+
+**The generated-test problem.** The session that wrote a bug writes tests that pass with the bug in place. A green suite proves the code agrees with itself. Two mechanical checks make it prove more:
+
+1. **Mutation testing on changed files** at the PR gate. Small faults are injected into new code and the suite must catch them; a generated suite that kills fewer than 70% of mutants on routine changes fails the gate, 85% for material and critical. This is the only check that scales with generation volume, because it does not depend on a human reading every assertion.
+2. **Acceptance-criteria mapping.** Every test names the AC it serves; CI lists any AC with zero tests and fails on it. The Unit of Work becomes the test plan, mechanically.
+
+**The human part** is the Navigator's per-slice review, which asks one question of every test: *what production failure would make this red?* The full checklist is the [test review checklist](../standards/test-review-checklist.md), and it is loaded as steering for agents so the tests arrive already answering the question.
+
 ## Metrics that matter (and ones that don't)
 
 **Track:** Units of Work completed per week; lead time from intent to production; defects escaping to production; review depth (substantive findings per review); change failure rate and MTTR; steering-file update frequency (a proxy for organizational learning); cost per validated Unit of Work — tokens + warehouse credits + CI minutes ([Chapter 03](03-tooling-strategy.md#unit-economics-cost-per-validated-unit-of-work)).
