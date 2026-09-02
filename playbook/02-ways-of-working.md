@@ -89,6 +89,18 @@ Review fatigue has a signature. Approval times collapse late in the day; comment
 
 The pod, not the individual, owns pace. Rotation and caps are pod rules so that no one has to be the person who says they cannot read any more today.
 
+## Scaling beyond one pod
+
+Everything above describes one pod. At ten pods the failure mode changes: not a tired reviewer but a coordination layer that grows back into the meetings AI-DLC removed. The design principle is that **pods coordinate through artifacts, not ceremonies**, and the artifacts already exist.
+
+- **The context map is the org chart.** Every bounded context has exactly one owning pod ([Chapter 04](04-architecture.md#the-ddd-core-operationalized)); a pod may own several. Who to talk to about anything is answered by `docs/domain/context-map.md`, never by a spreadsheet. A context with two owners, or none, is a bug in the map to fix that week.
+- **Cross-context Units are sequenced through the map, not through meetings.** A Unit that needs a new event from another context is two Units: the producer's, elaborated and built by the owning pod against the schema, and the consumer's, which starts when the schema is published in the registry. The schema is the handoff. If two pods routinely need each other's events mid-Bolt, the boundary is wrong and the map review below fixes it.
+- **A platform pod owns the paved road.** The steering baseline, skill library, reference pipeline, ephemeral-environment machinery, golden-path IaC modules, and the [steering evals](../standards/steering-evals.md) are a product with pods as customers. It runs on Units of Work and Bolts like any other pod, and its backlog is the friction the other pods report at consolidation.
+- **Shared steering is governed by PR, not by committee.** Pods propose changes to the org baseline through [`lesson-to-steering`](../standards/skills/lesson-to-steering/SKILL.md) drafts; the platform pod reviews and merges within the week. A steering change that affects every repo is material and gets a named approver, exactly like a schema change.
+- **One org-level ritual: the context-map review, biweekly, 45 minutes.** Domain anchors only. Agenda: contexts whose ownership changed, boundaries that Units kept crossing, events published this fortnight, dispositions from legacy carving ([Chapter 10](10-legacy-modernization.md#stage-2-carve-ddd-applied-to-the-past)). Output is a PR to the context map. That is the entire cross-pod meeting load.
+
+What does not scale is the mob itself. A pod stays two or three people; growth means more pods and more contexts, never a bigger pod. Wave 3 of the [enablement program](11-learning-paths.md#the-enablement-program-three-waves) grows pods by seeding, one practitioner anchoring each new one.
+
 ## Metrics that matter (and ones that don't)
 
 **Track:** Units of Work completed per week; lead time from intent to production; defects escaping to production; review depth (substantive findings per review); change failure rate and MTTR; steering-file update frequency (a proxy for organizational learning); cost per validated Unit of Work — tokens + warehouse credits + CI minutes ([Chapter 03](03-tooling-strategy.md#unit-economics-cost-per-validated-unit-of-work)).
@@ -104,6 +116,7 @@ Definitions, source systems, and cadences for every metric above are in the [met
 - **Prompt hero.** One person becomes the only effective driver. Rotate daily and pair on steering.
 - **Elaboration skipping under deadline pressure.** The moment you most need clear intent is exactly when you're tempted to skip it.
 - **Friday deploys of material changes.** Risk-gates still apply to humans ([Chapter 07](07-devops-automation.md)).
+- **The coordination layer.** A weekly cross-pod sync, then a dependencies board, then a release train. Each one is reasonable; together they are Scrum of Scrums with agents. If pods need a meeting to sequence work, fix the context map and the schema registry, which is where the sequencing already lives.
 - **The heroic Bolt.** Twelve hours, one Navigator, a 2,000-line diff approved at 21:40 because "we were so close". The method's gates were all present and none of them was working. Cap the day, split the Bolt, and finish tomorrow.
 
 ## Tips & tricks
