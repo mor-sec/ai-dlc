@@ -81,6 +81,8 @@ Test discipline appears throughout the playbook: tests generated with the code (
 
 **Don't track:** lines of code, number of prompts, "AI usage %", story points. All are either meaningless or actively corrupting under AI-DLC.
 
+Definitions, source systems, and cadences for every metric above are in the [metrics reference](../standards/metrics-reference.md), so that two pods reporting the same number mean the same thing.
+
 ## Anti-patterns
 
 - **The silent pod.** Everyone heads-down with their own agent, mob in name only. Symptom: three parallel branches. Fix: one shared screen during Construction, one Unit at a time.

@@ -44,6 +44,7 @@ Ready-to-use artifacts in [`standards/`](standards/):
 - [Skill Template](standards/skill-template.md) — anatomy of a skill, plus the reference [`threat-model` skill](standards/skills/threat-model/SKILL.md)
 - [CLAUDE.md Template](standards/claude-md-template.md) — starter steering file for new repos
 - [Model Selection Reference](standards/model-selection.md) — current model-tier assignments and cost accounting (reviewed quarterly)
+- [Metrics Reference](standards/metrics-reference.md) — one definition per metric: source, cadence, healthy direction, and the pilot baseline
 
 ## How to use this playbook
 

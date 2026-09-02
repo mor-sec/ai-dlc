@@ -67,6 +67,8 @@ This satisfies most audit and change-management regimes (separation of concerns:
 - **Bolt integrity:** stories per `bolt-id` started vs. finished — detects Units sliced too large.
 - **Elaboration quality:** rework rate (issues reopened / PRs reverted) per Unit — the earliest signal that Mob Elaboration is being skipped or rushed.
 
+Exact definitions and the source fields for each: [metrics reference](../standards/metrics-reference.md).
+
 ## Anti-patterns
 
 - **Jira as a second codebase.** Duplicating design detail into tickets that lives better in `docs/` — link, don't copy. The ticket holds intent and acceptance; the repo holds truth.
