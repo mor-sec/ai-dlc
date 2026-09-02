@@ -73,6 +73,10 @@ description: <One or two sentences the agent matches against the task. Say WHAT 
 | Skill | Chapter | Status |
 |---|---|---|
 | `threat-model` | [06](../playbook/06-security-shift-left.md) | Reference implementation in [`skills/threat-model/`](skills/threat-model/SKILL.md) |
+| `bolt-plan` | [02](../playbook/02-ways-of-working.md) | Reference implementation in [`skills/bolt-plan/`](skills/bolt-plan/SKILL.md) |
+| `tests-from-acs` | [02](../playbook/02-ways-of-working.md) | Reference implementation in [`skills/tests-from-acs/`](skills/tests-from-acs/SKILL.md) |
+| `lesson-to-steering` | [06](../playbook/06-security-shift-left.md), [07](../playbook/07-devops-automation.md) | Reference implementation in [`skills/lesson-to-steering/`](skills/lesson-to-steering/SKILL.md) |
+| `incident-investigate` | [07](../playbook/07-devops-automation.md) | Reference implementation in [`skills/incident-investigate/`](skills/incident-investigate/SKILL.md) |
 | `jira-elaboration` | [08](../playbook/08-github-jira.md) | To write; draft the Unit of Work + child stories from an intent paragraph |
 | `snowflake-prototype` | [05](../playbook/05-rapid-prototyping.md) | To write; scaffold Streamlit app, grants, warehouse config, `PROTOTYPE.md` |
 | `write-adr` | [04](../playbook/04-architecture.md) | To write; draft an ADR from a decision made in a Bolt |

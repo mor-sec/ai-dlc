@@ -52,7 +52,7 @@ Every Unit of Work gets a **threat-model pass inside Mob Elaboration** — this 
 ### Operations: continuous verification
 
 - Runtime posture per normal enterprise practice (WAF, cloud posture management, detection); agents join incident response as first-line investigators ([Chapter 07](07-devops-automation.md)).
-- **Feedback loop — the part most programs skip:** every production security finding triggers the question *"what steering line, Semgrep rule, or skill change makes this class impossible?"* Fold the answer into the shared steering/rules repo the same week. This is how the program compounds.
+- **Feedback loop — the part most programs skip:** every production security finding triggers the question *"what steering line, Semgrep rule, or skill change makes this class impossible?"* Fold the answer into the shared steering/rules repo the same week. This is how the program compounds, and the [`lesson-to-steering` skill](../standards/skills/lesson-to-steering/SKILL.md) makes it a ten-minute draft PR rather than a good intention.
 
 ## Securing the agents themselves
 

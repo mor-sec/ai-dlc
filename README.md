@@ -45,7 +45,7 @@ Ready-to-use artifacts in [`standards/`](standards/):
 - [Unit of Work Template](standards/unit-of-work-template.md) — AI-DLC's replacement for epics
 - [Bolt Plan Template](standards/bolt-plan-template.md) — what the agent proposes at the plan gate, with stop conditions
 - [Test Review Checklist](standards/test-review-checklist.md) — reviewing agent-generated tests; mutation and AC-mapping gates
-- [Skill Template](standards/skill-template.md) — anatomy of a skill, plus the reference [`threat-model` skill](standards/skills/threat-model/SKILL.md)
+- [Skill Template](standards/skill-template.md) — anatomy of a skill, plus five [reference skills](standards/skills/README.md): threat-model, bolt-plan, tests-from-acs, lesson-to-steering, incident-investigate
 - [CLAUDE.md Template](standards/claude-md-template.md) — starter steering file for new repos
 - [Model Selection Reference](standards/model-selection.md) — current model-tier assignments and cost accounting (reviewed quarterly)
 - [Metrics Reference](standards/metrics-reference.md) — one definition per metric: source, cadence, healthy direction, and the pilot baseline

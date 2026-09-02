@@ -35,7 +35,7 @@ This is a template, not a law. The invariants: elaboration is batched and synchr
 
 ## A day inside a Bolt
 
-1. **Plan (30–60 min).** Driver gives the agent the Unit of Work and asks for an implementation plan. Pod reviews the plan — files touched, approach, test strategy, risks. Iterate until it's right. *This is the highest-leverage hour of the day.* The plan is written to the [Bolt plan template](../standards/bolt-plan-template.md) and committed with the PR; its stop conditions are what keep step 2 honest.
+1. **Plan (30–60 min).** Driver gives the agent the Unit of Work and asks for an implementation plan. Pod reviews the plan — files touched, approach, test strategy, risks. Iterate until it's right. *This is the highest-leverage hour of the day.* The plan is written to the [Bolt plan template](../standards/bolt-plan-template.md) and committed with the PR; its stop conditions are what keep step 2 honest. The [`bolt-plan` skill](../standards/skills/bolt-plan/SKILL.md) produces the first draft, having read the domain docs and ADRs first.
 2. **Generate & review loop (core hours).** Agent implements in slices; Navigator reviews each slice as it lands. Driver keeps the agent on-plan; deviations trigger a plan update, not silent drift.
 3. **Verify (before merge).** Full test run, security scans, a human read of the complete diff. The agent drafts the PR description with a traceability line back to the Jira issue.
 4. **Close (15 min).** Merge, watch the deploy, update the Unit of Work status, capture one lesson for the steering file.
@@ -73,7 +73,7 @@ Test discipline appears throughout the playbook: tests generated with the code (
 1. **Mutation testing on changed files** at the PR gate. Small faults are injected into new code and the suite must catch them; a generated suite that kills fewer than 70% of mutants on routine changes fails the gate, 85% for material and critical. This is the only check that scales with generation volume, because it does not depend on a human reading every assertion.
 2. **Acceptance-criteria mapping.** Every test names the AC it serves; CI lists any AC with zero tests and fails on it. The Unit of Work becomes the test plan, mechanically.
 
-**The human part** is the Navigator's per-slice review, which asks one question of every test: *what production failure would make this red?* The full checklist is the [test review checklist](../standards/test-review-checklist.md), and it is loaded as steering for agents so the tests arrive already answering the question.
+**The human part** is the Navigator's per-slice review, which asks one question of every test: *what production failure would make this red?* The full checklist is the [test review checklist](../standards/test-review-checklist.md), and it is loaded as steering for agents so the tests arrive already answering the question; the [`tests-from-acs` skill](../standards/skills/tests-from-acs/SKILL.md) packages the whole procedure, mutation run included.
 
 ## Sustainable pace
 
