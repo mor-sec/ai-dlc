@@ -108,12 +108,25 @@ Tool-agnostic criteria — score 1–5, review annually or when a pod escalates:
 
 Current field notes: **Amazon Q Developer** — strongest for AWS-native shops and holds a specific niche in [legacy transform](10-legacy-modernization.md); **Kiro** — AWS's spec-driven IDE, philosophically closest to AI-DLC's plan-first stance, worth piloting; **GitHub Copilot** — ubiquitous completion plus improving agent mode, weakest steering story; **Cursor** — strong IDE UX, popular as a personal secondary. Any of these can be the primary if it wins on the criteria — the strategy is the criteria, not the brand.
 
+## Vendor governance
+
+Standardizing on one primary agent ([ADR 0002](../docs/adr/0002-claude-code-as-primary-agent.md)) concentrates risk in one vendor and one model family. The governance row in the evaluation table is the start of the answer; this is the rest of it. Owner: the platform pod, reviewed annually alongside the tool re-scoring.
+
+**What leaves the perimeter.** Every prompt carries code, docs, ticket text, and whatever the agent reads. Before adoption, and on every contract change, record in an ADR: the provider's data-retention terms (zero-retention or enterprise no-training terms are the requirement, not a preference), where inference runs (region, and whether a cloud-marketplace route such as Bedrock keeps traffic inside an existing agreement), and which repos are excluded from agent access entirely (anything under export control or a customer contract that forbids third-party processing). Secrets never leave because they are never in context ([Chapter 06](06-security-shift-left.md#securing-the-agents-themselves)); that control does not depend on the vendor.
+
+**Outage and degradation.** Bolts stall when the agent does. The degraded mode is written down before it is needed: the approved personal secondary each pod already uses becomes the primary for the day, with the same `CLAUDE.md` (steering is markdown, so it ports); plan gates still apply; nothing merges that was not reviewed the usual way. Availability incidents are logged like any other, and a provider that is down more than a routine service's SLO gets that fact into the annual review.
+
+**Model deprecation and change.** Providers retire models on their schedule. The [model selection reference](../standards/model-selection.md) names the current tier assignments; the [steering evals](../standards/steering-evals.md) are the acceptance test for any reassignment. The rule: no tier changes without a green eval run, and the number of steering fixes a model change needed is recorded, because that number is the real switching cost when the annual review asks whether to change vendor.
+
+**The annual review's agenda**, so that "review annually" means something: re-score the field against the evaluation table; read the year's availability and incident log; confirm data-handling terms still hold; count the steering fixes model churn required; check that the secondary-as-fallback drill has been run at least once. Output is an amendment to ADR 0002 or a new ADR superseding it.
+
 ## Anti-patterns
 
 - **Tool sprawl.** Five agents, no shared steering, no compounding. Pick a primary.
 - **Stale CLAUDE.md.** Worse than none — the agent confidently follows outdated rules. Assign ownership (the pod's domain anchor).
 - **Prompt libraries as strategy.** Prompt collections rot instantly; steering files and skills are versioned, reviewed, and attached to the repo where they act.
 - **Unbounded permissions for convenience.** One `rm -rf` story ends your rollout. Expand the allowlist deliberately, never wholesale.
+- **Vendor dependence by omission.** No retention terms on file, no fallback drill, no eval suite; the first model deprecation becomes a quarter of rework. Governance is a page of ADRs and one drill a year; write them before the pilot starts.
 - **Paying for seats, skipping enablement.** Tool licenses without the [learning program](11-learning-paths.md) yields Copilot-as-autocomplete usage patterns and disappointing metrics.
 
 ## Tips & tricks
