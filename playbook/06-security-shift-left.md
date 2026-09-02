@@ -28,7 +28,7 @@ Everything from the classic SDL still applies. New or amplified:
 
 Every Unit of Work gets a **threat-model pass inside Mob Elaboration** — this is the actual "shift left":
 
-- The AI drafts a lightweight STRIDE-style threat model from the Unit of Work: assets touched, trust boundaries crossed, abuse cases, proposed mitigations. Package this as a `threat-model` skill ([Chapter 03](03-tooling-strategy.md)) so it's a 10-minute ritual, not a workshop.
+- The AI drafts a lightweight STRIDE-style threat model from the Unit of Work: assets touched, trust boundaries crossed, abuse cases, proposed mitigations. Package this as a `threat-model` skill ([Chapter 03](03-tooling-strategy.md)) so it's a 10-minute ritual, not a workshop; the reference implementation is [`standards/skills/threat-model/`](../standards/skills/threat-model/SKILL.md).
 - The pod reviews; mitigations become **acceptance criteria in the Unit of Work** — which means agents implement them and tests verify them, for free, downstream.
 - **Escalation rule:** Units touching authN/authZ, money movement, PII, or crypto get a security engineer in the elaboration session and a named security reviewer at the merge gate.
 

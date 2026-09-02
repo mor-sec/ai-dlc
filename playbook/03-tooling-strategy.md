@@ -43,7 +43,7 @@ Claude Code's plan mode maps 1:1 onto AI-DLC's plan-approval gate: the agent exp
 
 ### Skills
 
-Skills are packaged procedures the agent invokes for recurring tasks. Build a shared skill library (its own repo, versioned) for things like: scaffolding a new service to house standards, generating a threat model from a Unit of Work ([Chapter 06](06-security-shift-left.md)), writing an ADR, producing a Snowflake prototype scaffold. A skill is worth writing when a procedure is (a) repeated, (b) has a right way, and (c) the agent gets it wrong from a cold start.
+Skills are packaged procedures the agent invokes for recurring tasks. Build a shared skill library (its own repo, versioned) for things like: scaffolding a new service to house standards, generating a threat model from a Unit of Work ([Chapter 06](06-security-shift-left.md)), writing an ADR, producing a Snowflake prototype scaffold. A skill is worth writing when a procedure is (a) repeated, (b) has a right way, and (c) the agent gets it wrong from a cold start. The [skill template](../standards/skill-template.md) defines the anatomy; the [`threat-model` skill](../standards/skills/threat-model/SKILL.md) is the reference implementation to copy from.
 
 ### Hooks and permissions
 

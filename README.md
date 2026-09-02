@@ -40,6 +40,7 @@ Ready-to-use artifacts in [`standards/`](standards/):
 - [ADR Template](standards/adr-template.md) — architecture decision records
 - [Unit of Work Template](standards/unit-of-work-template.md) — AI-DLC's replacement for epics
 - [Bolt Plan Template](standards/bolt-plan-template.md) — what the agent proposes at the plan gate, with stop conditions
+- [Skill Template](standards/skill-template.md) — anatomy of a skill, plus the reference [`threat-model` skill](standards/skills/threat-model/SKILL.md)
 - [CLAUDE.md Template](standards/claude-md-template.md) — starter steering file for new repos
 - [Model Selection Reference](standards/model-selection.md) — current model-tier assignments and cost accounting (reviewed quarterly)
 
