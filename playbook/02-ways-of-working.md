@@ -30,7 +30,7 @@ There is no sprint. The rhythm is built from Bolts:
 
 - **Monday morning — Elaboration block (up to half a day).** Mob Elaboration on the next 2–4 Units of Work. Product brings intent; AI drafts stories, questions, and risks; the room decides. Output: approved Units of Work in Jira ([Chapter 08](08-github-jira.md)).
 - **Tuesday–Thursday — Bolts.** One Unit of Work at a time, plan-gate then Mob Construction. A typical Unit takes a half-day to two days. Merge and deploy as each completes — no release-day batching.
-- **Friday — Consolidation.** Retro (30 min, focused on *how the collaboration with agents went*, not just team dynamics), steering-file and skill updates from the week's lessons, learning time ([Chapter 11](11-learning-paths.md)), and paying down any review debt.
+- **Friday — Consolidation.** Retro (30 min, focused on *how the collaboration with agents went*, not just team dynamics), steering-file and skill updates from the week's lessons, learning time ([Chapter 11](11-learning-paths.md)), and paying down any review debt. The record is one file per week, from the [consolidation template](../standards/consolidation-template.md).
 
 This is a template, not a law. The invariants: elaboration is batched and synchronous, Bolts get uninterrupted pod attention, and lessons are folded back into steering files weekly.
 
@@ -124,13 +124,13 @@ Definitions, source systems, and cadences for every metric above are in the [met
 
 ## Tips & tricks
 
-- **Keep a pod journal** (`docs/journal/`, one markdown file per week): what steering worked, what the agent got wrong, what to encode into [CLAUDE.md](../standards/claude-md-template.md). This becomes training material for the next pod.
+- **Keep a pod journal** (`docs/journal/`, one markdown file per week, which is the [consolidation](../standards/consolidation-template.md) record): what steering worked, what the agent got wrong, what to encode into [CLAUDE.md](../standards/claude-md-template.md). This becomes training material for the next pod.
 - **"Explain it back" ritual:** before merging anything non-trivial, one pod member explains the diff to the others without the agent's help. Cheap comprehension insurance.
 - **Name your validation gates in the PR template** so review checklists are in front of every reviewer.
 - **Protect Bolt focus:** no meetings inside a Bolt. Elaboration Monday buys you meeting-free Bolts.
 
 ## References
 
-- Decisions: [ADR 0008 — Scale through artifacts, not ceremonies](../docs/adr/0008-scale-pods-through-artifacts-not-ceremonies.md) · [ADR 0009 — QA verifies intent](../docs/adr/0009-qa-verifies-intent.md) · [ADR 0013 — NFRs as acceptance criteria](../docs/adr/0013-non-functional-requirements-as-acceptance-criteria.md)
+- Decisions: [ADR 0008 — Scale through artifacts, not ceremonies](../docs/adr/0008-scale-pods-through-artifacts-not-ceremonies.md) · [ADR 0009 — QA verifies intent](../docs/adr/0009-qa-verifies-intent.md) · [ADR 0013 — NFRs as acceptance criteria](../docs/adr/0013-non-functional-requirements-as-acceptance-criteria.md) · [ADR 0017 — Consolidation, post-incident, and FAQ templates](../docs/adr/0017-consolidation-post-incident-and-faq-templates.md)
 - Previous: [Chapter 01 — Methodology](01-ai-dlc-methodology.md) · Next: [Chapter 03 — Tooling Strategy](03-tooling-strategy.md)
-- Templates: [Unit of Work](../standards/unit-of-work-template.md)
+- Templates: [Unit of Work](../standards/unit-of-work-template.md) · [Consolidation](../standards/consolidation-template.md)

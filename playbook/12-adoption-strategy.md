@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: engineering leaders, champions, community of practice coordinators
-reviewed: 2026-09-18
+reviewed: 2026-09-24
 review-cadence: quarterly
 ---
 
@@ -114,7 +114,7 @@ The move from 2 to 3 is where most programs stall, and the remedy is almost alwa
 
 ### Handling the hard objections
 
-Answer these in writing, once, in a FAQ held in the steering repo, and link to it rather than re-arguing each time.
+Answer these in writing, once, in a FAQ held in the steering repo ([FAQ template](../standards/faq-template.md)), and link to it rather than re-arguing each time.
 
 - **"Is this about cutting headcount?"** Say what the program actually intends and what it does not, and get the sponsor to say it too. If the organization has not decided, say that. A vague reassurance that later proves false ends trust in the program for good.
 - **"AI code is lower quality."** Agree that unreviewed AI code is. Then show the gates ([Chapter 01](01-ai-dlc-methodology.md#the-validation-gates)), the review depth metric, and the pilot's escaped-defect numbers against its baseline.
@@ -254,7 +254,7 @@ The pilot quarter then runs its course, and the quarterly review against the cha
 
 ## References
 
-- Templates: [Pilot charter](../standards/pilot-charter-template.md) · [Community of practice charter](../standards/community-of-practice-charter-template.md)
+- Templates: [Pilot charter](../standards/pilot-charter-template.md) · [Community of practice charter](../standards/community-of-practice-charter-template.md) · [FAQ](../standards/faq-template.md)
 - Decision: [ADR 0006 — Adopt AI-DLC through evidence-led pilots and a community of practice](../docs/adr/0006-adoption-through-community-of-practice.md)
 - Etienne Wenger, Richard McDermott, William Snyder, *Cultivating Communities of Practice* (Harvard Business School Press, 2002)
 - John Kotter, *Leading Change* (Harvard Business Review Press, 1996)
