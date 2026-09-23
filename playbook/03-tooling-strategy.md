@@ -140,6 +140,7 @@ Standardizing on one primary agent ([ADR 0002](../docs/adr/0002-claude-code-as-p
 
 ## References
 
+- Decisions: [ADR 0002 — Claude Code as primary agent](../docs/adr/0002-claude-code-as-primary-agent.md) · [ADR 0007 — Steering evals](../docs/adr/0007-steering-evals-gate-steering-changes.md) · [ADR 0010 — Vendor governance](../docs/adr/0010-vendor-governance-for-the-primary-agent.md) · [ADR 0012 — Model tiers by use case](../docs/adr/0012-model-tiers-by-use-case-effort-first.md)
 - Previous: [Chapter 02 — Ways of Working](02-ways-of-working.md) · Next: [Chapter 04 — Architecture](04-architecture.md)
 - Templates: [CLAUDE.md starter](../standards/claude-md-template.md)
 - [Claude Code docs](https://docs.claude.com/en/docs/claude-code) · [Model Context Protocol](https://modelcontextprotocol.io)

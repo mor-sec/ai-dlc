@@ -101,5 +101,6 @@ Every significant decision gets an [ADR](../standards/adr-template.md) in `docs/
 
 ## References
 
+- Decisions: [ADR 0005 — DDD and event-driven architecture](../docs/adr/0005-ddd-and-event-driven-architecture.md) · [ADR 0011 — Design system as the UI paved road](../docs/adr/0011-design-system-as-ui-paved-road.md)
 - Evans, *Domain-Driven Design*; Vernon, *Implementing DDD*; Ford et al., *Building Evolutionary Architectures*
 - Previous: [Chapter 03 — Tooling](03-tooling-strategy.md) · Next: [Chapter 05 — Rapid Prototyping](05-rapid-prototyping.md)

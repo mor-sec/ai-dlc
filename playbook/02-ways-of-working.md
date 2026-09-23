@@ -129,5 +129,6 @@ Definitions, source systems, and cadences for every metric above are in the [met
 
 ## References
 
+- Decisions: [ADR 0008 — Scale through artifacts, not ceremonies](../docs/adr/0008-scale-pods-through-artifacts-not-ceremonies.md) · [ADR 0009 — QA verifies intent](../docs/adr/0009-qa-verifies-intent.md)
 - Previous: [Chapter 01 — Methodology](01-ai-dlc-methodology.md) · Next: [Chapter 03 — Tooling Strategy](03-tooling-strategy.md)
 - Templates: [Unit of Work](../standards/unit-of-work-template.md)
