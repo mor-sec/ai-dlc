@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: product owners, developers
-reviewed: 2026-09-02
+reviewed: 2026-09-24
 review-cadence: quarterly
 ---
 
@@ -40,7 +40,10 @@ If this paragraph is ambiguous, everything downstream amplifies the ambiguity.
 
 ### Story 2 — …
 
-(Every AC must be testable as written — tests will map to these 1:1.)
+(Every AC must be testable as written — tests will map to these 1:1.
+Include non-functional ACs with numbers where the behaviour has a budget:
+latency at a percentile and load, throughput, behaviour when a dependency
+fails, accessibility for UI. See Chapter 02.)
 
 ## Threat model summary
 

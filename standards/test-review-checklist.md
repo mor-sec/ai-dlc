@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: developers, including agents
-reviewed: 2026-09-02
+reviewed: 2026-09-24
 review-cadence: quarterly
 ---
 
@@ -22,6 +22,7 @@ The problem this solves: the agent that wrote the code wrote the tests, in the s
 ## Per slice
 
 - [ ] **Every AC has a test that names it**, in the docstring or test name, and CI's AC-mapping check reports no unmapped criteria.
+- [ ] **Every non-functional AC has a test that measures it** (a latency budget, a load level, a dependency failure), run where [Chapter 07](../playbook/07-devops-automation.md#the-reference-pipeline-github-actions) places it. A performance AC with no measurement is a wish.
 - [ ] **Every domain invariant touched** (from `docs/domain/<context>/model.md`) has a test that tries to violate it.
 - [ ] **Contract tests were regenerated** from the schema, not hand-edited. A hand-edited contract test is a schema change hiding in a test.
 - [ ] **No existing test was changed** unless the Bolt plan's stop condition fired and the pod approved the change with a reason.

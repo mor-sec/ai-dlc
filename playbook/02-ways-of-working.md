@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: developers, product owners
-reviewed: 2026-09-02
+reviewed: 2026-09-24
 review-cadence: quarterly
 ---
 
@@ -74,6 +74,8 @@ Test discipline appears throughout the playbook: tests generated with the code (
 1. **Mutation testing on changed files** at the PR gate. Small faults are injected into new code and the suite must catch them; a generated suite that kills fewer than 70% of mutants on routine changes fails the gate, 85% for material and critical. This is the only check that scales with generation volume, because it does not depend on a human reading every assertion.
 2. **Acceptance-criteria mapping.** Every test names the AC it serves; CI lists any AC with zero tests and fails on it. The Unit of Work becomes the test plan, mechanically.
 
+**Non-functional requirements are acceptance criteria, with numbers.** Agents build what the ACs describe and nothing else, and a story that says nothing about speed, load, or failure gets code that is correct on one request and falls over at fifty. So every story whose behaviour has a budget states it in Given/When/Then form like any other AC: a latency budget at a stated percentile and load ("given 200 concurrent retries, p95 response is under 400 ms"), the throughput the path must sustain, what happens when a dependency is slow or down ("given the provider times out, the payment stays `failed` and no second charge is attempted"), and accessibility for UI surfaces ([Chapter 04](04-architecture.md#frontend-and-ux-under-ai-dlc)). These ACs map to tests exactly like functional ones; where the pipeline runs them is in [Chapter 07](07-devops-automation.md#the-reference-pipeline-github-actions). "Fast enough" is not an AC, and neither is silence.
+
 **The human part** is the Navigator's per-slice review, which asks one question of every test: *what production failure would make this red?* QA reads the same checklist at the merge gate, with a different bias: the Navigator has watched the code being built and QA has not, which is the point. The full checklist is the [test review checklist](../standards/test-review-checklist.md), and it is loaded as steering for agents so the tests arrive already answering the question; the [`tests-from-acs` skill](../standards/skills/tests-from-acs/SKILL.md) packages the whole procedure, mutation run included.
 
 ## Sustainable pace
@@ -129,6 +131,6 @@ Definitions, source systems, and cadences for every metric above are in the [met
 
 ## References
 
-- Decisions: [ADR 0008 — Scale through artifacts, not ceremonies](../docs/adr/0008-scale-pods-through-artifacts-not-ceremonies.md) · [ADR 0009 — QA verifies intent](../docs/adr/0009-qa-verifies-intent.md)
+- Decisions: [ADR 0008 — Scale through artifacts, not ceremonies](../docs/adr/0008-scale-pods-through-artifacts-not-ceremonies.md) · [ADR 0009 — QA verifies intent](../docs/adr/0009-qa-verifies-intent.md) · [ADR 0013 — NFRs as acceptance criteria](../docs/adr/0013-non-functional-requirements-as-acceptance-criteria.md)
 - Previous: [Chapter 01 — Methodology](01-ai-dlc-methodology.md) · Next: [Chapter 03 — Tooling Strategy](03-tooling-strategy.md)
 - Templates: [Unit of Work](../standards/unit-of-work-template.md)

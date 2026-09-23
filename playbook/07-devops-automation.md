@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: architects, developers
-reviewed: 2026-09-02
+reviewed: 2026-09-24
 review-cadence: quarterly
 ---
 
@@ -29,6 +29,7 @@ Stage notes:
 - **Static & tests (minutes):** everything from [Chapter 06](06-security-shift-left.md)'s table plus lint/typecheck/architecture tests. Fast and blocking; agents pre-run these locally via hooks so CI failures are rare.
 - **Ephemeral environments:** every PR gets a short-lived, production-shaped environment (IaC-provisioned namespace/stack with masked or synthetic data) for integration tests, DAST baseline, and human poking. Destroyed on merge/close. This is the single automation investment with the highest payoff under AI-DLC — it lets reviewers *see* agent-built behavior instead of imagining it. For UI work this is the review: screenshots and browser-driven acceptance tests against the ephemeral environment, with visual diffs against the previous build ([Chapter 04](04-architecture.md#frontend-and-ux-under-ai-dlc)).
 - **Mutation testing on the diff:** after unit tests, mutate the changed files and require the suite to catch the faults (thresholds and tooling in the [test review checklist](../standards/test-review-checklist.md)). Whole-codebase mutation runs are too slow; diff-scoped runs take minutes and are the one check that measures whether generated tests detect anything.
+- **Non-functional checks, sized to the gate:** every PR's ephemeral environment runs a short performance smoke against the latency and throughput budgets stated as ACs ([Chapter 02](02-ways-of-working.md#testing-under-ai-dlc)), failing on a regression beyond the budget, not on noise. Full load tests and resilience runs (dependency timeouts, a killed instance, a slow consumer) are too slow for every PR; they run nightly against `main` and on every PR in the material and critical classes. Accessibility checks run with the browser tests.
 - **Contract tests over end-to-end tests:** with the event-driven architecture of [Chapter 04](04-architecture.md), producer/consumer contract tests against schema-registry versions replace most cross-service E2E suites. Keep one thin smoke-path E2E; delete the rest as they flake.
 - **Post-deploy verification:** synthetic checks + SLO burn-rate watch for N minutes; breach = automatic rollback, no meeting required.
 
@@ -89,5 +90,6 @@ Non-negotiables for AI-built, event-driven systems:
 
 ## References
 
+- Decisions: [ADR 0013 — NFRs as acceptance criteria](../docs/adr/0013-non-functional-requirements-as-acceptance-criteria.md)
 - [DORA research](https://dora.dev) · [OpenTelemetry](https://opentelemetry.io) · Accelerate (Forsgren, Humble, Kim)
 - Previous: [Chapter 06 — Security](06-security-shift-left.md) · Next: [Chapter 08 — GitHub + Jira](08-github-jira.md)
