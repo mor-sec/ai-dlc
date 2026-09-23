@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: everyone, including agents
-reviewed: 2026-09-02
+reviewed: 2026-09-18
 review-cadence: quarterly
 ---
 
@@ -41,9 +41,21 @@ The artifact the agent proposes at the start of a Bolt and the pod approves befo
 
 A DDD boundary inside which one domain model and one vocabulary apply. Under AI-DLC it is also the unit of agent context: a Unit of Work should fit inside one. Documented in `docs/domain/<context>/`. [Chapter 04](playbook/04-architecture.md#the-ddd-core-operationalized)
 
+## Champion
+
+A practitioner in each team or department, including teams not yet running AI-DLC, with about 5% of their time budgeted to hold office hours, carry the adoption narrative locally, and bring their team's questions and objections back to the community of practice. Volunteers, not appointees. [Chapter 12](playbook/12-adoption-strategy.md#roles)
+
+## Business-rules extract
+
+The markdown catalogue of rules a system must implement, extracted from an authoritative source (legacy code or legislation) with a pointer to the exact source for each rule: a program paragraph, or a statute subsection with a verbatim quote. Rules whose reason or meaning is unclear are flagged as questions, never guessed; for legislation, counsel's rulings are recorded separately as interpretations. [Chapter 10](playbook/10-legacy-modernization.md#stage-1-comprehend-ais-home-turf) · [Appendix B](playbook/appendix-b-rules-from-legislation.md)
+
 ## Characterization test
 
 A test that captures a legacy system's current behaviour, including its oddities, before any transformation. The old system is the oracle; the test proves the new one matches. Never derived from the new code. [Chapter 10](playbook/10-legacy-modernization.md#stage-3-transform-tool-assisted-verification-led)
+
+## Community of practice
+
+The voluntary, cross-team network of AI-DLC practitioners that owns the practice: craft knowledge, the experiment register, guild hour, the digest, and outreach. Contributes to the paved road through normal PRs and holds no approval authority; replaces the Center of Excellence. Coordinated by a rotating coordinator under a written charter. [Chapter 12](playbook/12-adoption-strategy.md#the-community-of-practice)
 
 ## Consolidation
 
@@ -73,6 +85,10 @@ The pod accountability that steers the agent: writes prompts and plans, approves
 
 A short-lived, production-shaped environment provisioned per PR for integration tests, DAST, and human inspection, destroyed on merge or close. The highest-payoff automation investment under AI-DLC. [Chapter 07](playbook/07-devops-automation.md#the-reference-pipeline-github-actions)
 
+## Experiment register
+
+The single markdown file (`docs/experiments/register.md` in the steering repo) listing every adoption experiment with its written question, horizon (adopt, pilot, explore), owner, time limit, required evidence, and kill, keep-local, or adopt decision. Kills are published like wins. [Chapter 12](playbook/12-adoption-strategy.md#the-experiment-register)
+
 ## Hook
 
 A mechanical enforcement point in the agent's lifecycle: run a formatter after edits, block edits to protected paths, require tests before a commit completes. Hooks enforce what steering requests. [Chapter 03](playbook/03-tooling-strategy.md#hooks-and-permissions)
@@ -101,9 +117,17 @@ A Model Context Protocol integration giving agents tool access to a system (GitH
 
 The pod accountability that reviews agent output as it lands: correctness, architecture fit, security, and the tests. The continuous-review half of Mob Construction, rotated at the half-day to prevent fatigue. [Chapter 02](playbook/02-ways-of-working.md#the-ai-pod)
 
+## Open Bolt
+
+A standing slot in which anyone may silently observe a pilot pod's Mob Construction for an hour and then ask questions. The main tool for moving stakeholders and skeptics from understanding AI-DLC to having seen it. [Chapter 12](playbook/12-adoption-strategy.md#socializing-the-ideas)
+
 ## Paved road
 
 The shared foundation Wave 2 of enablement builds so a pilot pod can start on day one: steering-file baseline, skill library, reference pipeline, Jira integration, agent permissions and guardrails, golden-path IaC modules. [Chapter 11](playbook/11-learning-paths.md#the-enablement-program-three-waves)
+
+## Pilot charter
+
+The signed contract that ends Wave 1: pilot pods, scope, pre-pilot baseline, three to five success criteria with thresholds, stop criteria, budget, guardrails, stakeholders, and the review date. Success criteria are not edited after signing; changes are appended as amendments. [Pilot charter template](standards/pilot-charter-template.md)
 
 ## Plan gate
 
@@ -128,6 +152,10 @@ The lowest change class: code within one bounded context, additive event fields,
 ## Skill
 
 A packaged, versioned procedure an agent invokes for a recurring task, held in a `SKILL.md` with a trigger-style description, inputs, outputs, steps, rules, and verification. Worth writing when a procedure is repeated, has a right way, and the agent gets it wrong cold. [Skill template](standards/skill-template.md)
+
+## Stakeholder map
+
+The Wave 1 table of named stakeholders recording what each cares about, what they worry about, the evidence that would move them, what the program asks of them, and their rung on the buy-in ladder (aware, understands, has seen it, committed, advocate). Updated after every conversation. [Chapter 12](playbook/12-adoption-strategy.md#the-stakeholder-map)
 
 ## Steering file
 

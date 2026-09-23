@@ -1,13 +1,13 @@
 ---
 owner: platform-enablement
 audience: engineering leaders, pod members
-reviewed: 2026-09-02
+reviewed: 2026-09-18
 review-cadence: quarterly
 ---
 
 # Metrics Reference
 
-The one definition of every metric the playbook mentions, with its source system, cadence, and the direction that means health. Audience: engineering leaders reading dashboards, pods reading their own showback, and anyone building the reporting. Chapters [02](../playbook/02-ways-of-working.md#metrics-that-matter-and-ones-that-dont), [03](../playbook/03-tooling-strategy.md#unit-economics-cost-per-validated-unit-of-work), [07](../playbook/07-devops-automation.md#tips--tricks), [08](../playbook/08-github-jira.md#reporting-that-matches-the-method), and [11](../playbook/11-learning-paths.md) say *why* each matters; this file says *what it is*, so two pods reporting the same number mean the same thing.
+The one definition of every metric the playbook mentions, with its source system, cadence, and the direction that means health. Audience: engineering leaders reading dashboards, pods reading their own showback, and anyone building the reporting. Chapters [02](../playbook/02-ways-of-working.md#metrics-that-matter-and-ones-that-dont), [03](../playbook/03-tooling-strategy.md#unit-economics-cost-per-validated-unit-of-work), [07](../playbook/07-devops-automation.md#tips--tricks), [08](../playbook/08-github-jira.md#reporting-that-matches-the-method), [11](../playbook/11-learning-paths.md), and [12](../playbook/12-adoption-strategy.md) say *why* each matters; this file says *what it is*, so two pods reporting the same number mean the same thing.
 
 Two rules apply to all of them. First, the allocation unit is the Unit of Work, identified by its Jira key; anything that cannot be attributed to a Unit is overhead and is reported as such. Second, no metric here is a target for individuals. They describe the system; using them to rank people corrupts every one of them within a quarter.
 
@@ -46,6 +46,19 @@ Two rules apply to all of them. First, the allocation unit is the Unit of Work, 
 | **Cost per validated Unit of Work** | Agent tokens + warehouse credits + CI minutes tagged to the Unit's Jira key, ÷ 1, reported per Unit and as a pod median. | Provider billing export, warehouse query history, CI usage API, joined on the key | monthly showback per pod | Trend, no target. Compare against rework rate: cheap Units with high rework are the expensive ones. |
 | **Token spend per pod** | Daily agent tokens per pod against a 30-day baseline. | Provider billing export | daily anomaly alert | Within baseline. A spike means an agent looping or a Unit sliced too large ([Chapter 07](../playbook/07-devops-automation.md#ai-in-operations-the-third-ai-dlc-phase)). |
 | **Cost per answered prototype question** | Warehouse credits + tokens for a prototype Unit, from its first Bolt to its kill/keep/promote decision. | As above, filtered to `prototype` repos | per prototype | Visible. Makes the kill outcome look cheap and the immortal prototype look expensive ([Chapter 05](../playbook/05-rapid-prototyping.md#tips--tricks)). |
+
+## Adoption and community
+
+These describe whether AI-DLC is spreading and whether the community of practice is alive ([Chapter 12](../playbook/12-adoption-strategy.md#the-community-of-practice)). They are reported to the sponsor quarterly, never used to rank teams, and never replaced by usage counts.
+
+| Metric | Definition | Source | Cadence | Healthy direction |
+|---|---|---|---|---|
+| **Pods seeded** | New pods started in the quarter with at least one member from an existing pod as anchor. | Pilot charters | quarterly | Up, at the pace the paved road can support. Pods started without a seeded anchor are counted separately. |
+| **Steering contributors outside the platform pod** | Distinct authors of merged steering PRs (same paths as steering updates per week) who are not platform pod members, ÷ all distinct authors. | GitHub | quarterly | Up, past half by the end of year one. Below a quarter means the community consumes the practice but does not shape it. |
+| **Experiment decision rate** | Experiment register rows reaching kill, keep local, or adopt ÷ rows past their time limit. | Experiment register | monthly | Near 1.0. Rows lingering past their limit are abandoned experiments nobody learned from. |
+| **Outside attendance** | Distinct attendees of guild hour and open Bolts who are not in a pilot or seeded pod. | Calendar or attendance notes | monthly | Up during the grow stage; stable after. Falling before seeding reaches their team is the earliest sign socialization has stalled. |
+| **Champion coverage** | Engineering teams or departments with a named, time-budgeted champion ÷ all such teams. | Community charter | quarterly | Up, including teams not yet seeded. |
+| **Stakeholder commitment** | Named stakeholders on the map at the "committed" or "advocate" rung ÷ all named stakeholders. | Stakeholder map | quarterly, before each charter | Up. A key stakeholder still at "aware" when the next charter is drafted is a risk to name in it. |
 
 ## What is not measured
 

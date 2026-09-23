@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: developers, architects, product owners, engineering leaders
-reviewed: 2026-09-02
+reviewed: 2026-09-18
 review-cadence: quarterly
 ---
 
@@ -31,8 +31,9 @@ Two things must both be true for this to work:
 | Scrum team (7±2) | **AI Pod** | 2–3 developers working mob-style with AI agents. Smaller teams, dramatically higher throughput, no handoffs. |
 | Backlog grooming | **Mob Elaboration** | A synchronous session where the pod, product, and QA translate business intent into Units of Work — with AI generating drafts and clarifying questions in real time. |
 | Sprint execution | **Mob Construction** | The pod works together while agents generate code, tests, and IaC; humans review continuously rather than at the end. |
+| Center of Excellence | **Community of practice** | A voluntary, cross-team network of practitioners that owns the practice and improves it through normal PRs, with no approval authority. Adoption spreads by evidence and peers, not by a central gate ([Chapter 12](12-adoption-strategy.md#the-community-of-practice)). |
 
-These five are the core; every other term the playbook uses with a specific meaning is in the [glossary](../GLOSSARY.md), one entry per term, each linking back to its defining chapter.
+These six are the core; every other term the playbook uses with a specific meaning is in the [glossary](../GLOSSARY.md), one entry per term, each linking back to its defining chapter.
 
 ## The three phases
 
@@ -111,7 +112,7 @@ The gates are the methodology. Remove them and you have autopilot, not AI-DLC.
 - **Keep a "questions the AI asked" log.** The clarifying questions agents raise in elaboration are a goldmine for improving your intent-writing.
 - **Start Bolts in the morning.** A Bolt wants sustained pod attention; don't start one at 4pm.
 - **One pod, one Unit of Work at a time.** Parallelizing Units across a 3-person pod recreates handoffs and kills the mob dynamic.
-- **Pilot on a real but low-risk service** — not a toy (nobody believes toy results) and not the payments core (one incident kills the program). See [Chapter 11](11-learning-paths.md) for the rollout program.
+- **Pilot on a real but low-risk service** — not a toy (nobody believes toy results) and not the payments core (one incident kills the program). See [Chapter 11](11-learning-paths.md) for the rollout program and [Chapter 12](12-adoption-strategy.md) for earning buy-in to it.
 
 ## References
 

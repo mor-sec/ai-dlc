@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: engineering leaders, developers
-reviewed: 2026-09-02
+reviewed: 2026-09-18
 review-cadence: quarterly
 ---
 
@@ -13,7 +13,7 @@ Tool licenses without enablement produce autocomplete users and disappointing me
 
 Mirrors AWS's recommended AI-DLC adoption path:
 
-1. **Executive alignment (2–4 weeks).** Leadership internalizes what actually changes: team shapes (AI Pods), metrics (Units of Work and lead time, not story points or LOC), budget shape (tokens and enablement, fewer seats — budgeted like cloud spend, with showback per pod at cost per validated Unit of Work, [Chapter 03](03-tooling-strategy.md#unit-economics-cost-per-validated-unit-of-work)), and the review-capacity bottleneck. Output: a signed-off pilot charter naming pods, scope, and success criteria. Skipping this wave is how pilots succeed and programs still die.
+1. **Executive alignment (2–4 weeks).** Leadership internalizes what actually changes: team shapes (AI Pods), metrics (Units of Work and lead time, not story points or LOC), budget shape (tokens and enablement, fewer seats — budgeted like cloud spend, with showback per pod at cost per validated Unit of Work, [Chapter 03](03-tooling-strategy.md#unit-economics-cost-per-validated-unit-of-work)), and the review-capacity bottleneck. Output: a signed-off [pilot charter](../standards/pilot-charter-template.md) naming pods, scope, and success criteria; how to earn the signatures is [Chapter 12](12-adoption-strategy.md#earning-stakeholder-buy-in). Skipping this wave is how pilots succeed and programs still die.
 2. **Technical enablement (4–6 weeks, overlapping).** Architects and senior engineers build the shared foundations the pods will stand on: steering-file baseline, skill library seeds, [reference pipeline](07-devops-automation.md), [Jira integration](08-github-jira.md), agent permissions and [security guardrails](06-security-shift-left.md). Output: a "paved road" a pilot pod can walk on day one.
 3. **Pilot pods (one quarter).** 1–2 pods on real, low-blast-radius work — [legacy Java upgrades](10-legacy-modernization.md) and [prototypes](05-rapid-prototyping.md) are ideal first Bolts (low ambiguity, high verifiability). Pods keep journals ([Chapter 02](02-ways-of-working.md)); Friday lessons flow into the shared steering repo. Output: measured before/after (baseline captured per the [metrics reference](../standards/metrics-reference.md#the-pilot-baseline) *before* the pilot starts), refined playbook, and — most importantly — the first cohort of practitioners who train the next.
 
@@ -59,7 +59,7 @@ Courses bootstrap; the running system sustains:
 
 - **The steering repo is the curriculum.** Every lesson a pod learns lands in CLAUDE.md baselines, skills, or Semgrep rules the same week — new pods inherit it automatically. Measure updates/week; zero for a month means learning has stalled ([ch. 02 metrics](02-ways-of-working.md)).
 - **Pod journals → monthly digest.** One person (rotating) distills all pod journals into a monthly "what we learned" markdown digest; 30 minutes to read, org-wide.
-- **Guild hour, biweekly:** one pod demos a real Bolt — plan, steering, failures included. Live failure analysis teaches more than any polished talk.
+- **Guild hour, biweekly:** one pod demos a real Bolt — plan, steering, failures included. Live failure analysis teaches more than any polished talk. Guild hour and the digest are the core rituals of the [community of practice](12-adoption-strategy.md#the-community-of-practice), which keeps them running after the enablement quarter.
 - **Everything is markdown in git** ([Chapter 09](09-documentation-standards.md)) — which means the enablement corpus itself is agent context: "how do we do X here?" is answerable by an agent reading the playbook. This playbook is the onboarding bot's brain.
 
 ## Anti-patterns
@@ -80,4 +80,4 @@ Courses bootstrap; the running system sustains:
 ## References
 
 - [AWS Skill Builder](https://skillbuilder.aws) · [Anthropic Academy / Claude Code training](https://www.anthropic.com/learn) · [DDD reading path: Evans, Vernon](04-architecture.md#references)
-- Previous: [Chapter 10 — Legacy Modernization](10-legacy-modernization.md) · Back to the [README](../README.md)
+- Previous: [Chapter 10 — Legacy Modernization](10-legacy-modernization.md) · Next: [Chapter 12 — Adoption Strategy](12-adoption-strategy.md)

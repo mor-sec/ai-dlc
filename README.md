@@ -8,7 +8,7 @@ This playbook equips teams to rapidly prototype and build fullstack enterprise a
 
 - **Developers** joining an AI Pod and learning the new rituals
 - **Architects** designing systems that AI agents can build reliably
-- **Engineering leaders** rolling out AI-DLC across an organization
+- **Engineering leaders and champions** rolling out AI-DLC across an organization and building a community of practice around it
 - **Product owners** who now work in Mob Elaboration sessions instead of backlog grooming
 
 ## Core ideas in one paragraph
@@ -30,7 +30,9 @@ AI-DLC replaces the traditional SDLC's human-does-everything model with a loop w
 | 09 | [Documentation Standards](playbook/09-documentation-standards.md) | Markdown as the standard; ADRs; diagrams-as-code; the DocLang exploration |
 | 10 | [Legacy Modernization](playbook/10-legacy-modernization.md) | AI-assisted COBOL and Java modernization: comprehend, extract, transform |
 | 11 | [Learning Paths](playbook/11-learning-paths.md) | Role-based courses and knowledge; the org enablement program |
+| 12 | [Adoption Strategy](playbook/12-adoption-strategy.md) | Innovating deliberately, stakeholder buy-in, socializing AI-DLC with the wider team, and running a community of practice |
 | A | [Worked Example](playbook/appendix-a-worked-example.md) | One Unit of Work end to end: elaboration, threat model, Bolt plan, construction, PR, deploy, steering update |
+| B | [Rules from Legislation](playbook/appendix-b-rules-from-legislation.md) | Business rules extracted from a (fictional) statute with a citation each, counsel's interpretation rulings, rule-traced tests, and an amendment impact analysis |
 
 ## Glossary
 
@@ -50,12 +52,15 @@ Ready-to-use artifacts in [`standards/`](standards/):
 - [CLAUDE.md Template](standards/claude-md-template.md) — starter steering file for new repos
 - [Model Selection Reference](standards/model-selection.md) — current model-tier assignments and cost accounting (reviewed quarterly)
 - [Metrics Reference](standards/metrics-reference.md) — one definition per metric: source, cadence, healthy direction, and the pilot baseline
+- [Pilot Charter Template](standards/pilot-charter-template.md) — the signed Wave 1 contract: scope, baseline, success and stop criteria, budget, review date
+- [Community of Practice Charter Template](standards/community-of-practice-charter-template.md) — roles, rituals, contribution flow, and health metrics for the community that sustains adoption
 
 ## How to use this playbook
 
 1. **New to AI-DLC?** Read chapters 01–02 in order; they define every term the rest uses. Then [Appendix A](playbook/appendix-a-worked-example.md), which follows one Unit of Work from Monday's intent to Friday's steering update with every artifact filled in.
 2. **Setting up a team?** Chapters 03, 08, and 11, then the templates.
 3. **Starting a build?** Chapters 04–07 are the engineering core.
-4. **Sitting on legacy?** Chapter 10, after 04.
+4. **Sitting on legacy, or building from legislation?** Chapter 10, after 04; then [Appendix B](playbook/appendix-b-rules-from-legislation.md) if the specification is law rather than code.
+5. **Leading the rollout?** Chapter 12 for buy-in, socialization, and the community of practice, alongside Chapter 11's waves; start with the pilot charter template.
 
 This repo dogfoods its own standards: everything is markdown, diagrams are Mermaid, changes go through PRs ([template](.github/pull_request_template.md)), decisions get [ADRs](docs/adr/), every file carries a `reviewed:` date, and [CI](.github/workflows/docs.yml) runs the markdownlint, link, and Mermaid checks that [Chapter 09](playbook/09-documentation-standards.md#enforced-in-ci) prescribes, plus a structure check for this repo's own conventions. The repo's own steering file is [CLAUDE.md](CLAUDE.md).

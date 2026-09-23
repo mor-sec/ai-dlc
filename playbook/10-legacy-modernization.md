@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: architects, engineering leaders
-reviewed: 2026-09-02
+reviewed: 2026-09-18
 review-cadence: quarterly
 ---
 
@@ -16,7 +16,7 @@ The one law of this chapter: **the legacy system is the specification.** Decades
 Turn opaque code into markdown the whole method can consume:
 
 - **Automated codebase archaeology:** agents map programs, copybooks, JCL, DB2/VSAM access, screens, and call graphs — or the Java equivalent (modules, beans, stored-proc calls, batch jobs). AWS Transform's analysis/documentation agents do this at mainframe scale; Claude Code does it per-repo for Java.
-- **Output is `docs/legacy/<system>/`:** system overview, per-program summaries, data dictionary, interface inventory, and a **business-rules extract** — each rule with a pointer to the code that implements it (`RULE: late-payment fee waived for accounts > 20 years old — PAYPROC.cbl ¶ 2200-FEE-CALC`). Rules whose *reason* nobody can name get flagged, not deleted — Chesterton's fence, mechanized.
+- **Output is `docs/legacy/<system>/`:** system overview, per-program summaries, data dictionary, interface inventory, and a **business-rules extract** — each rule with a pointer to the code that implements it (`RULE: late-payment fee waived for accounts > 20 years old — PAYPROC.cbl ¶ 2200-FEE-CALC`). Rules whose *reason* nobody can name get flagged, not deleted — Chesterton's fence, mechanized. The same extract works when the specification is a statute rather than code, with counsel instead of the old system as the validator: [Appendix B](appendix-b-rules-from-legislation.md).
 - **This corpus is agent context for everything downstream** — and a Docling/DocLang conversion pilot target where legacy docs exist only as scanned PDFs ([Chapter 09](09-documentation-standards.md)).
 - Humans (including the last COBOL veterans — book their calendar now, this is their highest-value work) review the extracts for the subset of rules that are load-bearing.
 
