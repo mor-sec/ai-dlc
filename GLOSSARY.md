@@ -65,6 +65,10 @@ The voluntary, cross-team network of AI-DLC practitioners that owns the practice
 
 The Friday block in the weekly rhythm: retro on the agent collaboration, steering-file and skill updates from the week's lessons, learning time, review-debt paydown. The recovery day that makes Monday's elaboration honest. [Chapter 02](playbook/02-ways-of-working.md#the-weekly-rhythm)
 
+## Context classification
+
+Applying the organization's data classification to what an agent session may read: public and internal as is; confidential only under recorded vendor terms; restricted data (PII, PCI, credentials, customer data) never as real values, only synthetic, masked, or as metadata. Session records inherit the classification of what the agent read. [Chapter 06](playbook/06-security-shift-left.md#data-in-context-and-generated-code-ownership)
+
 ## Context engineering
 
 The discipline of supplying agents with the intent, standards, and domain knowledge they need, through steering files, skills, domain docs, and the codebase itself. When output disappoints, fix context in that order, cheapest first. [Chapter 03](playbook/03-tooling-strategy.md#the-context-engineering-hierarchy)

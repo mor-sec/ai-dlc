@@ -1,7 +1,7 @@
 ---
 owner: security-engineering
 audience: security engineers, developers
-reviewed: 2026-09-02
+reviewed: 2026-09-24
 review-cadence: quarterly
 ---
 
@@ -62,12 +62,37 @@ Every Unit of Work gets a **threat-model pass inside Mob Elaboration** — this 
 4. **No secrets in context:** secrets live in the secrets manager; agents reference them by name in code and never see values. Secret-scan agent-authored diffs like any other.
 5. **Auditability:** agent sessions, approvals, and tool invocations are logged. Under AI-DLC you get a bonus artifact: the full intent→plan→diff trail ([Chapter 08](08-github-jira.md)) is a security audit trail too.
 
+## Data in context and generated-code ownership
+
+Everything an agent reads goes to the model provider, and everything it writes becomes the organization's code. The vendor's side of this (retention, inference region, excluded repos) is settled once in the [vendor governance](03-tooling-strategy.md#vendor-governance) ADR. This section is the pod's side: what may enter a session, and what the organization can say about what comes out.
+
+**Classify the context, not just the data store.** The organization's existing data classification decides what an agent may read, and the rule is applied to the session, not to the repo:
+
+| Classification | May enter agent context | How |
+|---|---|---|
+| **Public, internal** | Yes | As is |
+| **Confidential** (unreleased plans, contracts, internal financials) | Only under vendor terms recorded as covering it | As is, in repos not on the excluded list |
+| **Restricted** (PII, PCI, health, credentials, customer data under contract) | Never as real values | Synthetic fixtures, masked extracts, or schemas and column names without rows. MCP servers that reach restricted stores return masked data or metadata only |
+
+The rules that follow from the table:
+
+- **Session records inherit the classification of what the agent read.** Transcripts, tool logs, and the audit trail of a session that saw confidential data are confidential, with the same retention and access rules. Agents never copy what they read into tickets, PR descriptions, or commit messages, which have wider audiences than the source.
+- **Fixtures are synthetic by rule.** A test fixture built from a production record is a restricted-data leak into git, however many fields were changed. The steering file says so, and secret and PII scanners run on agent-authored diffs.
+- **Third-party code stays out unless its license allows it.** Pasting a vendor's proprietary SDK source, a competitor's code, or a customer's code into a session so the agent can "match it" is a license and confidentiality breach, whatever the output looks like.
+
+**Ownership and provenance of generated code.** The organization treats agent output as its own work product, and that position holds only if three things are true:
+
+- **Provenance is recorded.** Agent-assisted commits carry a co-author trailer naming the agent, so the history shows which changes were generated. That record supports audits and license questions years later, when nobody remembers the session.
+- **License contamination is checked** by SCA with a license policy in CI (see the threat table above), and large verbatim blocks from a known open-source project are replaced with the dependency or attributed.
+- **The vendor's terms on output ownership and IP indemnity** are recorded in the same vendor-terms ADR as retention, and re-checked at the annual review.
+
 ## Anti-patterns
 
 - **Scan-and-dump.** Turning on five scanners with no triage capacity; 400 findings, all ignored. Automate triage with agents, block only on tuned severities, expand gradually.
 - **Security as the merge-gate surprise.** If the first security signal appears at PR time, elaboration failed. Mitigations belong in acceptance criteria.
 - **"The AI wrote it, so it must follow our standards."** Steering raises the floor; it doesn't remove the need for verification. Trust the pipeline, not the vibe.
 - **Blanket agent permissions to stop the prompting fatigue.** Fix fatigue by pre-approving *specific safe commands*, never by wildcarding.
+- **Production data as fixtures.** "Just one real customer record to reproduce the bug." It is now in the session log, the repo, and every clone. Reproduce with synthetic data shaped like the record.
 - **Prototype exemptions** ([Chapter 05](05-rapid-prototyping.md)): real data gets real controls regardless of the repo's label.
 
 ## Tips & tricks
@@ -79,6 +104,7 @@ Every Unit of Work gets a **threat-model pass inside Mob Elaboration** — this 
 
 ## References
 
+- Decisions: [ADR 0016 — Data in agent context and generated-code ownership](../docs/adr/0016-data-in-agent-context.md)
 - OWASP: [Top 10](https://owasp.org/www-project-top-ten/), [LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/), ASVS
 - [Wiz: AppSec under AI-DLC](https://www.wiz.io/academy/ai-security/ai-driven-development-lifecycle-ai-dlc)
 - Previous: [Chapter 05 — Rapid Prototyping](05-rapid-prototyping.md) · Next: [Chapter 07 — DevOps Automation](07-devops-automation.md)
