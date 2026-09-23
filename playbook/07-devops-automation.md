@@ -52,6 +52,17 @@ Classification is automated (path-based rules + labels the agent applies and a h
 - IaC changes are Units of Work like any other: plan gate, review, scan (`checkov`/`tfsec`), and **`terraform plan`/`cdk diff` output pasted into the PR** — reviewers approve the diff of reality, not the diff of code.
 - Drift detection runs nightly; drift opens a ticket automatically.
 
+## Data and schema migrations
+
+Code rolls back in a minute; data does not roll back at all. Migrations are already material and backfills critical in the [gating table](#risk-based-gating), and the Bolt plan's stop conditions halt the agent when a schema change appears ([Bolt plan template](../standards/bolt-plan-template.md)). What those controls do not say is what a *good* agent-written migration looks like. Agents write migrations that are correct on an empty database and lock a production table for twenty minutes, so the rules go in the steering file and are checked in the pipeline:
+
+- **Expand, then contract, in separate deploys.** Add the new column or table; deploy code that writes both and reads the new; backfill; deploy code that reads only the new; drop the old in a later Unit. Every step is backward-compatible with the code running beside it, which is what lets canary and rollback keep working. A single migration that renames or drops something in use is a stop condition, not a plan.
+- **Never edit an applied migration.** A migration that has run anywhere shared is history; fixes are new migrations. Hooks block edits to applied migration files, as they already protect `migrations/` ([Chapter 06](06-security-shift-left.md#securing-the-agents-themselves)).
+- **Reversible, or a written forward fix.** Each migration ships its down step, or the PR states why it cannot be reversed and what the forward fix is. "Restore from backup" is not a rollback plan for a single change.
+- **Rehearse on production-shaped data.** The ephemeral environment runs the migration against a masked snapshot at production scale, and the PR carries the timing and the locks taken. A migration that takes a table-level lock on a hot table, or runs longer than the deploy window, is redesigned before review.
+- **Backfills are jobs, not migrations.** Idempotent, batched, resumable, throttled, and observable, run by the deploy pipeline as their own critical-class change. A backfill inside a schema migration turns a slow deploy into an outage.
+- **Event schemas follow the same idea.** Additive fields within a version; a new major version is a new event that consumers move to deliberately ([Chapter 04](04-architecture.md#event-driven-architecture-rules)).
+
 ## GitOps and environments
 
 - `main` is always deployable; short-lived branches only; merge queue keeps `main` green.
@@ -78,6 +89,7 @@ Non-negotiables for AI-built, event-driven systems:
 - **Human gates on everything** "to be safe." Review capacity is the scarce resource ([Chapter 02](02-ways-of-working.md)); spending it on routine dependency bumps means spending less on the auth change. Uniform caution is risk-*increasing*.
 - **Flaky test tolerance.** At Bolt cadence, a 2% flake rate halts the team hourly. Quarantine-and-fix within the week, or delete the test.
 - **Snowflake/console exceptionalism.** Warehouse configs, RBAC grants, and Streamlit apps ([Chapter 05](05-rapid-prototyping.md)) are infrastructure — they get IaC and pipelines too (Terraform Snowflake provider / schemachange).
+- **The one-step rename.** An agent asked to rename a column writes one migration that renames it, and the old code still running on half the fleet fails on its next query. Expand, deploy, backfill, contract; four steps is the price of zero downtime.
 - **Rollback as an aspiration.** If rollback isn't a tested, one-command (or automatic) path, you don't have one. Test it monthly.
 - **The staging queue.** A shared staging env with a sign-up sheet recreates the sprint. Ephemeral envs exist precisely to kill this.
 
@@ -90,6 +102,6 @@ Non-negotiables for AI-built, event-driven systems:
 
 ## References
 
-- Decisions: [ADR 0013 — NFRs as acceptance criteria](../docs/adr/0013-non-functional-requirements-as-acceptance-criteria.md)
+- Decisions: [ADR 0013 — NFRs as acceptance criteria](../docs/adr/0013-non-functional-requirements-as-acceptance-criteria.md) · [ADR 0015 — Expand/contract migrations](../docs/adr/0015-expand-contract-migrations.md)
 - [DORA research](https://dora.dev) · [OpenTelemetry](https://opentelemetry.io) · Accelerate (Forsgren, Humble, Kim)
 - Previous: [Chapter 06 — Security](06-security-shift-left.md) · Next: [Chapter 08 — GitHub + Jira](08-github-jira.md)

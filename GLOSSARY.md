@@ -89,6 +89,10 @@ The pod accountability that steers the agent: writes prompts and plans, approves
 
 A short-lived, production-shaped environment provisioned per PR for integration tests, DAST, and human inspection, destroyed on merge or close. The highest-payoff automation investment under AI-DLC. [Chapter 07](playbook/07-devops-automation.md#the-reference-pipeline-github-actions)
 
+## Expand/contract migration
+
+The pattern for changing a schema without downtime: expand (add the new structure), migrate writers and backfill, switch readers, then contract (remove the old structure in a later deploy). Every step stays compatible with the code running beside it, so canary and rollback keep working. Agent-written migrations follow it by rule. [Chapter 07](playbook/07-devops-automation.md#data-and-schema-migrations)
+
 ## Experiment register
 
 The single markdown file (`docs/experiments/register.md` in the steering repo) listing every adoption experiment with its written question, horizon (adopt, pilot, explore), owner, time limit, required evidence, and kill, keep-local, or adopt decision. Kills are published like wins. [Chapter 12](playbook/12-adoption-strategy.md#the-experiment-register)
