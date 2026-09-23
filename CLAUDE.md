@@ -7,7 +7,8 @@ Org-wide standards repo: the playbook chapters, the reusable templates, and the 
 - Lint: `npx -y markdownlint-cli2 "**/*.md"`
 - Links: `python3 scripts/check-links.py`
 - Mermaid: `scripts/check-mermaid.sh`
-- All three run in CI on every PR (`.github/workflows/docs.yml`); run them before pushing.
+- Structure (front-matter, chapter endings, README rows, glossary, ADR numbering): `python3 scripts/check-structure.py`
+- All four run in CI on every PR (`.github/workflows/docs.yml`); run them before pushing.
 
 ## Layout
 

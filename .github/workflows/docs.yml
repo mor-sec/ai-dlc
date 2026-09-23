@@ -7,7 +7,7 @@ on:
 
 jobs:
   checks:
-    name: markdownlint, links, mermaid
+    name: markdownlint, links, mermaid, structure
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,3 +24,6 @@ jobs:
 
       - name: Mermaid diagrams
         run: scripts/check-mermaid.sh
+
+      - name: Playbook structure
+        run: python3 scripts/check-structure.py
