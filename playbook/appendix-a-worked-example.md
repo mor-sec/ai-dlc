@@ -260,4 +260,5 @@ The `questions the AI asked` log gains four entries. The pod journal for the wee
 
 - Templates used: [Unit of Work](../standards/unit-of-work-template.md) · [Bolt plan](../standards/bolt-plan-template.md) · [CLAUDE.md](../standards/claude-md-template.md)
 - Chapters exercised: [01](01-ai-dlc-methodology.md) · [02](02-ways-of-working.md) · [06](06-security-shift-left.md) · [07](07-devops-automation.md) · [08](08-github-jira.md)
+- For a Bolt where the gates stop the work instead: [Appendix C](appendix-c-a-bolt-that-fails.md)
 - Back to the [README](../README.md)

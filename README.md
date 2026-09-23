@@ -34,6 +34,7 @@ AI-DLC replaces the traditional SDLC's human-does-everything model with a loop w
 | 13 | [Building AI Features](playbook/13-building-ai-features.md) | LLM-powered product features: the model behind a domain adapter, eval sets as the test suite, injection in user flows, online grading, cost budgets |
 | A | [Worked Example](playbook/appendix-a-worked-example.md) | One Unit of Work end to end: elaboration, threat model, Bolt plan, construction, PR, deploy, steering update |
 | B | [Rules from Legislation](playbook/appendix-b-rules-from-legislation.md) | Business rules extracted from a (fictional) statute with a citation each, counsel's interpretation rulings, rule-traced tests, and an amendment impact analysis |
+| C | [A Bolt That Goes Wrong](playbook/appendix-c-a-bolt-that-fails.md) | Green tests at 41% mutation score, a refused workaround, a Bolt abandoned at 14:10, the Unit re-sliced into expand/contract steps, and the consolidation that follows |
 
 ## Glossary
 
@@ -61,7 +62,7 @@ Ready-to-use artifacts in [`standards/`](standards/):
 
 ## How to use this playbook
 
-1. **New to AI-DLC?** Read chapters 01–02 in order; they define every term the rest uses. Then [Appendix A](playbook/appendix-a-worked-example.md), which follows one Unit of Work from Monday's intent to Friday's steering update with every artifact filled in.
+1. **New to AI-DLC?** Read chapters 01–02 in order; they define every term the rest uses. Then [Appendix A](playbook/appendix-a-worked-example.md), which follows one Unit of Work from Monday's intent to Friday's steering update with every artifact filled in, and [Appendix C](playbook/appendix-c-a-bolt-that-fails.md), where the gates stop one.
 2. **Setting up a team?** Chapters 03, 08, and 11, then the templates.
 3. **Starting a build?** Chapters 04–07 are the engineering core; add Chapter 13 if the product itself calls a language model.
 4. **Sitting on legacy, or building from legislation?** Chapter 10, after 04; then [Appendix B](playbook/appendix-b-rules-from-legislation.md) if the specification is law rather than code.

@@ -237,7 +237,7 @@ The pilot quarter then runs its course, and the quarterly review against the cha
 - **The Center of Excellence gate.** A central team that must approve every pod's steering, tools, or experiments. It becomes the bottleneck, then the enemy, then routed around.
 - **Selling the tool instead of the outcome.** Stakeholders asked to buy "Claude Code" or "agents" rather than lead time, quality, and a controlled risk. When the tool changes, the buy-in goes with it.
 - **The champion who was volunteered.** Champions appointed by their manager without interest, or without the time budget. They go through the motions and quietly signal to their team that nobody means it.
-- **Hiding the bad weeks.** Digests and updates that only report wins. The first failure that leaks out, and one will, discredits everything reported before it.
+- **Hiding the bad weeks.** Digests and updates that only report wins. The first failure that leaks out, and one will, discredits everything reported before it. [Appendix C](appendix-c-a-bolt-that-fails.md) shows a failed Bolt written up for guild hour.
 - **Innovation without a register.** Individuals trying new agents and models privately. Nobody learns from it, and the experiments that do work arrive as unreviewed tool sprawl.
 - **Skipping the people who are not in the room.** HR, works councils, PMO, and adjacent functions hearing about pods from rumor. Late consultation turns neutral stakeholders into blockers.
 - **Measuring adoption by usage.** Seats activated, prompts sent, "percent of developers using AI". These reward the autocomplete pattern the method exists to move past ([metrics reference](../standards/metrics-reference.md#what-is-not-measured)).
