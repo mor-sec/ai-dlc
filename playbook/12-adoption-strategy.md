@@ -260,4 +260,4 @@ The pilot quarter then runs its course, and the quarterly review against the cha
 - John Kotter, *Leading Change* (Harvard Business Review Press, 1996)
 - Everett Rogers, *Diffusion of Innovations*, 5th edition (Free Press, 2003)
 - [AWS: AI-Driven Development Lifecycle for Financial Services](https://aws.amazon.com/blogs/industries/ai-driven-development-lifecycle-for-financial-services/)
-- Previous: [Chapter 11 — Learning Paths & Enablement](11-learning-paths.md) · Back to the [README](../README.md)
+- Previous: [Chapter 11 — Learning Paths & Enablement](11-learning-paths.md) · Next: [Chapter 13 — Building AI Features](13-building-ai-features.md)

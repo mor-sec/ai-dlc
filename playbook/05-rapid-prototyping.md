@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: developers, product owners
-reviewed: 2026-09-02
+reviewed: 2026-09-24
 review-cadence: quarterly
 ---
 
@@ -24,7 +24,7 @@ Everything runs inside Snowflake's security perimeter: no data movement, existin
 |---|---|
 | **Streamlit in Snowflake** | The UI in pure Python — dashboards, internal tools, approval flows. An agent generates a usable app from a schema + question in one Bolt. |
 | **Snowpark** (Python/Java/Scala) | Transformations and ML in-platform, replacing "export to notebook" workflows. |
-| **Cortex AI** (SQL functions, Cortex Analyst, Cortex Search, Cortex Agents) | LLM features on governed data — summarization, classification, natural-language-to-SQL, RAG over documents — without standing up any ML infra. |
+| **Cortex AI** (SQL functions, Cortex Analyst, Cortex Search, Cortex Agents) | LLM features on governed data — summarization, classification, natural-language-to-SQL, RAG over documents — without standing up any ML infra. Promoting one to a product feature follows [Chapter 13](13-building-ai-features.md). |
 | **Streams & Tasks / Dynamic Tables** | Event-ish pipelines inside Snowflake; the prototype analog of the event backbone in [Chapter 04](04-architecture.md). |
 | **Snowpark Container Services** | Anything that needs a real container — custom runtimes, GPUs, existing images — still inside the perimeter. |
 | **Native App Framework** | When the prototype's answer is "yes, and other teams/accounts want it" — packaging for distribution. |
@@ -55,6 +55,7 @@ A prototype's Bolt ends with a **decision, not a drift**: kill, keep-as-tool, or
   - [ ] Bounded context and event contracts defined ([Chapter 04](04-architecture.md))
   - [ ] Full Definition of Done applies ([Chapter 02](02-ways-of-working.md)): test pyramid, threat model ([Chapter 06](06-security-shift-left.md)), IaC + pipeline ([Chapter 07](07-devops-automation.md))
   - [ ] Ownership, SLOs, and run cost accepted by the owning pod
+  - [ ] For AI features: an eval set with thresholds as ACs ([Chapter 13](13-building-ai-features.md#evals-are-the-test-suite))
 
 ## Anti-patterns
 

@@ -31,6 +31,7 @@ AI-DLC replaces the traditional SDLC's human-does-everything model with a loop w
 | 10 | [Legacy Modernization](playbook/10-legacy-modernization.md) | AI-assisted COBOL and Java modernization: comprehend, extract, transform |
 | 11 | [Learning Paths](playbook/11-learning-paths.md) | Role-based courses and knowledge; the org enablement program |
 | 12 | [Adoption Strategy](playbook/12-adoption-strategy.md) | Innovating deliberately, stakeholder buy-in, socializing AI-DLC with the wider team, and running a community of practice |
+| 13 | [Building AI Features](playbook/13-building-ai-features.md) | LLM-powered product features: the model behind a domain adapter, eval sets as the test suite, injection in user flows, online grading, cost budgets |
 | A | [Worked Example](playbook/appendix-a-worked-example.md) | One Unit of Work end to end: elaboration, threat model, Bolt plan, construction, PR, deploy, steering update |
 | B | [Rules from Legislation](playbook/appendix-b-rules-from-legislation.md) | Business rules extracted from a (fictional) statute with a citation each, counsel's interpretation rulings, rule-traced tests, and an amendment impact analysis |
 
@@ -62,7 +63,7 @@ Ready-to-use artifacts in [`standards/`](standards/):
 
 1. **New to AI-DLC?** Read chapters 01–02 in order; they define every term the rest uses. Then [Appendix A](playbook/appendix-a-worked-example.md), which follows one Unit of Work from Monday's intent to Friday's steering update with every artifact filled in.
 2. **Setting up a team?** Chapters 03, 08, and 11, then the templates.
-3. **Starting a build?** Chapters 04–07 are the engineering core.
+3. **Starting a build?** Chapters 04–07 are the engineering core; add Chapter 13 if the product itself calls a language model.
 4. **Sitting on legacy, or building from legislation?** Chapter 10, after 04; then [Appendix B](playbook/appendix-b-rules-from-legislation.md) if the specification is law rather than code.
 5. **Leading the rollout?** Chapter 12 for buy-in, socialization, and the community of practice, alongside Chapter 11's waves; start with the pilot charter template.
 
