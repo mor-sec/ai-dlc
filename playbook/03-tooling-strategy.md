@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: developers, architects
-reviewed: 2026-09-02
+reviewed: 2026-09-24
 review-cadence: quarterly
 ---
 
@@ -95,6 +95,27 @@ The metric that makes model spend governable is **cost per validated Unit of Wor
 
 This is the bridge to FinOps: pods see their own unit economics (showback per pod, per month), leadership budgets tokens the way it budgets cloud spend ([Chapter 11](11-learning-paths.md), Wave 1), and token-spend anomalies are an operational signal like any other cost anomaly ([Chapter 07](07-devops-automation.md)). Classic FinOps practices don't yet cover agent tokens — the playbook's position is: treat them as a first-class cloud cost with the Unit of Work as the allocation unit, rather than inventing a parallel process.
 
+## Agent autonomy levels
+
+Everything above assumes a human at the keyboard. Agents also run unattended: in CI, on a schedule, triggered by an issue label. That is useful for chores and dangerous by default, because the human gate between "the agent read something" and "the agent did something" ([Chapter 06](06-security-shift-left.md#securing-the-agents-themselves)) is exactly what an unattended run removes. So every agent run has a declared **autonomy level**, and the level decides what it may touch.
+
+| Level | Mode | May | May not | Typical work |
+|---|---|---|---|---|
+| **0 — Interactive** (default) | A pod member drives the session; plan mode for any Unit of Work | Everything the repo's permissions allow, with the plan gate and per-invocation approval for destructive commands | Skip the plan gate on a Unit of Work | Mob Construction, elaboration, investigation |
+| **1 — Headless commenter** | Runs in CI or on a schedule with no human in the session | Read the repo; post comments, check results, and draft notes on PRs and tickets | Push commits, open PRs, change labels that affect gating | First-pass PR review, doc-staleness sweeps, scanner triage notes |
+| **2 — Headless author** | Runs in CI or on a schedule; its output is a PR | Open a PR on a branch it created, labelled `agent-authored`, for changes the [risk classifier](07-devops-automation.md#risk-based-gating) marks routine | Merge anything; open material or critical changes; edit workflows, permissions, or its own configuration | Changelog drafts, dependency major-version migrations prepared for review, generated fixtures |
+
+**No level merges.** Every agent-authored change passes the same human review as any other change in its class. An unattended agent that can merge is an unattended agent that can deploy.
+
+Each unattended run has four controls, set in the workflow file and reviewed like a service account ([Chapter 06](06-security-shift-left.md#securing-the-agents-themselves)):
+
+- **Identity:** a dedicated bot identity per workflow, never a person's token.
+- **Sandbox:** a fresh, network-restricted runner with no production credentials at any level; read access to observability goes through the same read-only MCP server the [`incident-investigate`](../standards/skills/incident-investigate/SKILL.md) skill uses.
+- **Budget:** a per-run token and wall-clock cap. A run that hits the cap stops and reports; it does not retry itself.
+- **Input hygiene:** anything the run reads from outside the repo (issue text, PR comments from forks, web content) is data, never instructions; runs triggered by untrusted input start at level 1.
+
+**Moving a workflow up a level** takes evidence and an ADR: a quarter at the lower level with its output reviewed, the rate at which humans accepted its comments or PRs unchanged, and no incident attributable to it. Moving it down takes one approver and no paperwork.
+
 ## Evaluating alternatives
 
 Tool-agnostic criteria — score 1–5, review annually or when a pod escalates:
@@ -127,6 +148,7 @@ Standardizing on one primary agent ([ADR 0002](../docs/adr/0002-claude-code-as-p
 - **Tool sprawl.** Five agents, no shared steering, no compounding. Pick a primary.
 - **Stale CLAUDE.md.** Worse than none — the agent confidently follows outdated rules. Assign ownership (the pod's domain anchor).
 - **Prompt libraries as strategy.** Prompt collections rot instantly; steering files and skills are versioned, reviewed, and attached to the repo where they act.
+- **The unattended merger.** A scheduled agent given merge rights "just for dependency bumps", which then merges a compromised package or a change a prompt-injected issue asked for. Unattended agents author; people merge.
 - **Unbounded permissions for convenience.** One `rm -rf` story ends your rollout. Expand the allowlist deliberately, never wholesale.
 - **Vendor dependence by omission.** No retention terms on file, no fallback drill, no eval suite; the first model deprecation becomes a quarter of rework. Governance is a page of ADRs and one drill a year; write them before the pilot starts.
 - **Paying for seats, skipping enablement.** Tool licenses without the [learning program](11-learning-paths.md) yields Copilot-as-autocomplete usage patterns and disappointing metrics.
@@ -135,12 +157,12 @@ Standardizing on one primary agent ([ADR 0002](../docs/adr/0002-claude-code-as-p
 
 - **Version steering artifacts like code**: PRs, reviews, CHANGELOG. A steering regression is a production regression waiting to happen.
 - **Give the agent the *why*.** Steering lines with rationale ("use X because Y") generalize; bare rules get misapplied at the edges.
-- **Headless agent in CI** for mechanical chores (changelog drafts, doc-link checks, first-pass PR review comments) — but CI agents comment, humans merge.
+- **Headless agent in CI** for mechanical chores (changelog drafts, doc-link checks, first-pass PR review comments) — but CI agents comment, humans merge. Declare each workflow's [autonomy level](#agent-autonomy-levels) in the workflow file.
 - **Watch your token economics** per Unit of Work, not per seat — an expensive plan that prevents a wrong build is the cheapest thing you bought all week. Details and the current tier table: [model selection reference](../standards/model-selection.md).
 
 ## References
 
-- Decisions: [ADR 0002 — Claude Code as primary agent](../docs/adr/0002-claude-code-as-primary-agent.md) · [ADR 0007 — Steering evals](../docs/adr/0007-steering-evals-gate-steering-changes.md) · [ADR 0010 — Vendor governance](../docs/adr/0010-vendor-governance-for-the-primary-agent.md) · [ADR 0012 — Model tiers by use case](../docs/adr/0012-model-tiers-by-use-case-effort-first.md)
+- Decisions: [ADR 0002 — Claude Code as primary agent](../docs/adr/0002-claude-code-as-primary-agent.md) · [ADR 0007 — Steering evals](../docs/adr/0007-steering-evals-gate-steering-changes.md) · [ADR 0010 — Vendor governance](../docs/adr/0010-vendor-governance-for-the-primary-agent.md) · [ADR 0012 — Model tiers by use case](../docs/adr/0012-model-tiers-by-use-case-effort-first.md) · [ADR 0014 — Agent autonomy levels](../docs/adr/0014-agent-autonomy-levels.md)
 - Previous: [Chapter 02 — Ways of Working](02-ways-of-working.md) · Next: [Chapter 04 — Architecture](04-architecture.md)
 - Templates: [CLAUDE.md starter](../standards/claude-md-template.md)
 - [Claude Code docs](https://docs.claude.com/en/docs/claude-code) · [Model Context Protocol](https://modelcontextprotocol.io)

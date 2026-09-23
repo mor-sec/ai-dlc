@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: everyone, including agents
-reviewed: 2026-09-18
+reviewed: 2026-09-24
 review-cadence: quarterly
 ---
 
@@ -28,6 +28,10 @@ A translation boundary that keeps a legacy or foreign model from leaking into a 
 ## Architecture decision record (ADR)
 
 A short, numbered document recording one significant decision, its context, options, and consequences. Under AI-DLC it doubles as steering: agents read the ADR log before proposing designs. A decision exists when its ADR merges. [ADR template](standards/adr-template.md)
+
+## Autonomy level
+
+The declared level at which an agent run operates: 0, interactive with a pod member driving; 1, headless commenter that may only comment; 2, headless author that may open routine-class PRs labelled `agent-authored`. No level merges. Each unattended run has a bot identity, a sandbox without production credentials, and a token cap; moving up a level takes an ADR. [Chapter 03](playbook/03-tooling-strategy.md#agent-autonomy-levels)
 
 ## Bolt
 
