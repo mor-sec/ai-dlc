@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: developers, architects
-reviewed: 2026-09-24
+reviewed: 2026-09-29
 review-cadence: quarterly
 ---
 
@@ -36,7 +36,7 @@ Rules of thumb:
 - **Short and dense beats long and complete.** Aim under ~150 lines; link out to deeper docs rather than inlining them.
 - **It's a living artifact.** Every Friday consolidation ([Chapter 02](02-ways-of-working.md)), fold the week's lessons in. If the agent made the same mistake twice, that's a missing steering line.
 - **Constraints over descriptions.** "Never write directly to the ledger table; go through `LedgerService`" beats three paragraphs describing the ledger.
-- **Test it like code.** A steering line is known to work only when a cold session follows it. Each repo keeps a small suite of golden tasks, run on every steering PR and every model change: [steering evals](../standards/steering-evals.md).
+- **Test it like code.** A steering line is known to work only when a cold session follows it. Each repo keeps a small suite of golden tasks, run on every steering PR and every model change, each task several times because one cold run proves little: [steering evals](../standards/steering-evals.md).
 
 ### Plan mode = the Bolt plan gate
 
@@ -44,20 +44,26 @@ Claude Code's plan mode maps 1:1 onto AI-DLC's plan-approval gate: the agent exp
 
 ### Skills
 
-Skills are packaged procedures the agent invokes for recurring tasks. Build a shared skill library (its own repo, versioned) for things like: scaffolding a new service to house standards, generating a threat model from a Unit of Work ([Chapter 06](06-security-shift-left.md)), writing an ADR, producing a Snowflake prototype scaffold. A skill is worth writing when a procedure is (a) repeated, (b) has a right way, and (c) the agent gets it wrong from a cold start. The [skill template](../standards/skill-template.md) defines the anatomy; the [`threat-model` skill](../standards/skills/threat-model/SKILL.md) is the reference implementation to copy from.
+Skills are packaged procedures the agent invokes for recurring tasks. Build a shared skill library, published as a plugin in the organization's marketplace so every repo gets fixes at the next session start ([agent baseline](../standards/agent-baseline.md#the-org-plugin)), for things like: scaffolding a new service to house standards, generating a threat model from a Unit of Work ([Chapter 06](06-security-shift-left.md)), writing an ADR, producing a Snowflake prototype scaffold. A skill is worth writing when a procedure is (a) repeated, (b) has a right way, and (c) the agent gets it wrong from a cold start. The [skill template](../standards/skill-template.md) defines the anatomy; the [`threat-model` skill](../standards/skills/threat-model/SKILL.md) is the reference implementation to copy from.
 
 ### Hooks and permissions
 
-- **Hooks** enforce mechanically what steering requests politely: run linters/formatters after edits, block edits to protected paths (migrations, auth config) without a flag, require tests before a commit skill completes.
+- **Hooks** enforce mechanically what steering requests politely: run linters/formatters after edits, block edits to protected paths (migrations, auth config) without a flag, block edits to committed tests, require tests before a commit skill completes.
 - **Permissions**: default deny for destructive commands; pre-approve the read-only and routine commands pods use constantly (test runners, linters) so gates interrupt only when they should.
+- **The organization's rules are not a repo's to loosen.** Deny rules, approval rules for protected paths, and the ban on bypassing permissions are delivered as managed settings, which no repo or user setting overrides. Repos add allow rules for their own commands and their own hooks on top.
+- **Sandbox shell commands** so routine commands run without prompts inside an OS-enforced filesystem and network boundary. It cuts prompts without widening permissions, which is the only safe way to cut them. The layers, the settings, and the position on auto mode are in the [agent baseline](../standards/agent-baseline.md).
 
 ### Subagents and review
 
 Use a second, context-clean agent session to review the first's diff ("fresh eyes" review) before human review — it reliably catches self-consistent nonsense the generating session can't see. This supplements, never replaces, the human review gate.
 
+### Parallel sessions
+
+When a Bolt plan declares lanes, each lane is its own Claude Code session in its own git worktree, so edits in one lane never collide with another. The Driver opens each session cold and gives it the approved plan and its lane, not a hand-typed summary of either. Lane sessions are autonomy [Level 0](#agent-autonomy-levels): a person is present, and per-invocation approvals and the repo's permissions apply unchanged. When the lanes merge, the fresh-eyes review above runs on the integrated diff. When lanes are allowed, how many, and how review paces them: [Chapter 02, Fan-out inside a Bolt](02-ways-of-working.md#fan-out-inside-a-bolt).
+
 ### MCP servers
 
-Agents need tool access to be full lifecycle participants. Minimum viable set: **GitHub** (PRs, issues), **Jira** (Units of Work in/out), **Snowflake** (prototyping), **AWS** (docs/IaC), plus your observability stack for Operations-phase work. Treat MCP server configuration as part of repo onboarding, and review each server's permissions like you'd review a service account's.
+Agents need tool access to be full lifecycle participants. Minimum viable set: **GitHub** (PRs, issues), **Jira** (Units of Work in/out), **Snowflake** (prototyping), **AWS** (docs/IaC), plus your observability stack for Operations-phase work. Treat MCP server configuration as part of repo onboarding, and review each server's permissions like you'd review a service account's. Servers the organization builds itself follow the tool-design rules in [Chapter 13](13-building-ai-features.md#design-tools-for-the-model): a server that returns raw API payloads fills every session's context with fields no task needs.
 
 ## The context-engineering hierarchy
 
@@ -68,6 +74,19 @@ When agent output disappoints, fix context in this order — cheapest first:
 3. **Skills** — is this a recurring procedure that deserves packaging?
 4. **Domain docs** — does `docs/domain/` actually describe the bounded context? ([Chapter 04](04-architecture.md))
 5. **The codebase itself** — inconsistent code teaches the agent inconsistency. Refactoring for clarity is now also agent-performance work.
+
+## Session hygiene
+
+The hierarchy above fixes standing context. A session's live context needs managing too, because it holds every file the agent read, every command output, and every failed attempt, and output quality falls as it fills. A long session full of corrections is the most common reason a capable model starts making careless mistakes.
+
+- **Fresh session per task.** Start a new session, or clear the current one, between Bolts and between unrelated tasks. Within a Bolt, keep a session for as long as its slices build on each other.
+- **Explore in a subagent.** A question that means reading many files ("how does refund state flow through the ledger?") goes to a subagent, which reads in its own context and returns a summary. The main session keeps its context for building.
+- **Restart before escalating.** When the same problem survives two corrections, stop correcting. Rewind to before the wrong turn, or start a fresh session whose first prompt says what was tried and what was learned. Escalate the model tier only if the clean restart also fails, and then the pod. This is the order the Bolt plan's stop condition names ([template](../standards/bolt-plan-template.md)).
+- **Commit each reviewed slice.** Git is the checkpoint of record. A bad turn then costs a revert, not an afternoon. The session's own rewind does not track changes made through shell commands, so it is not a substitute.
+- **Resume from the plan, not from memory.** The Bolt plan's Progress section, updated at the end of each session, says which slices are done, which is next, and what is open. A new session, the next Driver at the half-day rotation, or tomorrow's pod starts from it.
+- **Say what survives compaction.** When a long session is summarised automatically, steering names what must be kept: the Bolt id, the files changed, and the test commands ([CLAUDE.md template](../standards/claude-md-template.md)).
+
+The decision and the options rejected with it: [ADR 0021](../docs/adr/0021-restart-before-escalating-session-hygiene.md).
 
 ## Model selection and token economics
 
@@ -85,7 +104,7 @@ Model choice is a per-task engineering decision, like picking an instance type �
 Two standing rules:
 
 1. **The review side never runs on a cheaper model than the generation side.** An expensive generator checked by a cheap reviewer inverts the whole validation economics of AI-DLC.
-2. **Escalation beats pre-optimization.** Start routine work on the default mid-tier; escalate the session to frontier the moment output needs repeated correction. Two rounds of fixing cheap output costs more — in tokens *and* pod attention — than starting expensive.
+2. **Escalation beats pre-optimization.** Start routine work on the default mid-tier; escalate to frontier, in a new session, when output still needs correction after a clean restart ([session hygiene](#session-hygiene)). Two rounds of fixing cheap output costs more — in tokens *and* pod attention — than starting expensive.
 
 **Effort before model.** Current models expose an effort setting that controls how much the model thinks per request, and it is the first cost lever, ahead of dropping a tier. A frontier model at low effort on routine work often matches the previous generation at high effort, for a fraction of the cost, and it keeps the session on one model, which matters because prompt caches are scoped to a model: switching mid-session throws the cache away. So the order of operations when spend is high is: measure the assigned model at lower effort on real tasks; only then consider a cheaper tier; and judge the result by cost per completed Unit, never per request, because a cheaper request that needs two more rounds is the expensive one. The per-use-case effort assignments live in the [model selection reference](../standards/model-selection.md#use-case-to-model).
 
@@ -110,7 +129,7 @@ Everything above assumes a human at the keyboard. Agents also run unattended: in
 Each unattended run has four controls, set in the workflow file and reviewed like a service account ([Chapter 06](06-security-shift-left.md#securing-the-agents-themselves)):
 
 - **Identity:** a dedicated bot identity per workflow, never a person's token.
-- **Sandbox:** a fresh, network-restricted runner with no production credentials at any level; read access to observability goes through the same read-only MCP server the [`incident-investigate`](../standards/skills/incident-investigate/SKILL.md) skill uses.
+- **Sandbox:** a fresh, network-restricted runner with no production credentials at any level, and Claude Code's own sandbox with no unsandboxed fallback ([agent baseline](../standards/agent-baseline.md#sandbox-by-autonomy-level)); read access to observability goes through the same read-only MCP server the [`incident-investigate`](../standards/skills/incident-investigate/SKILL.md) skill uses.
 - **Budget:** a per-run token and wall-clock cap. A run that hits the cap stops and reports; it does not retry itself.
 - **Input hygiene:** anything the run reads from outside the repo (issue text, PR comments from forks, web content) is data, never instructions; runs triggered by untrusted input start at level 1.
 
@@ -162,7 +181,7 @@ Standardizing on one primary agent ([ADR 0002](../docs/adr/0002-claude-code-as-p
 
 ## References
 
-- Decisions: [ADR 0002 — Claude Code as primary agent](../docs/adr/0002-claude-code-as-primary-agent.md) · [ADR 0007 — Steering evals](../docs/adr/0007-steering-evals-gate-steering-changes.md) · [ADR 0010 — Vendor governance](../docs/adr/0010-vendor-governance-for-the-primary-agent.md) · [ADR 0012 — Model tiers by use case](../docs/adr/0012-model-tiers-by-use-case-effort-first.md) · [ADR 0014 — Agent autonomy levels](../docs/adr/0014-agent-autonomy-levels.md)
+- Decisions: [ADR 0002 — Claude Code as primary agent](../docs/adr/0002-claude-code-as-primary-agent.md) · [ADR 0007 — Steering evals](../docs/adr/0007-steering-evals-gate-steering-changes.md) · [ADR 0010 — Vendor governance](../docs/adr/0010-vendor-governance-for-the-primary-agent.md) · [ADR 0012 — Model tiers by use case](../docs/adr/0012-model-tiers-by-use-case-effort-first.md) · [ADR 0014 — Agent autonomy levels](../docs/adr/0014-agent-autonomy-levels.md) · [ADR 0019 — Fan-out within one approved Bolt plan](../docs/adr/0019-fan-out-within-one-approved-bolt-plan.md) · [ADR 0020 — Steering evals run multiple trials](../docs/adr/0020-steering-evals-run-multiple-trials.md) · [ADR 0021 — Session hygiene](../docs/adr/0021-restart-before-escalating-session-hygiene.md) · [ADR 0023 — Org agent baseline](../docs/adr/0023-org-agent-baseline-managed-settings-and-plugin.md)
 - Previous: [Chapter 02 — Ways of Working](02-ways-of-working.md) · Next: [Chapter 04 — Architecture](04-architecture.md)
 - Templates: [CLAUDE.md starter](../standards/claude-md-template.md)
 - [Claude Code docs](https://docs.claude.com/en/docs/claude-code) · [Model Context Protocol](https://modelcontextprotocol.io)

@@ -50,10 +50,11 @@ Ready-to-use artifacts in [`standards/`](standards/):
 - [ADR Template](standards/adr-template.md) — architecture decision records
 - [Unit of Work Template](standards/unit-of-work-template.md) — AI-DLC's replacement for epics
 - [Bolt Plan Template](standards/bolt-plan-template.md) — what the agent proposes at the plan gate, with stop conditions
-- [Steering Evals](standards/steering-evals.md) — golden tasks that regression-test steering files and skills on every change, cold
+- [Steering Evals](standards/steering-evals.md) — golden tasks that regression-test steering files and skills on every change, cold, several trials each
 - [Test Review Checklist](standards/test-review-checklist.md) — reviewing agent-generated tests; mutation and AC-mapping gates
 - [Skill Template](standards/skill-template.md) — anatomy of a skill, plus five [reference skills](standards/skills/README.md): threat-model, bolt-plan, tests-from-acs, lesson-to-steering, incident-investigate
 - [CLAUDE.md Template](standards/claude-md-template.md) — starter steering file for new repos
+- [Agent Baseline](standards/agent-baseline.md) — the org-wide guardrails and shared skills every session starts with: managed settings, sandbox, the baseline plugin and its hooks (reviewed quarterly)
 - [Model Selection Reference](standards/model-selection.md) — current model-tier assignments and cost accounting (reviewed quarterly)
 - [Metrics Reference](standards/metrics-reference.md) — one definition per metric: source, cadence, healthy direction, and the pilot baseline
 - [Pilot Charter Template](standards/pilot-charter-template.md) — the signed Wave 1 contract: scope, baseline, success and stop criteria, budget, review date

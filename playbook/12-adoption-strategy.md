@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: engineering leaders, champions, community of practice coordinators
-reviewed: 2026-09-24
+reviewed: 2026-09-29
 review-cadence: quarterly
 ---
 
@@ -120,6 +120,7 @@ Answer these in writing, once, in a FAQ held in the steering repo ([FAQ template
 - **"AI code is lower quality."** Agree that unreviewed AI code is. Then show the gates ([Chapter 01](01-ai-dlc-methodology.md#the-validation-gates)), the review depth metric, and the pilot's escaped-defect numbers against its baseline.
 - **"We tried Copilot and got 10%."** That result is expected: it is the "AI-assisted Scrum" anti-pattern. The claim to test is that the process change, not the tool, produces the gain.
 - **"Our domain is too regulated or too legacy."** Invite them to name the hardest real example, then run it through a Bolt in public ([Chapter 11](11-learning-paths.md#anti-patterns)). [Chapter 10](10-legacy-modernization.md) is often the best first pilot for exactly these teams.
+- **"Will we forget how to code?"** Yes, if all anyone does is delegate; the evidence says so, and debugging goes first. Show the practices that keep the skill, which are built into Friday learning time ([Chapter 11](11-learning-paths.md#keeping-skills-while-the-agent-codes)), and say plainly that they are part of the job, not optional extras.
 - **"What if the vendor changes terms or disappears?"** Point to the written degraded mode and the annual review in [vendor governance](03-tooling-strategy.md#vendor-governance). Steering is markdown and moves with you.
 
 ### The pilot charter is the contract

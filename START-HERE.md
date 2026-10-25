@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: everyone new to AI-DLC, including leaders and product owners who will not read every chapter
-reviewed: 2026-09-24
+reviewed: 2026-09-29
 review-cadence: quarterly
 ---
 
@@ -13,7 +13,7 @@ AI-DLC on one page: what happens, when, which artifact to use, and where to read
 
 1. **Intent** from the business becomes a **Unit of Work** in Mob Elaboration, drafted by the agent and decided by people ([Chapter 01](playbook/01-ai-dlc-methodology.md#phase-1-inception)).
 2. A **Bolt** starts with a plan the pod approves before anything is generated ([Chapter 02](playbook/02-ways-of-working.md#a-day-inside-a-bolt)).
-3. In **Mob Construction** the agent writes code, tests, and IaC in slices while the Navigator reviews each one.
+3. In **Mob Construction** the agent writes code, tests, and IaC in slices while the Navigator reviews each one. When the plan allows, up to three agents build independent lanes at once ([fan-out](playbook/02-ways-of-working.md#fan-out-inside-a-bolt)).
 4. The change deploys through **risk-based gates**: routine changes flow, material ones wait for a named approver ([Chapter 07](playbook/07-devops-automation.md#risk-based-gating)).
 5. Lessons from the week, from incidents, and from production go back into **steering** ([Chapter 03](playbook/03-tooling-strategy.md#the-context-engineering-hierarchy)).
 
@@ -43,7 +43,7 @@ Why the gates are the method: [Chapter 01](playbook/01-ai-dlc-methodology.md#the
 
 | Moment | Use |
 |---|---|
-| Setting up a repo | [CLAUDE.md template](standards/claude-md-template.md) |
+| Setting up a repo | [CLAUDE.md template](standards/claude-md-template.md); what the [agent baseline](standards/agent-baseline.md) already provides and what the repo adds |
 | Recording a decision | [ADR template](standards/adr-template.md) |
 | Writing a skill | [Skill template](standards/skill-template.md) and the [reference skills](standards/skills/README.md) |
 | Changing steering or a model tier | [Steering evals](standards/steering-evals.md) and the [model selection reference](standards/model-selection.md) |
@@ -57,7 +57,7 @@ Why the gates are the method: [Chapter 01](playbook/01-ai-dlc-methodology.md#the
 - No significant generation without an approved plan ([Chapter 01](playbook/01-ai-dlc-methodology.md#phase-2-construction)).
 - No unreviewed code merges, and no agent merges anything at any [autonomy level](playbook/03-tooling-strategy.md#agent-autonomy-levels).
 - The agent halts on a stop condition; the pod does not help it route around one ([Appendix C](playbook/appendix-c-a-bolt-that-fails.md)).
-- Tests name the failure they catch, and the mutation gate checks that they do ([Chapter 02](playbook/02-ways-of-working.md#testing-under-ai-dlc)).
+- Tests are written first and fail before the code exists; the implementing agent never edits them, and the mutation gate checks that they catch failures ([Chapter 02](playbook/02-ways-of-working.md#testing-under-ai-dlc)).
 - Restricted data never enters agent context as real values ([Chapter 06](playbook/06-security-shift-left.md#data-in-context-and-generated-code-ownership)).
 - Review budget is a daily cap, not a target ([Chapter 02](playbook/02-ways-of-working.md#sustainable-pace)).
 - No metric targets an individual ([metrics reference](standards/metrics-reference.md)).

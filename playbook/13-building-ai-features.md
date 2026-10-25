@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: architects, developers, product owners, QA
-reviewed: 2026-09-24
+reviewed: 2026-09-29
 review-cadence: quarterly
 ---
 
@@ -25,6 +25,35 @@ The architecture rules of [Chapter 04](04-architecture.md) contain the model the
 - **Code for what code can do.** Arithmetic, dates, eligibility rules, and anything with a legal or financial answer are computed in code, where they can be tested exactly ([Appendix B](appendix-b-rules-from-legislation.md) shows rules extracted this way). The model handles language: reading, drafting, classifying, summarizing.
 - **Every AI feature has a fallback and a kill switch.** A non-AI path (a manual queue, a simpler rule, "not available right now") and a feature flag that switches to it without a deploy ([Chapter 07](07-devops-automation.md#gitops-and-environments)).
 - **The product's agents follow the same gate as ours.** A feature that lets a model call tools keeps a human confirmation between reading content and taking a consequential action, the same control [Chapter 06](06-security-shift-left.md#securing-the-agents-themselves) puts on development agents.
+
+## Choose the simplest pattern that works
+
+Start every AI feature at the simplest shape that could pass its eval set, and move up only when the eval results show it falls short. The distinction that matters is who decides the next step. In a **fixed workflow**, code decides: it calls the model a known number of times in a known order. In an **agent loop**, the model decides: it calls a tool, reads the result, and chooses what to do next until it judges the task done.
+
+1. **One model call**, with retrieval if the feature needs documents, and a good prompt. Most classification, extraction, summarisation, and drafting features never need more.
+2. **A fixed workflow**, when one call cannot do the job well:
+   - a chain of calls, each checked by code before the next;
+   - a router that sends each input to a specialised prompt;
+   - parallel calls whose results code combines;
+   - a draft-and-critique loop with a fixed number of rounds.
+   The steps are known in advance, so each can be tested and evaluated on its own.
+3. **An agent loop**, only when the steps genuinely cannot be known in advance (open-ended research, multi-step tasks whose path depends on what each tool returns) *and* the eval set shows a workflow falls short.
+
+Each step up costs latency, tokens, and predictability. An agent loop's errors compound across steps, and its evals are harder, because the same input can take different paths. So moving up is an escalation with evidence, like moving up a model tier ([Chapter 03](03-tooling-strategy.md#match-the-tier-to-the-task)). The Unit of Work records the pattern chosen, and for a workflow or a loop, the eval result that ruled out the simpler one. An agent loop, once chosen, gets the step and token caps in [Cost and latency budgets](#cost-and-latency-budgets).
+
+## Design tools for the model
+
+A tool the model calls is an interface for a model, not a thin wrapper over an API, and its design decides how well the feature works. The same rules apply to the MCP servers the organization builds for its development agents ([Chapter 03](03-tooling-strategy.md#mcp-servers)).
+
+- **Few tools, shaped like tasks.** One `schedule_meeting` beats `list_users`, `list_calendars`, and `create_event` that the model must chain correctly. Build the tools the feature's tasks need, not one per API endpoint.
+- **Names that say where they belong.** Namespace tools by system and resource (`billing_find_invoice`, `jira_search_issues`) so the model picks the right one when several servers are loaded.
+- **Return meaning, not identifiers.** Names, titles, and human-readable references rather than opaque IDs, and only the fields the task needs. Every returned token is context the model must read.
+- **Bounded responses.** Pagination, filters, and truncation with sensible defaults, so one broad query cannot flood the context. A truncated response says so and says how to narrow the query.
+- **Errors that teach.** An error says what was wrong with the call and how to fix it ("date must be ISO 8601, e.g. 2026-09-29"), not a status code.
+- **Descriptions written for a new colleague.** What the tool does, when to use it instead of its neighbours, and what each parameter means, with an example. The model reads nothing else before choosing.
+- **Evaluated, not assumed.** Tools are part of the system under test: the eval set includes realistic multi-step tasks that need them, and the transcripts of failed cases are read for wrong tool choices, malformed calls, and wasted calls. A tool change runs the eval gate like a prompt change.
+
+Tools still run with the calling user's permissions, and consequential actions still need the user's confirmation ([Untrusted input and output in user flows](#untrusted-input-and-output-in-user-flows)).
 
 ## Evals are the test suite
 
@@ -71,7 +100,7 @@ A product feature that lets the model loop (call a tool, read the result, decide
 
 | Phase | What changes for an AI feature |
 |---|---|
-| Inception | The Unit of Work carries eval thresholds as ACs, the fallback behaviour, and AI abuse cases from the threat-model pass. The product owner and QA write the first 20 eval cases in Mob Elaboration, because they know what a good answer looks like. |
+| Inception | The Unit of Work carries eval thresholds as ACs, the fallback behaviour, the pattern chosen ([simplest first](#choose-the-simplest-pattern-that-works)), and AI abuse cases from the threat-model pass. The product owner and QA write the first 20 eval cases in Mob Elaboration, because they know what a good answer looks like. |
 | Construction | The Bolt plan's test strategy names the eval set, the graders, and the thresholds. The adapter, prompt, and parser are built together; the eval gate runs on the PR alongside mutation testing and contract tests. |
 | Operations | Online grading, feedback capture, drift alerts, and model upgrades as Units. The kill switch is tested like rollback. |
 | Prototype | [Chapter 05](05-rapid-prototyping.md) prototypes answer whether the feature is worth building. Promotion requires an eval set with thresholds; a prototype that was only ever tried by hand has no evidence that it works. |
@@ -84,6 +113,7 @@ A product feature that lets the model loop (call a tool, read the result, decide
 - **Model output straight into HTML, SQL, or a shell.** Injection with extra steps. Output is untrusted input.
 - **Tenant-mixed retrieval.** One index for all customers, filtered in the prompt ("only answer about this customer's data"). Authorization is enforced before retrieval, in code.
 - **The floating model alias.** A configuration that points at "the latest" model, so the provider changes the feature's behaviour overnight. Pin versions; upgrade on purpose.
+- **The agent that should have been a workflow.** A model left to choose its own steps for a task whose steps were always the same four. It costs three times as much, fails in more ways, and its eval results vary from run to run. Start simple; loop on evidence.
 - **Language models doing arithmetic.** Totals, dates, and eligibility computed by the model because it was convenient. Compute in code, explain in language.
 
 ## Tips & tricks
@@ -96,6 +126,7 @@ A product feature that lets the model loop (call a tool, read the result, decide
 
 ## References
 
-- Decisions: [ADR 0018 — Build AI features with evals, a domain adapter, and a kill switch](../docs/adr/0018-ai-features-evals-adapter-kill-switch.md)
+- Decisions: [ADR 0018 — Build AI features with evals, a domain adapter, and a kill switch](../docs/adr/0018-ai-features-evals-adapter-kill-switch.md) · [ADR 0024 — Simplest pattern first, tools designed for the model](../docs/adr/0024-simplest-pattern-first-and-tools-designed-for-the-model.md)
+- Anthropic: [Building effective agents](https://www.anthropic.com/research/building-effective-agents) · [Writing effective tools for AI agents](https://www.anthropic.com/engineering/writing-tools-for-agents)
 - [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
 - Previous: [Chapter 12 — Adoption Strategy](12-adoption-strategy.md) · Back to the [README](../README.md)

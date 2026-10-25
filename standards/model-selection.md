@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: developers, engineering leaders
-reviewed: 2026-09-03
+reviewed: 2026-09-29
 review-cadence: quarterly
 ---
 
@@ -39,7 +39,7 @@ Effort is the setting that controls how much the model thinks per request; `n/a`
 | Use case | Model | Effort | Why |
 |---|---|---|---|
 | Routine construction inside an approved plan | Sonnet 5 | `medium`; raise to `high` when output needs correction | The plan carries the intelligence |
-| Construction that fights back after two corrections | Opus 5, in a new session | `xhigh` | The escalation rule; a new session because caches are model-scoped |
+| Construction that fights back after a clean restart ([session hygiene](../playbook/03-tooling-strategy.md#session-hygiene)) | Opus 5, in a new session | `xhigh` | The escalation rule; a new session because caches are model-scoped |
 | Tests from acceptance criteria; mutation-survivor analysis ([`tests-from-acs`](skills/tests-from-acs/SKILL.md)) | Sonnet 5 | `high` | Bounded by the plan's test table |
 | Fixtures, producers, consumers, and contract tests generated from a schema | Haiku 4.5 | n/a | Mechanical; the schema verifies it |
 | Fresh-eyes and adversarial review | Opus 5 | `xhigh` | The reviewer never runs below the generator |
@@ -80,7 +80,7 @@ Effort is the setting that controls how much the model thinks per request; `n/a`
 ## Standing rules (from Chapter 03 — repeated because they get violated)
 
 1. **Reviewer ≥ generator.** The review side never runs on a cheaper model than the generation side.
-2. **Escalate, don't pre-optimize.** Default mid-tier; escalate to frontier when output needs repeated correction.
+2. **Escalate, don't pre-optimize.** Default mid-tier; escalate to frontier when output still needs correction after one clean restart.
 3. **Frontier for anything whose failure costs a pod-day** — plans, architecture, security judgment. Frontier-plus for anything whose failure costs weeks.
 4. **Effort is the first lever, model the second.** Before dropping a tier, measure the assigned model at a lower effort on real tasks. On the current generation, lower effort often matches the previous generation at high effort, at a fraction of the cost.
 5. **Caches are model-scoped.** Escalation means a new session, never a mid-session model swap, and a pod does not alternate models inside one Bolt.
@@ -99,5 +99,6 @@ Effort is the setting that controls how much the model thinks per request; `n/a`
 
 | Date | Change | Steering fixes needed |
 |---|---|---|
+| 2026-09-29 | Escalation now follows a clean session restart, not two corrections ([ADR 0021](../docs/adr/0021-restart-before-escalating-session-hygiene.md)); no tier assignments changed | None; no model changed |
 | 2026-09-03 | Added the frontier-plus tier (Claude Fable 5.1), the use-case table with effort levels, rules 4–8, and relative cost multipliers | Evals not yet in place; first run due with the next tier change |
 | 2026-08-30 | Initial version: Claude 5 family tier assignments | — |

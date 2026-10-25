@@ -1,7 +1,7 @@
 ---
 owner: security-engineering
 audience: security engineers, developers
-reviewed: 2026-09-24
+reviewed: 2026-09-29
 review-cadence: quarterly
 ---
 
@@ -56,7 +56,7 @@ Every Unit of Work gets a **threat-model pass inside Mob Elaboration** — this 
 
 ## Securing the agents themselves
 
-1. **Least privilege:** agents run with default-deny permissions; destructive commands and protected paths (auth config, migrations, CI workflows) require explicit human approval per invocation. Hooks enforce this mechanically.
+1. **Least privilege:** agents run with default-deny permissions; destructive commands and protected paths (auth config, migrations, CI workflows) require explicit human approval per invocation. Hooks, deny rules, and approval rules enforce this mechanically, delivered as managed settings that no repo or user can loosen and holding in every permission mode ([agent baseline](../standards/agent-baseline.md)).
 2. **MCP servers are privileged integrations:** each one gets an owner, a scoped service identity (never a human's personal token), and a permissions review at adoption + annually.
 3. **Prompt-injection hygiene:** agents that read external content (web, third-party tickets, artifact comments) must not be able to silently take consequential actions — the human gate between "agent read something" and "agent did something irreversible" is the control.
 4. **No secrets in context:** secrets live in the secrets manager; agents reference them by name in code and never see values. Secret-scan agent-authored diffs like any other.

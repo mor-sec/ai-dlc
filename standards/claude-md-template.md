@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: developers
-reviewed: 2026-09-02
+reviewed: 2026-09-29
 review-cadence: quarterly
 ---
 
@@ -47,9 +47,15 @@ before changing domain logic. Glossary: docs/domain/<context>/language.md.
   honour the plan's stop conditions — halt and ask, never drift.
 - Small slices: keep diffs reviewable; if a change grows past ~500 lines,
   stop and split.
-- Tests are generated with the code and must map to the Unit of Work's
-  acceptance criteria. A test that merely asserts current behavior is not
-  done — state what failure it catches. Checklist: standards/test-review-checklist.md.
+- Tests come first: write them from the Unit of Work's acceptance criteria,
+  confirm they fail, commit them, then implement. Never edit a committed test
+  or add a skip/xfail marker; if one must change, halt and ask. A test that
+  merely asserts current behavior is not done — state what failure it catches.
+  Checklist: standards/test-review-checklist.md.
+- After two failed corrections on the same problem, stop and say so; the
+  Driver restarts the session with what was learned.
+- When compacting, keep the Bolt id, the list of modified files, and the test
+  commands.
 - Update docs in the same PR as the change (docs/, ADRs, event catalog).
 - PR title and branch start with the Jira key (PROJ-###).
 

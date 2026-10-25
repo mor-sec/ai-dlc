@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: engineering leaders, developers
-reviewed: 2026-09-18
+reviewed: 2026-09-29
 review-cadence: quarterly
 ---
 
@@ -27,8 +27,8 @@ Each path = curriculum + a **practicum** (the verification). Nobody is "enabled"
 
 | Stage | Content | Practicum |
 |---|---|---|
-| 1. Method | Playbook ch. [01](01-ai-dlc-methodology.md)–[02](02-ways-of-working.md); Anthropic's [Claude Code docs](https://docs.claude.com/en/docs/claude-code) and agentic-coding best practices | Shadow a working pod for two Bolts |
-| 2. Craft | Context engineering (ch. [03](03-tooling-strategy.md)): steering files, plan mode, skills, hooks; reviewing agent output (the [Chapter 02](02-ways-of-working.md) review disciplines) | Drive a Bolt under supervision; write one steering improvement + one skill |
+| 1. Method | Playbook ch. [01](01-ai-dlc-methodology.md)–[02](02-ways-of-working.md); Anthropic's [Claude Code docs](https://docs.claude.com/en/docs/claude-code) and agentic-coding best practices; the Explanatory and Learning output styles ([keeping skills](#keeping-skills-while-the-agent-codes)) | Shadow a working pod for two Bolts |
+| 2. Craft | Context engineering (ch. [03](03-tooling-strategy.md)): steering files, plan mode, skills, hooks; reviewing agent output (the [Chapter 02](02-ways-of-working.md) review disciplines) | Drive a Bolt under supervision; write one steering improvement + one skill; complete one slice in the Learning style |
 | 3. Depth | DDD & event-driven fundamentals (ch. [04](04-architecture.md)); shift-left security practices (ch. [06](06-security-shift-left.md)) | Lead a Mob Elaboration; pass the "explain it back" ritual on a non-trivial merge |
 
 External anchors: Evans/Vernon for DDD; OWASP secure-coding; AWS Skill Builder's AI-DLC and Q Developer modules where AWS tooling is in play.
@@ -53,6 +53,20 @@ Ch. [06](06-security-shift-left.md) as owner, not reader; steering-as-control au
 
 Wave-1 content plus: reading the new metrics ([ch. 02](02-ways-of-working.md), [08](08-github-jira.md)), budgeting tokens vs. seats against the [model selection reference](../standards/model-selection.md), and the discipline of *not* reintroducing Scrum ceremonies when a quarter gets bumpy. **Practicum:** run a quarter's pilot review against the charter's success criteria, in writing.
 
+## Keeping skills while the agent codes
+
+Every gate in AI-DLC is a person judging agent output, so the method depends on people who can still do the work they review. That skill does not maintain itself. In a randomized trial Anthropic ran with developers learning a new library, those using an AI assistant scored 50% on a follow-up quiz against 67% for those coding by hand. They were not significantly faster, and the largest gap was in debugging, the skill a Navigator needs most. How people used the assistant made the difference. Those who asked it to explain, or asked conceptual questions and then wrote the code themselves, kept their understanding. Those who delegated the code did worst.
+
+So the enablement program builds learning into ordinary work, using the patterns that preserved it:
+
+- **Explanatory style on a new codebase.** For the first weeks in an unfamiliar repo, a developer's own sessions use Claude Code's Explanatory output style, which adds short explanations of why each change is made the way it is.
+- **Learning style while on the path.** Developers in stages 1 and 2 of the [developer path](#developer-pod-member) use the Learning style in practice sessions. It leaves the pieces with a real design decision for the developer to write. Not on the shared screen during a Bolt, where the pod's pace comes first.
+- **Concept before code.** When the Driver meets an unfamiliar library or pattern, the first prompt asks the agent to explain it, and the second asks it to build. This is cheap on the shared screen and teaches the whole pod.
+- **One hand-driven slice per fortnight.** Every developer, however senior, takes one small slice in Friday learning time and writes it themselves. The agent explains and reviews; it does not write the code. The slice goes through the same review as any other.
+- **Explain it back until the first solo Bolt.** A developer who has not yet driven a Bolt alone gives the "explain it back" ([Chapter 02](02-ways-of-working.md#tips--tricks)) on every merge they Navigate.
+
+None of this is measured per person ([metrics reference](../standards/metrics-reference.md#what-is-not-measured)). Hand-driven slices are noted in the pod's [consolidation](../standards/consolidation-template.md) record, and the signal that it works is the pod's review depth holding up as newer members take the Navigator seat. The decision and the options rejected with it: [ADR 0025](../docs/adr/0025-keep-skills-while-agents-code.md).
+
 ## The knowledge system (how learning compounds)
 
 Courses bootstrap; the running system sustains:
@@ -68,6 +82,7 @@ Courses bootstrap; the running system sustains:
 - **Training the tool, not the method.** A day of "prompt tips" without ways-of-working change reproduces the autocomplete plateau.
 - **Big-bang rollout.** Forty teams on day one means forty teams improvising badly in parallel and no seeding cohort. Waves or nothing.
 - **Enablement as an event.** A launch quarter with no guild, no digest, no steering cadence — knowledge stops compounding the day the trainers leave.
+- **Onboarding by delegation.** A new developer learns a codebase by having the agent write everything in it. Three months later they can prompt fluently and debug nothing, and the pod has gained a Driver but not a Navigator.
 - **Ignoring the skeptics' data.** Veterans' objections are usually real edge cases; run their example through a Bolt publicly. Convert or learn — both are wins.
 
 ## Tips & tricks
@@ -79,5 +94,7 @@ Courses bootstrap; the running system sustains:
 
 ## References
 
+- Decisions: [ADR 0025 — Keep skills while agents code](../docs/adr/0025-keep-skills-while-agents-code.md)
 - [AWS Skill Builder](https://skillbuilder.aws) · [Anthropic Academy / Claude Code training](https://www.anthropic.com/learn) · [DDD reading path: Evans, Vernon](04-architecture.md#references)
+- Anthropic: [How AI assistance impacts the formation of coding skills](https://www.anthropic.com/research/AI-assistance-coding-skills)
 - Previous: [Chapter 10 — Legacy Modernization](10-legacy-modernization.md) · Next: [Chapter 12 — Adoption Strategy](12-adoption-strategy.md)

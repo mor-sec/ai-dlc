@@ -1,6 +1,6 @@
 # 0007 — Regression-test steering files and skills with golden tasks, run cold
 
-- **Status:** Accepted
+- **Status:** Accepted; pass criterion amended by [0020](0020-steering-evals-run-multiple-trials.md)
 - **Date:** 2026-09-02
 - **Deciders:** Playbook maintainers (Stephen Morleys)
 - **Unit of Work:** none; recorded retroactively on 2026-09-23 for commit 1f968a2

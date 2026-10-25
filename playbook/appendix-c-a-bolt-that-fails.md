@@ -33,7 +33,7 @@ Construction runs on the mid-tier model in slices. Sam reviews each one. By 12:3
 
 ## Tuesday 12:40 — The mutation run
 
-The PR pipeline runs diff-scoped mutation testing ([test review checklist](../standards/test-review-checklist.md#the-two-mechanical-checks)). Refunds move money, so the change is material and the gate is 85%.
+The PR pipeline runs diff-scoped mutation testing ([test review checklist](../standards/test-review-checklist.md#the-mechanical-checks)). Refunds move money, so the change is material and the gate is 85%.
 
 ```text
 Mutation testing — changed files (material class, gate 85%)

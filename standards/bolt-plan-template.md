@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: developers
-reviewed: 2026-09-02
+reviewed: 2026-09-29
 review-cadence: quarterly
 ---
 
@@ -48,6 +48,19 @@ and the one design choice a reviewer would want to argue about.>
 
 Contract tests regenerate from <schema>; nothing hand-edited.
 
+## Fan-out
+
+Optional. Delete this section for a single-session Bolt, and always for a
+critical-class Bolt. At most three lanes run at once (Chapter 02, Fan-out
+inside a Bolt). Lane 0 holds anything the other lanes share and is reviewed
+before they start. No file appears in two lanes.
+
+| Lane | Files (rows from the Files table) | Starts after | Tests (rows from Test strategy) |
+|---|---|---|---|
+| 0 — shared contract | <schema, port signature, migration> | plan approval | <contract tests> |
+| A | <paths> | lane 0 reviewed | <AC refs> |
+| B | <paths> | lane 0 reviewed | <AC refs> |
+
 ## Risk and gate
 
 - Classification: routine / material / critical (Chapter 07) → gate: <who approves>
@@ -63,7 +76,18 @@ The agent halts and asks for a plan update — it does not proceed — if any of
 - An existing test must be changed rather than added
 - A new dependency or a schema change is required
 - An accepted ADR would be contradicted
-- Two consecutive fixes fail the same test (escalate the model tier, then the pod)
+- Two consecutive fixes fail the same test (restart the session with what was learned,
+  then escalate the model tier, then the pod)
+- A lane needs a file owned by another lane, or a change to lane 0
+
+## Progress
+
+Updated at the end of every session, so the next session, the next Driver, or
+tomorrow's pod resumes from here rather than from memory.
+
+- Done and reviewed: <slices or lanes, with commit refs>
+- Next: <the slice the next session starts>
+- Open: <questions waiting on the pod or product>
 
 ## Approval
 
@@ -82,5 +106,6 @@ The agent halts and asks for a plan update — it does not proceed — if any of
 - [ ] Classification is right for the paths touched (migrations, auth, IAM, public contracts are never routine)
 - [ ] Rollback is a real, one-line action
 - [ ] The plan fits in one Bolt; if not, split the slice now, not at 4pm
+- [ ] If the plan fans out: no file is in two lanes, everything the lanes share is in lane 0, and the Bolt is not critical-class
 
 A plan that fails this checklist costs an hour to fix. The same mistake found in the diff costs a day.

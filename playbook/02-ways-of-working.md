@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: developers, product owners
-reviewed: 2026-09-24
+reviewed: 2026-09-29
 review-cadence: quarterly
 ---
 
@@ -37,9 +37,25 @@ This is a template, not a law. The invariants: elaboration is batched and synchr
 ## A day inside a Bolt
 
 1. **Plan (30–60 min).** Driver gives the agent the Unit of Work and asks for an implementation plan. Pod reviews the plan — files touched, approach, test strategy, risks. Iterate until it's right. *This is the highest-leverage hour of the day.* The plan is written to the [Bolt plan template](../standards/bolt-plan-template.md) and committed with the PR; its stop conditions are what keep step 2 honest. The [`bolt-plan` skill](../standards/skills/bolt-plan/SKILL.md) produces the first draft, having read the domain docs and ADRs first.
-2. **Generate & review loop (core hours).** Agent implements in slices; Navigator reviews each slice as it lands. Driver keeps the agent on-plan; deviations trigger a plan update, not silent drift.
+2. **Generate & review loop (core hours).** Agent implements in slices; each slice starts with its failing tests, reviewed and committed before the implementation ([tests first](#testing-under-ai-dlc)). Navigator reviews each slice as it lands. Driver keeps the agent on-plan; deviations trigger a plan update, not silent drift. When the plan declares lanes, the slices come from up to three agents at once ([fan-out](#fan-out-inside-a-bolt)).
 3. **Verify (before merge).** Full test run, security scans, a human read of the complete diff. The agent drafts the PR description with a traceability line back to the Jira issue.
 4. **Close (15 min).** Merge, watch the deploy, update the Unit of Work status, capture one lesson for the steering file.
+
+## Fan-out inside a Bolt
+
+Once the plan is approved, the Driver may split construction into up to three **lanes**: parallel agent sessions, each in its own git worktree, each building a set of files no other lane touches. The pod still works on one Unit of Work at a time. Fan-out parallelizes the slices of one approved plan, never Units. Fan-out saves wall-clock time on generation. It adds no review capacity, so every rule below keeps review the limit.
+
+- **Lanes are declared in the plan, not improvised.** The [Bolt plan](../standards/bolt-plan-template.md) lists each lane's files and tests, and the pod approves the split at the plan gate. No two lanes share a file. A Bolt with no Fan-out section runs in one session.
+- **Shared contracts go first, as lane 0.** Anything the lanes depend on together (an event schema, a port signature, a migration) is built in a single session and reviewed before any other lane starts. Lanes build against a reviewed contract, not against each other's work in progress.
+- **Review sets the pace.** A lane has at most one slice waiting for review; when it has one, it stops generating until the Navigator reaches it. Every lane's diff counts against the pod's one daily [review cap](#sustainable-pace). A Navigator who is always behind means the Bolt has too many lanes, not that the Navigator should read faster.
+- **Each lane starts cold**, on the plan's construction tier, from the approved plan rather than from another session's context. The mechanics are in [Chapter 03](03-tooling-strategy.md#parallel-sessions).
+- **Stop conditions apply per lane, and a plan change stops every lane.** A lane that needs a file from another lane, or a change to lane 0, halts and reports. A stop condition that changes the plan (a contract, a dependency, an ADR) pauses every lane until the plan is re-approved.
+- **Integrate before the PR.** Reviewed lanes merge into the Bolt branch in plan order. The integrated diff then gets the full test run, mutation testing, and a fresh-eyes review, because per-slice review cannot see how lanes interact. The Bolt still ends in one PR.
+- **Not for critical-class changes.** A Bolt whose [risk class](07-devops-automation.md#risk-based-gating) is critical runs in one session.
+
+Roles stay the same. The Driver starts, answers, and stops the lanes; the Navigator reviews slices from every lane on the shared screen, in the order they land; the domain anchor answers questions from any lane. Start at two lanes. A third lane is worth it only when the first two regularly leave the Navigator waiting.
+
+The decision and the options rejected with it: [ADR 0019](../docs/adr/0019-fan-out-within-one-approved-bolt-plan.md).
 
 ## Definition of Done
 
@@ -65,14 +81,19 @@ When agents write most code, **review becomes the primary engineering act**. Cal
 
 ## Testing under AI-DLC
 
-Test discipline appears throughout the playbook: tests generated with the code ([Chapter 01](01-ai-dlc-methodology.md)), contract tests over end-to-end suites ([Chapter 07](07-devops-automation.md)), characterization tests as the oracle for legacy ([Chapter 10](10-legacy-modernization.md)). This section is the strategy those pieces belong to, and it answers the question review culture raises: the agent wrote the tests, so what checks the tests?
+Test discipline appears throughout the playbook: tests written before the code ([Chapter 01](01-ai-dlc-methodology.md)), contract tests over end-to-end suites ([Chapter 07](07-devops-automation.md)), characterization tests as the oracle for legacy ([Chapter 10](10-legacy-modernization.md)). This section is the strategy those pieces belong to, and it answers the question review culture raises: the agent wrote the tests, so what checks the tests?
 
 **The pyramid tilts toward contracts.** Schema-driven contract tests first, because events are the seams between bounded contexts and the schema is machine-readable intent. Unit tests second, aimed at domain invariants in `docs/domain/<context>/model.md` rather than at coverage. One thin smoke-path end-to-end test. Nothing else, and delete what flakes.
 
-**The generated-test problem.** The session that wrote a bug writes tests that pass with the bug in place. A green suite proves the code agrees with itself. Two mechanical checks make it prove more:
+**The generated-test problem.** The session that wrote a bug writes tests that pass with the bug in place. A green suite proves the code agrees with itself. Two defences follow: write the tests before the code, and check mechanically that they catch faults and were left alone.
+
+**Tests come first.** For each slice, the tests are written from the acceptance criteria before the implementation exists, against the interfaces the Bolt plan names. Each must fail, and fail for the reason its AC names: an assertion, not an import error. A test that passes before the code exists is testing nothing. The Navigator reviews the failing tests, and they are committed as the slice's **red commit**. The implementation then makes them pass without touching them. For material and critical changes, the session that implements is not the session that wrote the tests, so the tests cannot share the implementation's misunderstanding. The [`tests-from-acs` skill](../standards/skills/tests-from-acs/SKILL.md) runs both phases.
+
+Three mechanical checks make a green suite prove more:
 
 1. **Mutation testing on changed files** at the PR gate. Small faults are injected into new code and the suite must catch them; a generated suite that kills fewer than 70% of mutants on routine changes fails the gate, 85% for material and critical. This is the only check that scales with generation volume, because it does not depend on a human reading every assertion.
 2. **Acceptance-criteria mapping.** Every test names the AC it serves; CI lists any AC with zero tests and fails on it. The Unit of Work becomes the test plan, mechanically.
+3. **Test integrity.** CI fails a PR that modifies or deletes an existing test, or adds a skip or expected-failure marker, unless a person has labelled the change as approved and said why. An agent under pressure to reach green edits the test instead of the code; this makes that a visible decision rather than a line in a long diff. A [baseline hook](../standards/agent-baseline.md#baseline-hooks) blocks the same edits inside the session, as an early warning.
 
 **Non-functional requirements are acceptance criteria, with numbers.** Agents build what the ACs describe and nothing else, and a story that says nothing about speed, load, or failure gets code that is correct on one request and falls over at fifty. So every story whose behaviour has a budget states it in Given/When/Then form like any other AC: a latency budget at a stated percentile and load ("given 200 concurrent retries, p95 response is under 400 ms"), the throughput the path must sustain, what happens when a dependency is slow or down ("given the provider times out, the payment stays `failed` and no second charge is attempted"), and accessibility for UI surfaces ([Chapter 04](04-architecture.md#frontend-and-ux-under-ai-dlc)). These ACs map to tests exactly like functional ones; where the pipeline runs them is in [Chapter 07](07-devops-automation.md#the-reference-pipeline-github-actions). "Fast enough" is not an AC, and neither is silence.
 
@@ -114,7 +135,8 @@ Definitions, source systems, and cadences for every metric above are in the [met
 
 ## Anti-patterns
 
-- **The silent pod.** Everyone heads-down with their own agent, mob in name only. Symptom: three parallel branches. Fix: one shared screen during Construction, one Unit at a time.
+- **The silent pod.** Everyone heads-down with their own agent, mob in name only. Symptom: branches for three different Units, or fan-out lanes nobody reviews until the end. Fix: one shared screen during Construction, one Unit at a time, lanes reviewed slice by slice.
+- **Fan-out to beat the review cap.** A third lane opened because generation looked idle, while two slices wait unreviewed. Idle generation is the review cap working. Lanes add wall-clock speed only while the Navigator keeps up.
 - **Review theater.** Approvals within two minutes of PR creation. Track time-to-approve and comment substance.
 - **Prompt hero.** One person becomes the only effective driver. Rotate daily and pair on steering.
 - **Elaboration skipping under deadline pressure.** The moment you most need clear intent is exactly when you're tempted to skip it.
@@ -131,6 +153,6 @@ Definitions, source systems, and cadences for every metric above are in the [met
 
 ## References
 
-- Decisions: [ADR 0008 — Scale through artifacts, not ceremonies](../docs/adr/0008-scale-pods-through-artifacts-not-ceremonies.md) · [ADR 0009 — QA verifies intent](../docs/adr/0009-qa-verifies-intent.md) · [ADR 0013 — NFRs as acceptance criteria](../docs/adr/0013-non-functional-requirements-as-acceptance-criteria.md) · [ADR 0017 — Consolidation, post-incident, and FAQ templates](../docs/adr/0017-consolidation-post-incident-and-faq-templates.md)
+- Decisions: [ADR 0008 — Scale through artifacts, not ceremonies](../docs/adr/0008-scale-pods-through-artifacts-not-ceremonies.md) · [ADR 0009 — QA verifies intent](../docs/adr/0009-qa-verifies-intent.md) · [ADR 0013 — NFRs as acceptance criteria](../docs/adr/0013-non-functional-requirements-as-acceptance-criteria.md) · [ADR 0017 — Consolidation, post-incident, and FAQ templates](../docs/adr/0017-consolidation-post-incident-and-faq-templates.md) · [ADR 0019 — Fan-out within one approved Bolt plan](../docs/adr/0019-fan-out-within-one-approved-bolt-plan.md) · [ADR 0022 — Tests first, with a test-integrity check](../docs/adr/0022-tests-first-with-a-test-integrity-check.md)
 - Previous: [Chapter 01 — Methodology](01-ai-dlc-methodology.md) · Next: [Chapter 03 — Tooling Strategy](03-tooling-strategy.md)
 - Templates: [Unit of Work](../standards/unit-of-work-template.md) · [Consolidation](../standards/consolidation-template.md)

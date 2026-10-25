@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: developers, security engineers
-reviewed: 2026-09-02
+reviewed: 2026-09-29
 review-cadence: quarterly
 ---
 
@@ -11,7 +11,7 @@ What a skill file contains, and how to know one is worth writing. Audience: anyo
 
 A skill is a folder holding a `SKILL.md` and optionally supporting files (a checklist, an output template, a script). Claude Code loads it from `.claude/skills/<name>/` in the repo, or from the shared skill library; the agent reads the `description` to decide when the skill applies, then follows the body. Skills earn their place when a procedure is (a) repeated, (b) has a right way, and (c) the agent gets it wrong from a cold start. Anything else is a steering line or nothing.
 
-Where they live: the shared skill library repo, versioned and reviewed like code ([Chapter 03](../playbook/03-tooling-strategy.md#tips--tricks)); each consuming repo copies or symlinks the folders it needs into `.claude/skills/`. A skill that only one repo will ever use can live in that repo directly.
+Where they live: the shared skill library repo, versioned and reviewed like code ([Chapter 03](../playbook/03-tooling-strategy.md#tips--tricks)), published as the organization's baseline plugin and enabled on every machine by managed settings ([agent baseline](agent-baseline.md#the-org-plugin)). Repos do not copy shared skills, so a fix reaches every repo at the next session start. A skill that only one repo will ever use lives in that repo's `.claude/skills/`.
 
 ---
 

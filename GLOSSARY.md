@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: everyone, including agents
-reviewed: 2026-09-24
+reviewed: 2026-09-29
 review-cadence: quarterly
 ---
 
@@ -20,6 +20,14 @@ AI-Driven Development Lifecycle. AWS's methodology in which AI orchestrates and 
 ## Acceptance criterion (AC)
 
 A testable statement in a story, written in Given/When/Then form, that a test will map to one-to-one. Threat-model mitigations are carried as ACs so they get implemented and tested without separate tracking. [Unit of Work template](standards/unit-of-work-template.md)
+
+## Agent baseline
+
+The guardrails and shared assets every agent session in the organization starts with: managed settings that no repo or user can loosen (deny and approval rules, bypass mode disabled, sandbox on), and the baseline plugin that carries the reference skills and baseline hooks. Repos add their own allow rules and hooks on top. [Agent baseline](standards/agent-baseline.md)
+
+## Agent loop
+
+An AI feature shape in which the model decides its own next step: it calls a tool, reads the result, and chooses again until it judges the task done. Contrast a fixed workflow, where code decides the sequence of model calls. Used only when the steps cannot be known in advance and the eval set shows a workflow falls short. [Chapter 13](playbook/13-building-ai-features.md#choose-the-simplest-pattern-that-works)
 
 ## Anti-corruption layer (ACL)
 
@@ -105,13 +113,25 @@ The pattern for changing a schema without downtime: expand (add the new structur
 
 The single markdown file (`docs/experiments/register.md` in the steering repo) listing every adoption experiment with its written question, horizon (adopt, pilot, explore), owner, time limit, required evidence, and kill, keep-local, or adopt decision. Kills are published like wins. [Chapter 12](playbook/12-adoption-strategy.md#the-experiment-register)
 
+## Fan-out
+
+Splitting a Bolt's construction into at most three lanes that run as parallel agent sessions, each in its own git worktree, after the plan that declares them is approved. It parallelizes the slices of one Unit of Work, never Units. Review paces it: a lane with an unreviewed slice stops, and every lane counts against the one daily review cap. Not used for critical-class changes. [Chapter 02](playbook/02-ways-of-working.md#fan-out-inside-a-bolt)
+
 ## Grader
 
 The check that decides whether one output of an AI feature passes one eval case. Code first (schema, required fields, no PII), then comparison with a reference, then a model-graded rubric only where code cannot judge; a model grader's agreement with human labels is recorded. [Chapter 13](playbook/13-building-ai-features.md#evals-are-the-test-suite)
 
+## Hand-driven slice
+
+A small slice a developer writes themselves in Friday learning time, with the agent explaining and reviewing but not writing the code. One per developer per fortnight, however senior, to keep the debugging and design skill that review depends on. [Chapter 11](playbook/11-learning-paths.md#keeping-skills-while-the-agent-codes)
+
 ## Hook
 
 A mechanical enforcement point in the agent's lifecycle: run a formatter after edits, block edits to protected paths, require tests before a commit completes. Hooks enforce what steering requests. [Chapter 03](playbook/03-tooling-strategy.md#hooks-and-permissions)
+
+## Lane
+
+One parallel strand of a fan-out Bolt: a set of files no other lane touches, the tests for them, and the agent session that builds them. Lane 0 holds what the others share (a schema, a port signature, a migration) and is reviewed before they start. Declared in the Bolt plan. [Bolt plan template](standards/bolt-plan-template.md)
 
 ## Material change
 
@@ -119,7 +139,7 @@ A change class in risk-based gating: schema migrations, authN/authZ, public API 
 
 ## Mob Construction
 
-The Construction-phase practice: the pod works together on one shared screen while agents generate code, tests, and IaC; the Navigator reviews continuously rather than at the end. [Chapter 01](playbook/01-ai-dlc-methodology.md#the-vocabulary)
+The Construction-phase practice: the pod works together on one shared screen while agents generate code, tests, and IaC (one session, or up to three lanes when the plan fans out); the Navigator reviews each slice as it lands rather than at the end. [Chapter 01](playbook/01-ai-dlc-methodology.md#the-vocabulary)
 
 ## Mob Elaboration
 
@@ -161,6 +181,10 @@ A working artifact built to answer a written question in at most three Bolts, ch
 
 The part-time pod accountability, usually shared across two or three pods, that verifies *intent* rather than behaviour: acceptance criteria are testable as written, every AC has a test, generated tests are read adversarially at the merge gate, and agent-built behaviour is explored by hand in the ephemeral environment. Not a manual regression tester. [Chapter 02](playbook/02-ways-of-working.md#the-ai-pod)
 
+## Red commit
+
+The commit of a slice's tests, written from its acceptance criteria before the implementation exists, after a run shows each failing for the reason its AC names. The implementation that follows must not modify them; the CI test-integrity check enforces it. [Chapter 02](playbook/02-ways-of-working.md#testing-under-ai-dlc)
+
 ## Risk-based gating
 
 Classifying every change as routine, material, or critical, by path-based rules and labels, and letting the class decide where humans appear in the pipeline. Uniform caution is risk-increasing because it spends review capacity on the wrong changes. [Chapter 07](playbook/07-devops-automation.md#risk-based-gating)
@@ -168,6 +192,10 @@ Classifying every change as routine, material, or critical, by path-based rules 
 ## Routine change
 
 The lowest change class: code within one bounded context, additive event fields, docs, patch and minor dependency bumps. Gate: CI green plus one human review, then merge queue and auto-deploy. [Chapter 07](playbook/07-devops-automation.md#risk-based-gating)
+
+## Session hygiene
+
+Managing a session's live context: a fresh session per task, broad exploration in subagents, a commit per reviewed slice, and a restart with what was learned before escalating the model tier when a problem survives two corrections. The Bolt plan's Progress section is what a new session resumes from. [Chapter 03](playbook/03-tooling-strategy.md#session-hygiene)
 
 ## Skill
 
@@ -180,6 +208,10 @@ The Wave 1 table of named stakeholders recording what each cares about, what the
 ## Steering file
 
 The standing instructions an agent loads every session, held in the repo's `CLAUDE.md`: commands, architecture summary, standards, security constraints, definition of done. Under 150 lines, constraints over descriptions, updated every consolidation. [CLAUDE.md template](standards/claude-md-template.md)
+
+## Steering eval
+
+A golden task that tests whether a specific steering line or skill still steers: a realistic prompt, checks on the transcript and diff, an optional fixture, and the line it guards, run cold as several trials. Regression tasks gate steering and model changes; capability tasks only report until they graduate. Not the same as an eval set, which tests a product feature. [Steering evals](standards/steering-evals.md)
 
 ## Stop condition
 
@@ -196,6 +228,10 @@ The ten-minute STRIDE-style pass inside Mob Elaboration that lists assets, trust
 ## Traceability chain
 
 The unbroken, machine-readable thread from business intent to production: Initiative to Unit of Work to stories to branch to plan to commits to review to CI to deploy event. Serves managers, auditors, agents, and cost allocation alike. [Chapter 08](playbook/08-github-jira.md#traceability-the-audit-trail-for-free)
+
+## Trial
+
+One independent, cold attempt at a steering eval task. A task runs *k* trials (three on steering PRs, five on model changes), and a regression task passes only if all *k* do (pass^k). Results are reported as passes out of *k*. [Steering evals](standards/steering-evals.md#trials-and-pass-criteria)
 
 ## Ubiquitous language
 

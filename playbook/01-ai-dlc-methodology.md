@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: developers, architects, product owners, engineering leaders
-reviewed: 2026-09-18
+reviewed: 2026-09-30
 review-cadence: quarterly
 ---
 
@@ -11,9 +11,56 @@ AI-DLC (AI-Driven Development Lifecycle) is AWS's methodology for building softw
 
 ## Why a new lifecycle at all
 
-Bolting AI assistants onto an unchanged Scrum process yields modest gains because the process itself assumes human speed: two-week sprints, backlog grooming, handoffs between specialists. When an agent can produce a tested feature in an afternoon, the ceremony becomes the bottleneck, not the code.
+This section is for anyone new to AI-DLC, including people who will never drive an agent themselves: what changed, what goes wrong without a method, and what the method asks of you. The rest of the playbook is the *how*; this is the *why*.
 
-AI-DLC inverts the model:
+### What changed
+
+For as long as there has been software, writing the code was the slow, expensive part. Every process we use grew up around that fact. Scrum's two-week sprints, story-point estimates, backlog grooming, and the handoffs from analyst to developer to tester all ration scarce developer hours.
+
+AI agents change the economics. An agent can read a codebase, propose a plan, and produce working code, tests, and infrastructure for a well-described change in hours rather than weeks. When producing code is fast and cheap, the hard parts are the ones that were always hard, but now there is nothing to hide behind:
+
+- **Deciding what to build.** An agent builds exactly what it is told, quickly. A vague requirement used to cost a slow, wrong feature; now it costs a fast, wrong feature, several times over.
+- **Checking that it is right.** Agent-written code looks confident and idiomatic whether or not it is correct. Someone has to read it with judgment, and there is far more of it to read.
+- **Keeping it safe and maintainable.** Security flaws, poor designs, and inconsistencies can now be produced at the same speed as good code.
+
+A lifecycle designed around the old bottleneck puts its effort in the wrong place. AI-DLC moves the effort to where the risk now is: intent up front, and validation throughout.
+
+### What goes wrong without a method
+
+Organizations that adopt AI coding tools without changing how they work tend to land in one of two places.
+
+1. **AI-assisted Scrum.** The tools are added to the same sprints, estimates, and handoffs. Individuals get faster, but the process around them does not, so the gain is modest. The ceremony becomes the bottleneck instead of the code, and the organization concludes AI is overhyped.
+2. **Uncontrolled generation.** People let agents run with little structure. Output volume climbs, and so do the problems nobody sees at first: large diffs nobody really reviewed, tests that confirm bugs instead of catching them ([Chapter 02](02-ways-of-working.md#testing-under-ai-dlc)), insecure patterns repeated across services ([Chapter 06](06-security-shift-left.md#the-threat-picture-under-ai-dlc)), and developers who can no longer debug what their agents wrote ([Chapter 11](11-learning-paths.md#keeping-skills-while-the-agent-codes)). The speed is real, and so is the debt.
+
+AI-DLC is the path between these: change the process so the speed is used, and put gates in it so the speed is safe.
+
+### Why a lifecycle and not just a tool
+
+A tool changes what one person can do. A lifecycle changes what an organization can rely on. Three things only come from a shared method:
+
+- **Gains that repeat.** When every pod works the same way, what one pod learns (a steering line, a skill, a new check) reaches every other pod the same week ([Chapter 03](03-tooling-strategy.md#why-a-primary-agent-instead-of-letting-everyone-pick)). Ten people each improvising with their own tool produce ten sets of habits and no shared asset.
+- **Trust in the output.** Every change passes the same [validation gates](#the-validation-gates), so a leader, an auditor, or a customer can rely on AI-built software without taking anyone's word for it.
+- **An audit trail for free.** Intent, plan, code, review, and deployment are linked for every change ([Chapter 08](08-github-jira.md#traceability-the-audit-trail-for-free)), which answers "why is this code here, and who approved it?" years later.
+
+### What it means for you
+
+| If you are | What changes | Why it matters |
+|---|---|---|
+| A developer | You spend less time typing code and more time planning with the agent, reviewing its output, and improving the steering it follows | Review is now the main engineering skill, and the quality of your judgment sets the quality of the product ([Chapter 02](02-ways-of-working.md#review-culture-the-biggest-change)) |
+| A product owner | You decide requirements live, in the room, in [Mob Elaboration](#phase-1-inception), instead of queueing tickets | The agent builds exactly what the acceptance criteria say, so their clarity is now the biggest lever on what gets built |
+| QA | You verify that the tests test the right thing, rather than running regression suites by hand | Agents generate tests easily, including tests that confirm bugs; judging the tests is the new QA work |
+| A security engineer | You write the rules agents follow, and review threat models at the start of each Unit of Work | One steering line prevents a vulnerability class in every future change ([Chapter 06](06-security-shift-left.md)) |
+| A leader | You measure validated outcomes and lead time, not activity, and budget for tokens and enablement | Old measures such as lines of code and story points become meaningless or misleading when code is cheap ([Chapter 02](02-ways-of-working.md#metrics-that-matter-and-ones-that-dont)) |
+
+### What it does not mean
+
+- **It does not mean the AI decides.** People decide what to build, approve every plan, and review every change before it merges. The agent proposes; people dispose.
+- **It does not mean less rigor.** There are more checks, not fewer; they are placed where agent mistakes actually happen.
+- **It does not settle questions about jobs.** Whether and how team shapes change is an organizational decision, and it should be answered honestly and in writing, not assumed ([Chapter 12](12-adoption-strategy.md#handling-the-hard-objections)).
+
+### The idea in one sentence
+
+AI-DLC inverts the traditional model:
 
 > **AI orchestrates the process — generating plans, code, tests, and infrastructure at each stage — and humans verify and approve before execution proceeds.**
 
@@ -74,7 +121,7 @@ Work happens in **Bolts**. A Bolt begins with the agent proposing an implementat
 Key disciplines:
 
 - **Plan approval gate:** no significant generation without an approved plan. The plan follows the [Bolt plan template](../standards/bolt-plan-template.md), whose stop conditions tell the agent when to halt and re-plan.
-- **Tests are generated with the code, not after.** The agent validates its own work against them; humans validate the tests themselves (a test that asserts the bug is worse than no test).
+- **Tests are written first, from the acceptance criteria, and fail before the code exists** ([Chapter 02](02-ways-of-working.md#testing-under-ai-dlc)). The agent validates its own work against them; humans validate the tests themselves (a test that asserts the bug is worse than no test).
 - **Documentation updates ride along** with each change — the agent updates the relevant markdown as part of the diff ([Chapter 09](09-documentation-standards.md)).
 - **Small, reviewable increments.** If a diff is too large to review, the Unit of Work slice was too large. Split the Bolt.
 
@@ -111,7 +158,7 @@ The gates are the methodology. Remove them and you have autopilot, not AI-DLC.
 - **Timebox Mob Elaboration to 90 minutes per Unit of Work.** If it takes longer, the intent is too big — split it.
 - **Keep a "questions the AI asked" log.** The clarifying questions agents raise in elaboration are a goldmine for improving your intent-writing.
 - **Start Bolts in the morning.** A Bolt wants sustained pod attention; don't start one at 4pm.
-- **One pod, one Unit of Work at a time.** Parallelizing Units across a 3-person pod recreates handoffs and kills the mob dynamic.
+- **One pod, one Unit of Work at a time.** Parallelizing Units across a 3-person pod recreates handoffs and kills the mob dynamic. Parallelize the slices of one approved plan instead ([fan-out](02-ways-of-working.md#fan-out-inside-a-bolt)).
 - **Pilot on a real but low-risk service** — not a toy (nobody believes toy results) and not the payments core (one incident kills the program). See [Chapter 11](11-learning-paths.md) for the rollout program and [Chapter 12](12-adoption-strategy.md) for earning buy-in to it.
 
 ## References
