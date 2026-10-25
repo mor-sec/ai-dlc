@@ -37,7 +37,7 @@ def anchors_of(path: Path) -> set[str]:
 
 
 def main() -> int:
-    md_files = [p for p in ROOT.rglob("*.md") if "node_modules" not in p.parts and "worktrees" not in p.parts]
+    md_files = [p for p in ROOT.rglob("*.md") if not {"node_modules", "worktrees"} & set(p.relative_to(ROOT).parts)]
     anchor_cache: dict[Path, set[str]] = {}
     errors = []
 
