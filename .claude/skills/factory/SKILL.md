@@ -66,7 +66,7 @@ Local only; never push. Run from the repo root:
 id=003-rate-limiting
 wt=$(git worktree list --porcelain | grep -B2 '^branch refs/heads/main$' | sed -n 's/^worktree //p')   # no $<digit>: the skill loader substitutes those
 if [ -z "$wt" ]; then wt=.claude/worktrees/factory-merge; git worktree add "$wt" main; tmp=1; fi
-test -z "$(git -C "$wt" status --porcelain)" || { echo "main worktree is dirty"; exit 1; }
+test -z "$(git -C "$wt" status --porcelain -- . ':!factory')" || { echo "main worktree is dirty"; exit 1; }   # factory/ is the orchestrator's own live state
 git -C "$wt" merge --no-ff -m "Merge factory/$id" "factory/$id" || { git -C "$wt" merge --abort; exit 1; }
 [ -n "$tmp" ] && git worktree remove "$wt"
 git worktree remove ".claude/worktrees/factory-$id"
