@@ -7,7 +7,7 @@ review-cadence: quarterly
 
 # CLAUDE.md Template
 
-Starter steering file for new repos. Copy the block below to the repo root as `CLAUDE.md`, replace the angle-bracket placeholders, delete what doesn't apply. Keep it **under ~150 lines, constraints over descriptions, link out for depth** — rationale in [Chapter 03](../playbook/03-tooling-strategy.md#steering-files-claudemd).
+Starter steering file for new repos. Audience: developers setting up or maintaining a repo's steering file. Copy the block below to the repo root as `CLAUDE.md`, replace the angle-bracket placeholders, delete what doesn't apply. Keep it **under ~150 lines, constraints over descriptions, link out for depth** — rationale in [Chapter 03](../playbook/03-tooling-strategy.md#steering-files-claudemd).
 
 Ownership: the pod's domain anchor. Update cadence: every Friday consolidation — if the agent made the same mistake twice this week, a steering line is missing.
 

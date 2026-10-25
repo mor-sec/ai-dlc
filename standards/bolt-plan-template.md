@@ -7,7 +7,7 @@ review-cadence: quarterly
 
 # Bolt Plan Template
 
-The artifact behind AI-DLC's plan-approval gate ([Chapter 01](../playbook/01-ai-dlc-methodology.md#the-validation-gates)): what the agent proposes, and the pod approves, before any significant generation starts. The Driver asks for it in plan mode at the start of every Bolt ([Chapter 02](../playbook/02-ways-of-working.md#a-day-inside-a-bolt)); reviewing it is the highest-leverage hour of the day, so it is short enough to review properly.
+The artifact behind AI-DLC's plan-approval gate ([Chapter 01](../playbook/01-ai-dlc-methodology.md#the-validation-gates)): what the agent proposes, and the pod approves, before any significant generation starts. Audience: developers, as the Driver who asks for the plan and the pod that reviews it. The Driver asks for it in plan mode at the start of every Bolt ([Chapter 02](../playbook/02-ways-of-working.md#a-day-inside-a-bolt)); reviewing it is the highest-leverage hour of the day, so it is short enough to review properly.
 
 Where it lives: `docs/bolts/<bolt-id>.md` in the owning repo, committed in the Bolt's PR so the plan is traceable from the Jira key and diffable against what was actually built. Bolt ids are `B-<date>-<letter>` (`B-2026-09-02-a`); the same id goes in the Jira `bolt-id` field ([Chapter 08](../playbook/08-github-jira.md#mapping-ai-dlc-onto-jira)).
 

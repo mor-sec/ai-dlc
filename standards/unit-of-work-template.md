@@ -7,7 +7,7 @@ review-cadence: quarterly
 
 # Unit of Work Template
 
-The AI-DLC replacement for the epic: a business intent plus everything an agent and a pod need to execute it. Drafted by the AI during [Mob Elaboration](../playbook/01-ai-dlc-methodology.md#phase-1-inception), edited and approved by humans in the session, stored as the Jira Epic description ([Chapter 08](../playbook/08-github-jira.md)).
+The AI-DLC replacement for the epic: a business intent plus everything an agent and a pod need to execute it. Audience: product owners and developers who draft, approve, and execute Units of Work. Drafted by the AI during [Mob Elaboration](../playbook/01-ai-dlc-methodology.md#phase-1-inception), edited and approved by humans in the session, stored as the Jira Epic description ([Chapter 08](../playbook/08-github-jira.md)).
 
 A Unit of Work is **ready** when an agent could start without asking who the actors are, and **right-sized** when it fits in 1–3 Bolts. Bigger → split; can't split → your context boundaries need work ([Chapter 04](../playbook/04-architecture.md)).
 

@@ -7,7 +7,7 @@ review-cadence: quarterly
 
 # ADR Template
 
-Copy into `docs/adr/NNNN-short-title.md` (sequential number). One decision per ADR. The agent drafts during the Bolt; a human approves; the decision exists when the ADR merges. Context: [Chapter 04](../playbook/04-architecture.md#architecture-decisions-adrs).
+Copy into `docs/adr/NNNN-short-title.md` (sequential number). One decision per ADR. Audience: developers and architects who propose, draft, or approve a decision. The agent drafts during the Bolt; a human approves; the decision exists when the ADR merges. Context: [Chapter 04](../playbook/04-architecture.md#architecture-decisions-adrs).
 
 Statuses: `Proposed → Accepted | Rejected`, later possibly `Superseded by NNNN` or `Deprecated`. Never edit an accepted ADR's substance — supersede it.
 
