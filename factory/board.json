@@ -1,1 +1,9 @@
-{ "jobs": [] }
+{ "jobs": [ {
+  "id": "001-software-factory-vocabulary",
+  "title": "Add \"software factory\" to the Chapter 01 vocabulary table and GLOSSARY.md, describing the `/factory` loop in this repo",
+  "branch": "factory/001-software-factory-vocabulary",
+  "stage": "review", "round": 2,
+  "reviews": { "security": "PASS", "ux": "PASS", "ui": "PASS", "code": "pending" },
+  "history": [ { "human": "CHANGES" } ],
+  "builder": "afbf62950adc94ef7", "note": "", "updated": "2026-10-25T03:14:17Z"
+} ] }
