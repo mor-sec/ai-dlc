@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: everyone, including agents
-reviewed: 2026-09-29
+reviewed: 2026-10-25
 review-cadence: quarterly
 ---
 
@@ -200,6 +200,10 @@ Managing a session's live context: a fresh session per task, broad exploration i
 ## Skill
 
 A packaged, versioned procedure an agent invokes for a recurring task, held in a `SKILL.md` with a trigger-style description, inputs, outputs, steps, rules, and verification. Worth writing when a procedure is repeated, has a right way, and the agent gets it wrong cold. [Skill template](standards/skill-template.md)
+
+## Software factory
+
+The agent loop this repo uses to maintain itself, not a delivery practice the playbook recommends to product pods: one feature goes through spec, build, four parallel reviews (security, UX, UI, code), and an approver, then a local merge to `main` or a stop at `needs-human` after at most two review rounds. It never pushes; the human who pushes stays the merge gate. [Chapter 01](playbook/01-ai-dlc-methodology.md#the-vocabulary) · [factory skill](.claude/skills/factory/SKILL.md)
 
 ## Stakeholder map
 

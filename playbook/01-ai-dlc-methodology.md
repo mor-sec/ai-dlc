@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: developers, architects, product owners, engineering leaders
-reviewed: 2026-09-30
+reviewed: 2026-10-25
 review-cadence: quarterly
 ---
 
@@ -79,8 +79,9 @@ Two things must both be true for this to work:
 | Backlog grooming | **Mob Elaboration** | A synchronous session where the pod, product, and QA translate business intent into Units of Work — with AI generating drafts and clarifying questions in real time. |
 | Sprint execution | **Mob Construction** | The pod works together while agents generate code, tests, and IaC; humans review continuously rather than at the end. |
 | Center of Excellence | **Community of practice** | A voluntary, cross-team network of practitioners that owns the practice and improves it through normal PRs, with no approval authority. Adoption spreads by evidence and peers, not by a central gate ([Chapter 12](12-adoption-strategy.md#the-community-of-practice)). |
+| Hand-run PR cycle (author, reviewers, merge) | **Software factory** | The agent loop that maintains this repo, not a practice for product pods: one feature goes through spec, build, four parallel reviews (security, UX, UI, code), and an approver, then a local merge to `main` or a stop at `needs-human`; after at most two review rounds a human is asked. It never pushes, so the human who pushes stays the merge gate ([factory skill](../.claude/skills/factory/SKILL.md)). |
 
-These six are the core; every other term the playbook uses with a specific meaning is in the [glossary](../GLOSSARY.md), one entry per term, each linking back to its defining chapter.
+These seven are the core; every other term the playbook uses with a specific meaning is in the [glossary](../GLOSSARY.md), one entry per term, each linking back to its defining chapter.
 
 ## The three phases
 
@@ -165,4 +166,5 @@ The gates are the methodology. Remove them and you have autopilot, not AI-DLC.
 
 - [AWS: AI-Driven Development Lifecycle for Financial Services](https://aws.amazon.com/blogs/industries/ai-driven-development-lifecycle-for-financial-services/)
 - [IBM Think: AI-DLC explained](https://www.ibm.com/think/topics/ai-dlc)
+- Decisions: [ADR 0026 — A software factory for maintaining this repo](../docs/adr/0026-software-factory-for-maintaining-this-repo.md)
 - Next: [Chapter 02 — Ways of Working](02-ways-of-working.md) · To see the whole loop with every artifact filled in: [Appendix A — Worked Example](appendix-a-worked-example.md)
