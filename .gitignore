@@ -2,7 +2,12 @@
 # reference skills are versioned in standards/skills/; these are tooling for
 # working on the repo, not part of it.
 .agents/
-.claude/
+.claude/*
+# ...except the software factory (factory/), which is part of the repo
+!.claude/agents/
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/factory/
 skills-lock.json
 
 # Tooling caches

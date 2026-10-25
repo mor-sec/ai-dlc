@@ -16,6 +16,7 @@ Org-wide standards repo: the playbook chapters, the reusable templates, and the 
 - `standards/` — templates and dated references that other repos copy. `standards/skills/` — reference skills.
 - `docs/adr/` — decisions about the playbook itself. `docs/README.md` is the map.
 - `README.md` is the front door; every new chapter or standard gets a row there. `START-HERE.md` is the one-page map: links only, no restated content; add a line when a new gate, template, or rule belongs on it.
+- `factory/` — the software factory's board, dashboard, backlog, and job records; the loop is `.claude/skills/factory/SKILL.md` (`/factory`), its agents are `.claude/agents/factory-*.md`.
 - `GLOSSARY.md` defines every term. Read it first; when you introduce a term, add an entry.
 
 ## Working agreements

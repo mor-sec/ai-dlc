@@ -7,4 +7,6 @@ config:
   MD033: false   # inline HTML — Mermaid node labels need <br/>
 ignores:
   - node_modules
+  - .claude/worktrees           # factory build worktrees: copies of the repo
+  - factory/jobs                # factory records open with a VERDICT line, not an H1 (MD041)
   - .github/pull_request_template.md   # PR templates have no H1 by convention (MD041)

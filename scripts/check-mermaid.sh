@@ -16,7 +16,7 @@ while IFS= read -r file; do
     /^```/ && f   { f = 0; close(out "." i ".mmd"); next }
     f             { print > (out "." i ".mmd") }
   ' "$file"
-done < <(grep -rl --include='*.md' '^```mermaid' . | grep -v node_modules | sed 's#^\./##')
+done < <(grep -rl --include='*.md' --exclude-dir=worktrees '^```mermaid' . | grep -v node_modules | sed 's#^\./##')
 
 status=0
 n=0
