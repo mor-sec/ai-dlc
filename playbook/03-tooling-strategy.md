@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: developers, architects
-reviewed: 2026-09-29
+reviewed: 2026-11-03
 review-cadence: quarterly
 ---
 
@@ -18,6 +18,7 @@ Tooling strategy for AI-DLC has one goal: **maximize the quality of context flow
 | Repo & CI | GitHub + GitHub Actions | Source of truth, automation ([Chapter 07](07-devops-automation.md)) |
 | Work tracking | Jira, integrated with GitHub | Units of Work, Bolts, traceability ([Chapter 08](08-github-jira.md)) |
 | Prototyping platform | Snowflake (+ alternatives) | [Chapter 05](05-rapid-prototyping.md) |
+| Observability | OpenTelemetry into CloudWatch Omni | Logs, traces, metrics, and agent telemetry in one backend ([Chapter 07](07-devops-automation.md#observability-requirements)); current facts in the [observability stack reference](../standards/observability-stack.md) |
 | Docs | Markdown in git | [Chapter 09](09-documentation-standards.md) |
 | Integrations | MCP servers | Agents reach Jira, Snowflake, AWS, observability |
 
@@ -63,7 +64,7 @@ When a Bolt plan declares lanes, each lane is its own Claude Code session in its
 
 ### MCP servers
 
-Agents need tool access to be full lifecycle participants. Minimum viable set: **GitHub** (PRs, issues), **Jira** (Units of Work in/out), **Snowflake** (prototyping), **AWS** (docs/IaC), plus your observability stack for Operations-phase work. Treat MCP server configuration as part of repo onboarding, and review each server's permissions like you'd review a service account's. Servers the organization builds itself follow the tool-design rules in [Chapter 13](13-building-ai-features.md#design-tools-for-the-model): a server that returns raw API payloads fills every session's context with fields no task needs.
+Agents need tool access to be full lifecycle participants. Minimum viable set: **GitHub** (PRs, issues), **Jira** (Units of Work in/out), **Snowflake** (prototyping), **AWS** (docs/IaC), plus the [observability stack](../standards/observability-stack.md) for Operations-phase work. Treat MCP server configuration as part of repo onboarding, and review each server's permissions like you'd review a service account's. Servers the organization builds itself follow the tool-design rules in [Chapter 13](13-building-ai-features.md#design-tools-for-the-model): a server that returns raw API payloads fills every session's context with fields no task needs.
 
 ## The context-engineering hierarchy
 

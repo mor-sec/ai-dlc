@@ -1,6 +1,6 @@
 # 0025 — Protect the skills the gates depend on: learning modes, conceptual questions, and hand-driven slices
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-09-29
 - **Deciders:** Playbook maintainers (Stephen Morleys)
 - **Unit of Work:** none; predates Jira tracking for this repo

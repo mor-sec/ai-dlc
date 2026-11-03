@@ -10,6 +10,7 @@
 | **Derived from** | Work package, team plan, quality register, previous checkpoint |
 
 ## Composition
+
 1. Date, period covered and work package ID
 2. Follow-ups from the previous report
 3. Products completed this period, and products in development
@@ -20,15 +21,17 @@
 8. Lessons identified
 
 ## Quality criteria
+
 - It is prepared at the agreed frequency.
 - Facts are traceable to products and quality records, not just activity descriptions.
 - Tolerance status uses forecasts, not only actuals to date.
 - Anything forecast to breach is flagged, and an issue has already been raised.
 
 ## Agent run summary form
+
 An agent should end each work package run (or interval) with this. It doubles as a PR description.
 
-```
+```text
 WP: WP-2-03 | Period: 2026-10-25 09:00–11:30 | Status: in progress / complete / stopped (tolerance)
 Done: PD-012 v0.3 – billing adapter (tests 48/48 pass; eval billing-v2 0.94 ≥ 0.92)  [Q-031]
 In progress: PD-013 – reconciliation job (60%)

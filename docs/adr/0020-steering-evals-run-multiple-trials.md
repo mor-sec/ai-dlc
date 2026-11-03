@@ -1,6 +1,6 @@
 # 0020 — Run each steering eval task several times and gate on every trial passing
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-09-29
 - **Deciders:** Playbook maintainers (Stephen Morleys)
 - **Unit of Work:** none; predates Jira tracking for this repo

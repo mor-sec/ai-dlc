@@ -10,6 +10,7 @@
 | **Derived from** | Stage plan, product descriptions, quality management approach |
 
 ## Composition
+
 1. Date, PM and team manager or person authorised
 2. **Work package description**: the work to be done
 3. Techniques, processes and procedures to use
@@ -25,12 +26,14 @@
 13. Approval method: who confirms completion, and how
 
 ## Quality criteria
+
 - Every product in the package has a product description with quality criteria.
 - Tolerances are explicit and achievable, and the escalation route is clear.
 - The team manager or team has agreed the package, and has the capability and capacity to do it.
 - Reporting cadence suits the package's risk.
 
 ## Agent-executable work package (AI SDLC template)
+
 Use this when the work goes to a coding agent. Keep it short; link out for detail.
 
 ```yaml

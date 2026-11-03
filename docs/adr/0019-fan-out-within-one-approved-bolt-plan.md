@@ -1,6 +1,6 @@
 # 0019 — Allow fan-out into parallel lanes within one approved Bolt plan; still one Unit of Work per pod
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-09-29
 - **Deciders:** Playbook maintainers (Stephen Morleys)
 - **Unit of Work:** none; predates Jira tracking for this repo

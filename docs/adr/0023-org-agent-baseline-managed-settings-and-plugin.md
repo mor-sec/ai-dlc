@@ -1,6 +1,6 @@
 # 0023 — Deliver the agent guardrails as managed settings and the shared assets as an org plugin
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-09-29
 - **Deciders:** Playbook maintainers (Stephen Morleys)
 - **Unit of Work:** none; predates Jira tracking for this repo

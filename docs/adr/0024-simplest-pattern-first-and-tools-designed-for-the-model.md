@@ -1,6 +1,6 @@
 # 0024 — Build AI features with the simplest pattern that passes the eval set, and design their tools for the model
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-09-29
 - **Deciders:** Playbook maintainers (Stephen Morleys)
 - **Unit of Work:** none; predates Jira tracking for this repo

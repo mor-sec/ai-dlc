@@ -57,6 +57,7 @@ Ready-to-use artifacts in [`standards/`](standards/):
 - [Agent Baseline](standards/agent-baseline.md) — the org-wide guardrails and shared skills every session starts with: managed settings, sandbox, the baseline plugin and its hooks (reviewed quarterly)
 - [Model Selection Reference](standards/model-selection.md) — current model-tier assignments and cost accounting (reviewed quarterly)
 - [Metrics Reference](standards/metrics-reference.md) — one definition per metric: source, cadence, healthy direction, and the pilot baseline
+- [Observability Stack Reference](standards/observability-stack.md) — OpenTelemetry as the contract, the current backend (CloudWatch Omni), its access and pricing model, and the agent-telemetry wiring (reviewed quarterly)
 - [Pilot Charter Template](standards/pilot-charter-template.md) — the signed Wave 1 contract: scope, baseline, success and stop criteria, budget, review date
 - [Community of Practice Charter Template](standards/community-of-practice-charter-template.md) — roles, rituals, contribution flow, and health metrics for the community that sustains adoption
 - [Consolidation Template](standards/consolidation-template.md) — the Friday record and pod journal: agent moments, what reaches steering, review debt

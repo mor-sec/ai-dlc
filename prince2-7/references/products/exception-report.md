@@ -10,6 +10,7 @@
 | **Derived from** | Stage or project plan with actuals, project log, issue reports, current forecasts |
 
 ## Composition
+
 1. **Exception title**
 2. **Cause of the exception**: what is driving the forecast breach
 3. **Consequences**: impact on the stage, the project and the business case if nothing is done, and the effect on corporate, programme or customer objectives
@@ -18,6 +19,7 @@
 6. **Lessons**: what can be learned, including whether early warnings were missed
 
 ## Quality criteria
+
 - It is raised when the breach is *forecast*, not after the fact.
 - The cause is specific, and traced to the issues or risks in the log.
 - Options are genuine alternatives, quantified against the tolerance figures.
@@ -25,6 +27,7 @@
 - It is one level of escalation: stage tolerance goes to the board, project tolerance to the business layer via the board.
 
 **Ends with:** the decision needed from the board, chosen from:
+
 - approve an option (often by requesting an exception plan);
 - give ad hoc direction;
 - extend tolerance;
@@ -34,6 +37,7 @@
 Give a date by which the decision is needed.
 
 **AI notes:**
+
 - A common cause is agent cost or rework exceeding plan, for example eval failures that force repeated generation.
 - Options may include switching model, reducing scope (could-haves), adding human effort, or changing approach.
 - Cite measured evidence (cost per unit and pass rates so far), not anecdotes.

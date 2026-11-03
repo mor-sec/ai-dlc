@@ -1,6 +1,6 @@
 # 0006 — Adopt AI-DLC through evidence-led pilots and a community of practice, not a Center of Excellence
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-09-18
 - **Deciders:** Playbook maintainers (Stephen Morleys)
 - **Unit of Work:** none; predates Jira tracking for this repo
