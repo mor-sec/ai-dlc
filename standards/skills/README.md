@@ -1,6 +1,6 @@
 # Reference skills
 
-Skills the playbook prescribes, in Claude Code's native layout: one folder per skill, a `SKILL.md` inside. The organization ships them together in its baseline plugin, so every repo gets updates at the next session start ([agent baseline](../agent-baseline.md#the-org-plugin)); a single folder can still be copied into a repo's `.claude/skills/` to try it. How to write one: [skill template](../skill-template.md).
+Skills the playbook prescribes, in Claude Code's native layout: one folder per skill, a `SKILL.md` inside. Audience: platform engineers who ship skills in the baseline plugin, and developers who install or write one. The organization ships them together in its baseline plugin, so every repo gets updates at the next session start ([agent baseline](../agent-baseline.md#the-org-plugin)); a single folder can still be copied into a repo's `.claude/skills/` to try it. How to write one: [skill template](../skill-template.md).
 
 | Skill | Does | Used in |
 |---|---|---|

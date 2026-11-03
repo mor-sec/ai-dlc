@@ -7,7 +7,7 @@ review-cadence: quarterly
 
 # Model Selection Reference
 
-The current mapping of model tiers to actual models, and of every AI-DLC use case to a tier and an effort level. **This file goes stale by design.** The stable principles live in [Chapter 03](../playbook/03-tooling-strategy.md#model-selection-and-token-economics); this table is reviewed quarterly (see front-matter) and updated whenever a provider ships, reprices, or retires a model. If `reviewed` is more than a quarter old, distrust the table and update it. Any change to it is a steering event: run the [steering evals](steering-evals.md) against the new assignment before merging.
+The current mapping of model tiers to actual models, and of every AI-DLC use case to a tier and an effort level. Audience: developers choosing a model for a task, and engineering leaders who own the cost and the quarterly review. **This file goes stale by design.** The stable principles live in [Chapter 03](../playbook/03-tooling-strategy.md#model-selection-and-token-economics); this table is reviewed quarterly (see front-matter) and updated whenever a provider ships, reprices, or retires a model. If `reviewed` is more than a quarter old, distrust the table and update it. Any change to it is a steering event: run the [steering evals](steering-evals.md) against the new assignment before merging.
 
 ## Current tier assignments (as of 2026-09-03)
 
