@@ -11,6 +11,7 @@
 | **Derived from** | Project mandate or brief, project plan (time and cost), risk register, benefits management approach |
 
 ## Composition
+
 1. **Executive summary**: the case in a few lines and the recommendation.
 2. **Reasons**: why the project is needed and how it fits strategy.
 3. **Business options**: at minimum *do nothing*, *do the minimum* and *do something*. Give the reasons for the chosen option.
@@ -23,6 +24,7 @@
 10. **Major risks**: summary of the aggregate risk profile and key threats and opportunities.
 
 ## Quality criteria
+
 - Each benefit is measurable, has an owner, and can be traced to a project outcome.
 - Costs match the project plan, and the risk summary matches the risk register.
 - Options include "do nothing", and the chosen option is justified.

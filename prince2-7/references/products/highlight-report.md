@@ -10,6 +10,7 @@
 | **Derived from** | Stage plan, project log, checkpoint reports, previous highlight report |
 
 ## Composition
+
 1. Date and period covered
 2. **Status summary**: one or two sentences, with an overall RAG rating and its definition
 3. Work packages: authorised, in progress, completed
@@ -22,6 +23,7 @@
 10. **Decisions or support required from the board** (or "none")
 
 ## Quality criteria
+
 - Short: one page, or one screen for small projects.
 - The RAG rating follows from the tolerance status, not from optimism.
 - Forecasts are given, not just actuals.
@@ -29,6 +31,7 @@
 - Every risk or issue mentioned has an owner and a next action.
 
 ## Preparation steps (for Claude)
+
 1. Run `prince2_check.py validate <project>` and fix or flag errors.
 2. Run `prince2_check.py tolerance <project>`. If it exits with 2, stop and draft an **exception report** instead.
 3. Run `prince2_check.py summary <project>` for counts and top risks.

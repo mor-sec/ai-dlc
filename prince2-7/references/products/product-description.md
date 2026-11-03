@@ -3,6 +3,7 @@
 **Purpose:** defines a product clearly enough to be built, assessed for quality and accepted. Agree it *before* work starts (focus on products).
 
 ## Product description
+
 | | |
 |---|---|
 | **Created** | IP (for the project plan) or SB (for the stage plan); optionally MP |
@@ -10,6 +11,7 @@
 | **Approved by** | Board or the delegated role, as part of the plan approval |
 
 ### Composition
+
 - Identifier and title
 - Purpose
 - Composition: its parts
@@ -23,12 +25,14 @@
 - Quality responsibilities: producer, reviewer(s), approver(s)
 
 ## Project product description
+
 | | |
 |---|---|
 | **Created in** | SU (in the project brief); refined in IP |
 | **Approved by** | Project board |
 
-### Composition
+### Composition (project product)
+
 - Title and purpose
 - Composition: the major products the project delivers
 - Derivation
@@ -39,11 +43,13 @@
 - Acceptance method and acceptance responsibilities: who confirms acceptance at closure
 
 ## Quality criteria (both)
+
 - Every quality specification is measurable and has a method and a responsible reviewer.
 - The purpose explains why the product is needed, not just what it is.
 - Acceptance criteria are prioritised (for example MoSCoW).
 - The author and the approver are not the same person.
 
 **AI notes:**
+
 - A product description doubles as the spec or prompt context for an agent. Write the quality specifications as executable checks where possible: tests, evals, lint rules or schema validation.
 - For AI-model products, specify eval datasets, metrics, thresholds, and the conditions under which the model must not be used.

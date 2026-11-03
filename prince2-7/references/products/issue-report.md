@@ -10,6 +10,7 @@
 | **Derived from** | Issue register entry, impact analysis against plans and business case |
 
 ## Composition
+
 1. Issue identifier (matches the issue register) and issue type
 2. Date raised and raised by
 3. Issue report author and date
@@ -21,6 +22,7 @@
 9. Closure date
 
 ## Quality criteria
+
 - The issue is stated clearly and has been checked against the register for duplicates.
 - Impact analysis covers all affected products (use the product register and product descriptions).
 - The recommendation includes its cost and time effect and its source of funding (for example the change budget).

@@ -11,6 +11,7 @@
 | **Derived from** | Project brief, discussions with the board, organisational standards, lessons |
 
 ## Composition
+
 1. **Project definition**: refined from the brief. Background, objectives and desired outcomes, scope and exclusions, constraints and assumptions, project tolerances, users and interested parties, interfaces.
 2. **Project approach**: delivery approach and the reasons for it.
 3. **Business case**: full version (see `business-case.md`).
@@ -21,6 +22,7 @@
 8. **Tailoring**: what is tailored and why (see `tailoring.md`).
 
 ## Quality criteria
+
 - It is consistent with the brief, or differences are explained.
 - The business case, project plan and risk register agree on cost, time and major risks.
 - Every role has a named person, and the three interests are all represented on the board.
@@ -32,6 +34,7 @@
 **Ends with:** decision required. Authorise the project and the next stage, with the stage plan for that stage attached.
 
 **AI notes:**
+
 - State agent use in the project approach and the roles section: who supervises which agents, and which decisions are reserved to humans.
 - The digital and data management approach must cover AI tooling (see `ai-sdlc.md`).
 - If using AWS AI-DLC, record which workflow profile and gates apply per stage under tailoring.

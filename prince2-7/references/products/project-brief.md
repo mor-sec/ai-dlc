@@ -10,6 +10,7 @@
 | **Derived from** | Project mandate, discussions with the executive and senior users, lessons from similar projects |
 
 ## Composition
+
 1. **Project definition**:
    - background
    - objectives across the seven performance targets
@@ -26,6 +27,7 @@
 6. **References**: the mandate and relevant lessons.
 
 ## Quality criteria
+
 - It is brief: a few pages. Detail belongs in the PID.
 - Objectives are measurable, and tolerances are stated or explicitly TBC with an owner.
 - Scope says what is out, not only what is in.

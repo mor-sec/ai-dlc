@@ -1,6 +1,7 @@
 # Project log (PRINCE2 7)
 
 PRINCE2 7 groups the project's records into a single **project log** containing six records:
+
 - daily log and lessons log;
 - issue, risk, quality and product registers.
 
@@ -9,12 +10,14 @@ Records are created in SU (daily log, lessons log) and IP (the registers), and m
 The schemas below are what `scripts/prince2_check.py` creates (`init`) and validates (`validate`). They are CSV, so agents, spreadsheets and git diffs all work. Files live in `<project>/log/`.
 
 Conventions:
+
 - Dates are ISO `YYYY-MM-DD`.
 - IDs are unique per register (`R-001`, `I-001`, `Q-001`, `L-001`, `D-001`; product IDs as in product descriptions, for example `PD-012`).
 - Enum values are lower_snake_case.
 - Multiple values are separated with `;`.
 
 ## risk_register.csv
+
 | Column | Req | Values / notes |
 |---|---|---|
 | id | ✓ | R-### |
@@ -36,6 +39,7 @@ Conventions:
 | review_date | | date |
 
 ## issue_register.csv
+
 | Column | Req | Values / notes |
 |---|---|---|
 | id | ✓ | I-### |
@@ -57,6 +61,7 @@ Conventions:
 Informal problems handled by the PM can stay in the daily log. Use the register for anything needing formal management.
 
 ## quality_register.csv
+
 | Column | Req | Values / notes |
 |---|---|---|
 | id | ✓ | Q-### |
@@ -73,6 +78,7 @@ Informal problems handled by the PM can stay in the daily log. Use the register 
 | records_ref | | link to evidence (CI run, review notes, eval report) |
 
 ## product_register.csv
+
 Replaces v6 configuration item records and the product status account.
 
 | Column | Req | Values / notes |
@@ -89,6 +95,7 @@ Replaces v6 configuration item records and the product status account.
 | notes | | |
 
 ## daily_log.csv
+
 | Column | Req | Notes |
 |---|---|---|
 | id | ✓ | D-### |
@@ -99,6 +106,7 @@ Replaces v6 configuration item records and the product status account.
 | result | | |
 
 ## lessons_log.csv
+
 | Column | Req | Values / notes |
 |---|---|---|
 | id | ✓ | L-### |
@@ -114,6 +122,7 @@ Replaces v6 configuration item records and the product status account.
 | applied_to | | where the lesson was applied (e.g. CLAUDE.md, the org standard, the next stage plan) |
 
 ## Maintenance rules
+
 - When a risk occurs, close it as `occurred` and raise an issue that references it.
 - A `fail` in the quality register must lead to an issue (`off_specification`) or a re-review row.
 - Review open risks at least every highlight period. The script warns when `review_date` has passed.

@@ -10,6 +10,7 @@
 | **Derived from** | Current stage plan with actuals, project plan, business case, project log, quality register, next stage plan |
 
 ## Composition
+
 1. **PM's summary**
 2. **Review of the business case**: is the project still desirable, viable and achievable? Note changes since the last version.
 3. **Review of objectives**: stage performance against the seven targets and their tolerances (plan versus actual)
@@ -23,6 +24,7 @@
 Attach or reference: the next stage plan (or exception plan), the updated project plan, the updated business case, and any revised management approaches.
 
 ## Quality criteria
+
 - Products are reported by quality status, with evidence references.
 - The business case review reaches an explicit conclusion.
 - Forecasts come from the updated plans, not only from this stage's actuals.

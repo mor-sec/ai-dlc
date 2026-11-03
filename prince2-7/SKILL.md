@@ -36,6 +36,7 @@ Identify what the user wants, then read only the files you need.
 ### Management product index (`references/products/`)
 
 Baselines:
+
 - `project-brief.md` (output of Starting up)
 - `business-case.md` (outline in brief, full in PID, updated at every stage boundary)
 - `pid.md` (project initiation documentation: the project baseline)
@@ -47,6 +48,7 @@ Baselines:
 Records: `project-log.md` (daily log, lessons log, issue, risk, quality and product registers)
 
 Reports:
+
 - `checkpoint-report.md` (team manager → project manager, time-driven)
 - `highlight-report.md` (project manager → project board, time-driven)
 - `exception-report.md` (event-driven, forecast tolerance breach)
@@ -75,7 +77,7 @@ Reports:
 
 `scripts/prince2_check.py` (Python 3.9+, standard library only). It works on a project folder of CSV registers plus `tolerances.json`:
 
-```
+```bash
 python scripts/prince2_check.py init <dir>        # create blank project log CSVs + tolerances.json
 python scripts/prince2_check.py validate <dir>    # schema, enum, date and hygiene checks
 python scripts/prince2_check.py tolerance <dir>   # status per performance target; exit 2 on forecast breach

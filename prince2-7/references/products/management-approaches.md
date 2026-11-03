@@ -9,6 +9,7 @@ An approach says *how* an aspect will be managed on this project: procedures, te
 - **Derived from:** organisational, programme or customer standards, the project brief and lessons.
 
 Shared skeleton for every approach:
+
 1. Introduction and scope
 2. Procedure (steps)
 3. Tools and techniques
@@ -19,6 +20,7 @@ Shared skeleton for every approach:
 8. Scales and measures (where relevant)
 
 **Quality criteria for all approaches:**
+
 - Proportionate to the project's size and risk.
 - Consistent with organisational standards, or deviations are stated.
 - Every activity has an owner.
@@ -27,6 +29,7 @@ Shared skeleton for every approach:
 ## The nine approaches: what each must specifically cover
 
 ### Benefits management approach
+
 - Which benefits will be measured, plus how and when.
 - Baseline measures and who collects them.
 - Post-project benefits reviews and who owns them (senior user).
@@ -34,6 +37,7 @@ Shared skeleton for every approach:
 - It usually extends beyond project closure.
 
 ### Change management approach (people: adoption, not change control)
+
 - Which people and groups need to change how they work.
 - Current state versus target state.
 - Readiness and adoption activities (training, support, champions).
@@ -42,6 +46,7 @@ Shared skeleton for every approach:
 - Handover to business-as-usual leaders.
 
 ### Commercial management approach
+
 - Supplier selection and procurement route.
 - Contract types and key terms.
 - How commercial change requests flow through issue management.
@@ -50,12 +55,14 @@ Shared skeleton for every approach:
 - Contract closure.
 
 ### Communication management approach
+
 - Stakeholder analysis.
 - Information needs per stakeholder: content, frequency, medium and owner.
 - Two-way engagement methods.
 - How communications will be evaluated.
 
 ### Digital and data management approach
+
 - Data the project creates, uses and hands over.
 - Classification, storage, access control, security and privacy obligations.
 - Digital tools and platforms used to run the project.
@@ -63,6 +70,7 @@ Shared skeleton for every approach:
 - **AI work:** permitted AI tools and models, data allowed to leave the organisation, model, prompt and dataset versioning, agent log retention, and provenance of generated content.
 
 ### Issue management approach
+
 - Issue types and how each is captured.
 - Priority and severity scales, mapped to who can decide (TM, PM, change authority, board, business layer).
 - Change budget and change authority limits.
@@ -71,6 +79,7 @@ Shared skeleton for every approach:
 - Link to the product register.
 
 ### Quality management approach
+
 - Quality standards and procedures.
 - Project assurance and quality assurance arrangements (independent).
 - Quality control methods: reviews, tests and inspections.
@@ -79,6 +88,7 @@ Shared skeleton for every approach:
 - **AI work:** eval suites and thresholds, mandatory human review points, security and dependency scanning.
 
 ### Risk management approach
+
 - Risk appetite and how it translates into tolerance.
 - Probability and impact scales (default 1–5 each, score = P×I).
 - Proximity categories.
@@ -89,6 +99,7 @@ Shared skeleton for every approach:
 - Review frequency and escalation thresholds.
 
 ### Sustainability management approach
+
 - Sustainability objectives and performance targets with tolerance (environmental, social, economic).
 - How they are measured during the project and in operation.
 - Reviews and controls.
