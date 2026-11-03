@@ -1,7 +1,7 @@
 ---
 owner: platform-enablement
 audience: architects, developers
-reviewed: 2026-09-29
+reviewed: 2026-11-03
 review-cadence: quarterly
 ---
 
@@ -84,6 +84,9 @@ Non-negotiables for AI-built, event-driven systems:
 1. **Structured logs with correlation IDs** propagated through every event hop ([Chapter 04](04-architecture.md)) — this is also what makes agent incident-investigation work.
 2. **Traces across context boundaries** (OpenTelemetry), **SLOs per service** with burn-rate alerts — alert on symptoms, not causes.
 3. **Deploy markers everywhere** so "what changed?" is always answerable — by humans or agents.
+4. **The agents are instrumented too.** The coding agent's sessions (tokens, cost, tool calls) and every model call an AI feature makes ([Chapter 13](13-building-ai-features.md#operating-ai-features)) flow through the same OpenTelemetry pipeline, tagged with the pod and the Unit of Work key, so cost per Unit ([Chapter 03](03-tooling-strategy.md#unit-economics-cost-per-validated-unit-of-work)) and incident investigation read one system.
+
+OpenTelemetry is the contract; the backend is configuration. The current backend, its access model, and the facts that go stale live in the [observability stack reference](../standards/observability-stack.md) ([ADR 0027](../docs/adr/0027-opentelemetry-contract-and-cloudwatch-omni-default-backend.md)).
 
 ## Anti-patterns
 
@@ -103,6 +106,6 @@ Non-negotiables for AI-built, event-driven systems:
 
 ## References
 
-- Decisions: [ADR 0013 — NFRs as acceptance criteria](../docs/adr/0013-non-functional-requirements-as-acceptance-criteria.md) · [ADR 0015 — Expand/contract migrations](../docs/adr/0015-expand-contract-migrations.md) · [ADR 0022 — Tests first, with a test-integrity check](../docs/adr/0022-tests-first-with-a-test-integrity-check.md)
+- Decisions: [ADR 0013 — NFRs as acceptance criteria](../docs/adr/0013-non-functional-requirements-as-acceptance-criteria.md) · [ADR 0015 — Expand/contract migrations](../docs/adr/0015-expand-contract-migrations.md) · [ADR 0022 — Tests first, with a test-integrity check](../docs/adr/0022-tests-first-with-a-test-integrity-check.md) · [ADR 0027 — OpenTelemetry contract, CloudWatch Omni default](../docs/adr/0027-opentelemetry-contract-and-cloudwatch-omni-default-backend.md)
 - [DORA research](https://dora.dev) · [OpenTelemetry](https://opentelemetry.io) · Accelerate (Forsgren, Humble, Kim)
 - Previous: [Chapter 06 — Security](06-security-shift-left.md) · Next: [Chapter 08 — GitHub + Jira](08-github-jira.md)

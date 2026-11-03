@@ -51,6 +51,7 @@ Why the gates are the method: [Chapter 01](playbook/01-ai-dlc-methodology.md#the
 | Starting a pilot | [Pilot charter](standards/pilot-charter-template.md) |
 | Starting a community of practice | [Community charter](standards/community-of-practice-charter-template.md) and the [FAQ template](standards/faq-template.md) |
 | Reporting numbers | [Metrics reference](standards/metrics-reference.md) |
+| Instrumenting a service or an agent, or giving the agent observability access | [Observability stack reference](standards/observability-stack.md) |
 
 ## Rules that do not bend
 

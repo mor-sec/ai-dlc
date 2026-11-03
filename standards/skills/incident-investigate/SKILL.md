@@ -10,7 +10,7 @@ Gives the on-call human a hypothesis and the evidence for it instead of a blank 
 ## Inputs
 
 - The alert or incident: alert name, SLO or symptom, time of first breach, affected service or bounded context.
-- Observability access via MCP: structured logs with correlation IDs, traces across context boundaries, metrics and SLO burn rates, deploy markers ([Chapter 07](../../../playbook/07-devops-automation.md#observability-requirements)).
+- Observability access via MCP: structured logs with correlation IDs, traces across context boundaries, metrics and SLO burn rates, deploy markers ([Chapter 07](../../../playbook/07-devops-automation.md#observability-requirements)); the current backend and server are in the [observability stack reference](../../observability-stack.md).
 - GitHub deployment events and open PRs for the affected repos in the last 24 hours; feature-flag changes in the same window.
 - `docs/domain/<context>/events.md` and the context map, to know which upstream contexts feed the affected one.
 - The runbook index, to recognise a known failure class.
