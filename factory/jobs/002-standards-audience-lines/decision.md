@@ -1,0 +1,8 @@
+APPROVE
+
+# Decision — 002-standards-audience-lines
+
+- The diff does what the spec asks and nothing more. It changes six lines, one in the opening paragraph of each file in the spec's Scope list. Each change adds one `Audience: …` sentence and keeps the rest of the paragraph. Nothing changes inside a fenced template body, no `reviewed:` value changes, and no file outside `standards/` changes.
+- No escalation trigger applies. The change applies an existing rule, Structure rule 2 in `standards/markdown-style-guide.md`, and leaves every recommendation and standard as it was, so no ADR is needed. It does not touch `.github/`, `scripts/`, `.claude/` or `.gitignore`. It only adds text and does not delete or rewrite any guidance.
+- build.md gives evidence for every AC, and I checked them again. AC2: each audience matches its file's `audience:` front-matter. AC3: holds against current main, including `standards/observability-stack.md` from ADR 0027, because the branch is based on `316034d`. AC6: on the branch, lint gives 0 errors over 100 files, links give 0 broken over 107 files, and structure gives 0 violations. build.md's note about `prince2-7/` lint failures is out of date: main fixed them in `4474fde`, and the code review says the same.
+- No review note should have blocked. The UI and UX notes are about where the sentence sits (mid-paragraph, after the copy instructions), and the spec allows that. One more note, not blocking: `standards/skills/README.md` says "platform engineers", but `standards/agent-baseline.md` calls the same group "the platform pod". It is plain English, not a new term. Align the wording if that file is edited again.
