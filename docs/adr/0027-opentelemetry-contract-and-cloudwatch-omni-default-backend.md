@@ -1,6 +1,6 @@
 # 0027 — Make OpenTelemetry the instrumentation contract and CloudWatch Omni the default observability backend
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-11-03
 - **Deciders:** Playbook maintainers (Stephen Morleys)
 - **Unit of Work:** none; drafted in a working session on 2026-11-03
@@ -21,7 +21,7 @@ We will make OpenTelemetry the instrumentation contract for every service and ag
 - **The backend.** CloudWatch Omni, enabled per organization behind existing SSO identities, with a space per account and Region as the product requires. Pods get access during repo onboarding, alongside the other MCP servers. Access, pricing model, framework coverage, and known gaps live in the [observability stack reference](../../standards/observability-stack.md), reviewed quarterly.
 - **Agent telemetry.** The coding agent's OpenTelemetry export is switched on in the [agent baseline](../../standards/agent-baseline.md) and sent to the CloudWatch OTLP metrics endpoint with pod and Unit attributes. The metrics reference's token and cost rows move to that source once the spike in Follow-ups confirms the data lands.
 - **Chapters stay vendor-neutral.** Chapter 07 keeps the requirements and gains a fourth, that the agents are instrumented too. Vendor names live in the standard and here.
-- **Status Proposed.** An agent drafted this ADR; a named human accepts it.
+- **Drafting.** An agent drafted this ADR; the deciders accepted it on 2026-11-03.
 
 ## Options considered
 

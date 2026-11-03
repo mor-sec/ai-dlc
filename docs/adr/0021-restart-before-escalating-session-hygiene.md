@@ -1,6 +1,6 @@
 # 0021 — Manage session context deliberately; restart a session before escalating its model
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-09-29
 - **Deciders:** Playbook maintainers (Stephen Morleys)
 - **Unit of Work:** none; predates Jira tracking for this repo

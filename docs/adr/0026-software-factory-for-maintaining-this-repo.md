@@ -1,6 +1,6 @@
 # 0026 — Define the software factory as core vocabulary, scoped to maintaining this repo, with a local-only merge
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-10-25
 - **Deciders:** Playbook maintainers (Stephen Morleys)
 - **Unit of Work:** none; factory job 001-software-factory-vocabulary
@@ -17,7 +17,7 @@ We will add "Software factory" to the Chapter 01 vocabulary table and the glossa
 
 - **Scope.** The factory maintains this repo. The playbook does not recommend it to product pods, and it adds no autonomy level. Either change needs its own Unit of Work and ADR.
 - **Merge gate.** The approver agent merges only into the local `main`, or stops at `needs-human`; after at most two review rounds a human is asked. Nothing reaches the shared remote until a human pushes, and that push is where review happens. The merge gate therefore stays human, consistent with "No level merges" ([ADR 0014](0014-agent-autonomy-levels.md)).
-- **Status Proposed.** An agent drafted this ADR; a named human accepts it.
+- **Drafting.** An agent drafted this ADR; the deciders accepted it on 2026-11-03.
 
 ## Options considered
 
