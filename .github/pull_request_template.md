@@ -11,5 +11,5 @@ One paragraph. Link the Unit of Work, ADR, or issue that motivates this.
 - [ ] New or changed recommendation has an ADR in `docs/adr/`
 - [ ] Dated facts live in `standards/` with a `reviewed:` date, not inline in a chapter
 - [ ] `reviewed:` bumped on every substantively edited file
-- [ ] Docs checks green: markdownlint, links, Mermaid
+- [ ] Docs checks green: markdownlint, links, Mermaid, structure
 - [ ] A human reviewer can explain this change without the agent's help

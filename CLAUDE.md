@@ -14,10 +14,11 @@ Org-wide standards repo: the playbook chapters, the reusable templates, and the 
 
 - `playbook/NN-slug.md` — the chapters, read in order. `playbook/appendix-*.md` — worked examples.
 - `standards/` — templates and dated references that other repos copy. `standards/skills/` — reference skills.
-- `docs/adr/` — decisions about the playbook itself. `docs/README.md` is the map.
+- `docs/adr/` — decisions about the playbook itself. `docs/README.md` is the map. `docs/sessions/` — dated records of working sessions that changed the playbook; a record, not a source of truth, not edited after merge.
 - `README.md` is the front door; every new chapter or standard gets a row there. `START-HERE.md` is the one-page map: links only, no restated content; add a line when a new gate, template, or rule belongs on it.
 - `factory/` — the software factory's board, dashboard, backlog, and job records; the loop is `.claude/skills/factory/SKILL.md` (`/factory`), its agents are `.claude/agents/factory-*.md`.
 - `GLOSSARY.md` defines every term. Read it first; when you introduce a term, add an entry.
+- `prince2-7/` — a PRINCE2 7 skill (`SKILL.md`, references, `scripts/prince2_check.py`) for governing AI-DLC delivery under PRINCE2. Linted like everything else; not a chapter or a standard.
 
 ## Working agreements
 
